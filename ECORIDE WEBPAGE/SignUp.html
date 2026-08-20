@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+<link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+     />
+     
+    <link rel="stylesheet" href="SignUp.css"/>
+    <script src="script1.js" defer></script>
+    <script src="SignUp.js" defer></script>
+</head>
+<body>
+
+  
+    <div class="left-side"  >
+        <img src="Assets/pics.png" class="overlay-image">
+  <div class="down-image">
+        <img src="Assets/Landing Image.png">
+  </div>
+</div>
+
+    <div class="right-side">
+        <div class="Header">
+            <h2>Create <span>Account</span></h2>
+            <p class="subtitle">Join EcoRide and start carpooling today.</p>
+        </div>  
+        <div class="registration-container">
+            <form class="reg-con">
+            <div class="organization">
+                <div class="input-group">
+                    <label for="Organization">Company name</label>
+                    <input type="text" id="companyName" placeholder="Enter Company name" required>
+                </div>
+                <div class="input-group">
+                    <label for="RC number">RC Number</label>
+                    <input type="text" id="rcNumber" placeholder="Enter RC Number" required>
+                </div>
+            </div>
+                <div class="input-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" placeholder="Enter email address" required>
+                </div>
+                
+                <div class="input-1">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                    <i class="ph ph-eye" id="show-password"></i>
+                </div>
+
+                <div class="input-2">
+                    <label for="confirm-password">Confirm password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                    <i class="ph ph-eye" id="confirm-password"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label>Phone number</label>
+                    <div class="phone-container">             
+                      <div class="country-select-wrapper">
+                        <select class="country-select" id="countryCode">                  
+                          <option value="+234">🇳🇬 +234</option>
+                          <option value="+1">🇺🇸 +1</option>
+                          <option value="+44">🇬🇧 +44</option>
+                          <option value="+ff">🇨🇦 +1</option>
+                          <option value="+61">🇦🇺 +61</option>
+                          <option value="+91">🇮🇳 +91</option>
+                          <option value="+27">🇿🇦 +27</option>
+                          <option value="+49">🇩🇪 +49</option>
+                        </select>
+                        <div class="dropdown-arrow"></div>
+                      </div>
+                
+                      <div class="divider"></div>
+                
+                      <input type="tel" class="phone-input" maxlength="10" inputmode="numeric" placeholder="801 234 5678" id="phoneNumber">                      
+                    </div>
+                </div>
+                        <button class="load-users" type="submit">Sign Up</button>
+                        <p class="already-have-acct">Already have an account? <a href="Login.html"> Log In</a> </p>
+                        <div id="error-message" style="color: red; font-size: 14px; margin-top: 5px;"></div>
+                        <div id="users"></div>
+            </form>            
+        </div>
+    </div>
+   
+</body>
+</html>
+
+

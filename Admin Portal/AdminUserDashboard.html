@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard: Users</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+     />
+    <link rel="stylesheet" href="AdminUserDashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="Assets/Ecologo.png"> 
+                <h4>Eco<span>Ride</span></h4>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html"><i class="ph ph-squares-four"></i> Overview</a>
+                <a href="AdminUserDashboard.html" class="active"><i class="ph ph-user"></i> Users</a>
+                <a href="AdminBookingDashboard.html" ><i class="ph ph-identification-card"></i> Bookings</a>
+                <a href="AdminVerificationPage.html" ><i class="ph ph-identification-card"></i> Verification</a>
+                <a href="AdminPaymentPage.html"><i class="ph ph-wallet"></i> Payments</a>
+                <a href="AdminProfilePage.html"><i class="ph ph-gear-six"></i></i> Settings</a>
+            </nav>
+            <div class="support-container">
+              <div class="support-card">
+                <div class="headset">
+                    <i class="ph ph-headset"></i>
+                    <div>
+                        <p>Need Help?</p>
+                    <span>Visit our support center</span>
+                    </div>
+                </div> 
+                    <button class="btn-support">Contact Support</button>
+              </div>    
+            </div>
+            <div class="logout-btn">
+                <a href="AdminLogin.html"><i class="ph ph-sign-out"></i>Logout</a>
+            </div> 
+        </aside>
+
+        <!-- Main Content Area -->
+     <main class="main-content">
+            
+            <!-- Top Header -->
+        <header class="top-header">
+            <div class="top-tab">
+                <h2>Users</h2>
+                <div class="header-right">
+                    <div class="notification-bell">
+                        <i class="ph ph-bell"></i>
+                    </div>
+                    <div class="user-profile">
+                        <img src="Assets/Admin.jpg" alt="Admin Avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">Super Admin</span>
+                        </div>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="body-all">
+            <!-- Drivers Section -->
+            <div class="section-header">
+                    <div class="section-title">
+                        <h3>Drivers</h3>
+                        <p>Private car owners registered as commuter drivers</p>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" placeholder="Search by name or phone...">
+                        <i class="ph ph-magnifying-glass"></i>
+                    </div>
+            </div>
+            <section class="table-section">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone No</th>
+                                <th>Email</th>
+                                <th>Joined</th>
+                                <th>Rides</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="user-td"><img src="Assets/Driver.jpg" alt=""> Tunde Fashola</td>
+                                <td>+234 802 100 2213</td>
+                                <td>tunde.f@email.ng</td>
+                                <td>2026-05-15</td>
+                                <td>127</td>
+                                <td class="rating"><i class="ph-fill ph-star"></i> 4.7</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="actions"><i class="ph-fill ph-dots-three-outline"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="user-td"><img src="Assets/Driver.jpg" alt=""> Yemi Soyinka</td>
+                                <td>+234 805 667 2211</td>
+                                <td>yemi.s@email.com</td>
+                                <td>2026-05-15</td>
+                                <td>127</td>
+                                <td class="rating"><i class="ph-fill ph-star"></i> 4.7</td>
+                                <td><span class="status flagged">Flagged</span></td>
+                                <td class="actions"><i class="ph-fill ph-dots-three-outline"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="user-td"><img src="Assets/Driver.jpg" alt=""> Kelechi Obi</td>
+                                <td>+234 703 559 4412</td>
+                                <td>k.obi@gmail.com</td>
+                                <td>2026-05-15</td>
+                                <td>127</td>
+                                <td class="rating"><i class="ph-fill ph-star"></i> 4.7</td>
+                                <td><span class="status flagged-red">Flagged</span></td>
+                                <td class="actions"><i class="ph-fill ph-dots-three-outline"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="user-td"><img src="Assets/Driver.jpg" alt=""> Kelechi Obi</td>
+                                <td>+234 703 559 4412</td>
+                                <td>k.obi@gmail.com</td>
+                                <td>2026-05-15</td>
+                                <td>127</td>
+                                <td class="rating"><i class="ph-fill ph-star"></i> 4.7</td>
+                                <td><span class="status flagged">Flagged</span></td>
+                                <td class="actions"><i class="ph-fill ph-dots-three-outline"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="user-td"><img src="Assets/Driver.jpg" alt=""> Kelechi Obi</td>
+                                <td>+234 703 559 4412</td>
+                                <td>k.obi@gmail.com</td>
+                                <td>2026-05-15</td>
+                                <td>127</td>
+                                <td class="rating"><i class="ph-fill ph-star"></i> 4.7</td>
+                                <td><span class="status flagged">Flagged</span></td>
+                                <td class="actions"><i class="ph-fill ph-dots-three-outline"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <div class="see-all-container">
+                <button class="btn-see-all">See all</button>
+            </div>
+            
+
+            <!-- Passengers Section -->
+            <div class="section-header">
+                <div class="section-title">
+                    <h3>Passengers</h3>
+                </div>
+            </div>
+            <section class="table-section">
+                
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone No</th>
+                                <th>Email</th>
+                                <th>Joined</th>
+                                <th>Rides</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="user-td"><img src="Assets/Driver.jpg" alt=""> Tunde Fashola</td>
+                                <td>+234 802 100 2213</td>
+                                <td>tunde.f@email.ng</td>
+                                <td>2026-05-15</td>
+                                <td>127</td>
+                                <td class="rating"><i class="ph-fill ph-star"></i> 4.7</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="actions"><i class="ph-fill ph-dots-three-outline"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="user-td"><img src="Assets/Driver.jpg" alt=""> Yemi Soyinka</td>
+                                <td>+234 805 667 2211</td>
+                                <td>yemi.s@email.com</td>
+                                <td>2026-05-15</td>
+                                <td>127</td>
+                                <td class="rating"><i class="ph-fill ph-star"></i> 4.7</td>
+                                <td><span class="status flagged">Flagged</span></td>
+                                <td class="actions"><i class="ph-fill ph-dots-three-outline"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="user-td"><img src="Assets/Driver.jpg" alt=""> Yemi Soyinka</td>
+                                <td>+234 805 667 2211</td>
+                                <td>yemi.s@email.com</td>
+                                <td>2026-05-15</td>
+                                <td>127</td>
+                                <td class="rating"><i class="ph-fill ph-star"></i> 4.7</td>
+                                <td><span class="status flagged">Flagged</span></td>
+                                <td class="actions"><i class="ph-fill ph-dots-three-outline"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="user-td"><img src="Assets/Driver.jpg" alt=""> Yemi Soyinka</td>
+                                <td>+234 805 667 2211</td>
+                                <td>yemi.s@email.com</td>
+                                <td>2026-05-15</td>
+                                <td>127</td>
+                                <td class="rating"><i class="ph-fill ph-star"></i> 4.7</td>
+                                <td><span class="status flagged">Flagged</span></td>
+                                <td class="actions"><i class="ph-fill ph-dots-three-outline"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </section>
+            <div class="see-all-container">
+                <button class="btn-see-all">See all</button>
+            </div>
+        </section>
+      </main>
+  </div>
+</body>
+</html>

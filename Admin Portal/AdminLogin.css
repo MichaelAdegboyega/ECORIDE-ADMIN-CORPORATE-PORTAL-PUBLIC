@@ -1,0 +1,240 @@
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans';
+}
+
+body {
+    display: flex;
+    background-color: #fbfffc;
+    
+ }
+.left-side{
+    width: 633px;
+    height: 950px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    position: relative;
+    
+    
+}
+.overlay-image{
+    width: 270px;
+    height: 263px;
+    position: relative;
+    top:131px;
+    left:188px;
+    object-fit:cover;
+}
+.down-image{
+    width: 633px;
+    position: relative;
+   height: fit-content;
+    display: inline-block;
+    object-fit: contain;
+    height: 550px;
+}
+.down-image img{
+    display: block;
+    width: 100%;
+    
+}
+.down-image::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 18.9%;
+    background: linear-gradient(to top, rgba(52, 168, 83, 0.7) 0%, rgba(52, 168, 83, 0.9) 100%) ;
+    pointer-events: none;
+}
+
+
+.right-side {
+    height: 950px;
+    width: 697.83px;
+    padding: 84px 86px;      
+}
+
+.Header {
+    background-color: #fff;
+    width: 523px;  
+    
+    margin-bottom: 192px;
+}
+span{
+    color: #34a853
+}
+
+.Header h2 {
+    color:  black;
+    margin-bottom: 8px;
+    font-size: 48px;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: black;
+    margin-bottom: 32px;
+    font-size: 24px;
+}
+.login-container{
+    width: 523px;
+    height: 492px;
+}
+
+.input-group {
+    margin-bottom: 1px;
+}
+
+.input-group .label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    height: 56px;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: #0066cc;
+}
+
+#login-form input[type="password"],
+#login-form input[type="text"]{
+    width: 100%;
+}
+
+.input-1 {
+    margin-bottom: 1px;
+    
+}
+
+.input-1 .label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.input-1 input {
+    
+    width: 100%;
+    height: 56px;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    position: relative;
+}
+.ph-eye{
+    position: absolute;
+    top: 62%;
+    right: 15%;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    color: #cccccc;
+}
+.input-1 input:focus {
+    border-color: #0066cc;
+}
+
+.options {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #34a853;
+}
+
+.options a {
+    color: #34a853;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+button {
+    width: 100%;
+    height: 56px;
+    padding: 10px;
+    background-color: #34a853;
+    color: #FAFAFA;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;  
+}
+
+button:hover {
+    background-color: #34a853;
+}
+
+.line-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 62px;
+    margin-bottom: 72px;
+}
+.line-text::before,
+.line-text::after {
+        content: "";         
+        flex: 1;            
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2); 
+        margin: 0 5px;     
+}
+.line-text span{
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.click{
+    background-image: url(Assets/icon.svg);
+    background-repeat: no-repeat;
+    background-color: #eaeaea;
+    background-position: left 155px center;
+    color: #111827;
+    font-size: 16px;
+    gap: 10px;
+    height: 56px;
+    margin-bottom: 10px;
+    
+}
+.click:hover {
+    background-color: #eaeaea;
+    
+}
+.dnt-acct{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.dnt-acct a{
+    text-decoration: none;
+    color: #34a853;
+    
+}
+

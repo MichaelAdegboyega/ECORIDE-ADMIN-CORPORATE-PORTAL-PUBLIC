@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporate Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+<link rel="stylesheet" href="CorporateDashboard.css"/>
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <i class="ph-fill ph-leaf logo-icon"></i>
+      <h1>Eco<span>Ride</span></h1>
+    </div>
+
+    <div class="company-card">
+      <div class="company-icon"><i class="ph-fill ph-buildings"></i></div>
+      <div class="company-info">
+        <span class="company-name">ACME Corporation</span>
+        <span class="company-plan">Enterprise Plan</span>
+      </div>
+      <i class="ph ph-caret-right"></i>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul id="sidebar-nav-list">
+        <li class="nav-item active" data-view="overview" data-href="CorporateDashboard.html">
+          <i class="ph-fill ph-squares-four"></i> Overview
+        </li>
+        <li class="nav-item" data-view="employees" data-href="EmployeeViewDashboard.html">
+          <i class="ph ph-users"></i> Employees
+        </li>
+        <li class="nav-item" data-view="trips">
+          <i class="ph ph-car"></i> Trips
+        </li>
+        <li class="nav-item" data-view="bookings">
+          <i class="ph ph-bookmark-simple"></i> Bookings
+        </li>
+        <li class="nav-item" data-view="wallet">
+          <i class="ph ph-wallet"></i> Wallet
+        </li>
+        <li class="nav-item" data-view="reports">
+          <i class="ph ph-chart-bar"></i> Reports
+        </li>
+        <li class="nav-item" data-view="settings">
+          <i class="ph ph-gear"></i> Company Settings
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="help-card">
+        <i class="ph-fill ph-headset"></i>
+        <div>
+          <strong>Need Help?</strong>
+          <p>Visit our support center</p>
+        </div>
+      </div>
+      <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
+      <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="dash-main">
+
+    <header class="dash-topbar">
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search for trips, bookings, invoice...">
+        <i class="ph ph-magnifying-glass"></i>
+      </div>
+      <div class="topbar-icons">
+        <button class="icon-btn" id="notif-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
+        <button class="icon-btn" id="help-btn" aria-label="Help"><i class="ph ph-question"></i></button>
+        <div class="admin-profile" id="admin-profile-toggle">
+          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <div class="admin-info">
+            <span class="admin-name">Acme Corporation</span>
+            <span class="admin-role">Super Admin</span>
+          </div>
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="dash-welcome-row">
+      <div>
+        <h2>Welcome back, Admin!</h2>
+        <p>Here's what's happening with your corporate account.</p>
+      </div>
+      <button class="date-range-btn" id="date-range-btn">
+        <i class="ph ph-calendar-blank"></i>
+        <span id="date-range-label">July 10 – Aug 10, 2026</span>
+        <i class="ph ph-caret-down"></i>
+      </button>
+    </div>
+
+    <!-- Stat cards -->
+    <section class="stat-cards" id="stat-cards">
+      <!-- populated by JS -->
+    </section>
+
+    <div class="dash-columns">
+
+      <!-- Left column -->
+      <div class="dash-col-left">
+
+        <section class="panel">
+          <div class="panel-header">
+            <h3>Upcoming Bookings</h3>
+          </div>
+          <ul class="bookings-list" id="bookings-list"></ul>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h3>Recent Ride Requests</h3>
+            <a href="#" class="view-all-link" id="view-all-requests">View All</a>
+          </div>
+          <ul class="requests-list" id="requests-list"></ul>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h3>Quick Actions</h3>
+          </div>
+          <div class="quick-actions" id="quick-actions"></div>
+        </section>
+
+      </div>
+
+      <!-- Right column -->
+      <div class="dash-col-right">
+
+        <section class="panel">
+          <div class="panel-header">
+            <h3>Monthly Spend Overview</h3>
+            <select class="panel-select" id="spend-range-select">
+              <option>This Month</option>
+              <option>Last 3 Months</option>
+              <option>This Year</option>
+            </select>
+          </div>
+          <div class="chart-area">
+            <div class="chart-bars" id="chart-bars"></div>
+            <div class="chart-tooltip" id="chart-tooltip"></div>
+          </div>
+        </section>
+
+        <section class="panel wallet-panel">
+          <div class="wallet-icon"><i class="ph-fill ph-briefcase"></i></div>
+          <div class="wallet-info">
+            <h3>Company Wallet Balance</h3>
+            <p class="wallet-balance" id="wallet-balance">₦2,335,600.00</p>
+            <span class="wallet-status"><i class="ph-fill ph-circle"></i> Available Balance</span>
+          </div>
+          <button class="top-up-btn" id="top-up-btn">Top Up Wallet</button>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h3>Top Routes</h3>
+            <select class="panel-select" id="routes-sort-select">
+              <option>By Trips</option>
+              <option>By Distance</option>
+            </select>
+          </div>
+          <ol class="routes-list" id="routes-list"></ol>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<script src="CorporateDashboard.js"></script>
+</body>
+</html>

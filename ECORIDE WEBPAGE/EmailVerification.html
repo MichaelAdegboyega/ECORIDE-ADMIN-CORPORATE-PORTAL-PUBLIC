@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+<link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+     />
+    <link rel="stylesheet" href="EmailVerification.css"/>
+</head>
+<body>
+   <div class="left-side"  >
+            <img src="Assets/pics.png" class="overlay-image">
+      <div class="down-image">
+            <img src="Assets/Landing Image.png">
+      </div>
+    </div>
+
+
+     
+    <div class="right-side">
+      <div class="verify"> 
+        <form id="otp-form">
+            
+                <h1>Verify your email</h1>
+                <p class="subtitle">Enter the 4 digit code sent to
+                     <strong id="user-email">olujapheth01@gmail.com</strong>
+                </p>
+                
+          
+
+            <div class="verify-container">
+
+
+                    <input type="text" class="token" maxlength="1" pattern="[0-9]*" inputmode="numeric" required>
+                    <input type="text" class="token" maxlength="1" pattern="[0-9]*" inputmode="numeric" required>
+                    <input type="text" class="token" maxlength="1" pattern="[0-9]*" inputmode="numeric" required>
+                    <input type="text" class="token" maxlength="1" pattern="[0-9]*" inputmode="numeric" required>
+
+            </div>  
+
+                    <button type="submit" >Verify</button>
+       
+    
+               
+                <p class="no-code">Didn't receive code? <a href="#"> Resend</a> </p>
+
+            
+        </form>
+      </div>
+    </div>
+    <script src="EmailVerification.js" defer></script>
+</body>
+</html>
+
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link
+rel="stylesheet"
+type="text/css"
+href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+/>
+<link
+rel="stylesheet"
+type="text/css"
+href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+/>
+<link rel="stylesheet" href="Loginstyle.css"/>
+</head>
+<body>
+<div class="left-side"  >
+<img src="Assets/pics.png" class="overlay-image">
+<div class="down-image">
+<img src="Assets/Landing Image.png">
+</div>
+</div>
+
+
+<div class="right-side">
+<div class="Header">
+<h2>Welcome <span>Back!</span></h2>
+<p class="subtitle">Login and continue your journey.</p>
+</div>  
+<div class="login-container">
+<form id="login-form">
+<div class="input-group">
+<label for="email">Email address</label>
+<input type="email" id="email" placeholder="Enter email address" required>
+</div>
+<div class="input-1">
+<label for="password">Password</label>
+<input type="password" id="password" placeholder="Enter password" required>
+<i class="ph ph-eye" id="show-password"></i>
+</div>
+<div class="options">
+<a href="ForgotPassword.html">Forgot password?</a>
+</div>
+
+<button type="submit">Sign In</button>
+</form>
+
+<div id="error-message" class="error-message"></div>
+
+<div class="line-text">
+<span>or continue with</span>
+</div>
+
+<button class="click" id="google-login">
+                Continue with Google
+</button>
+<p class="dnt-acct">Don't have an account? <a href="SignUp.html"> Sign Up</a> </p>
+</div>
+</div>
+<script src="script.js"></script>
+<script src="Login.js"></script>
+</body>
+</html>

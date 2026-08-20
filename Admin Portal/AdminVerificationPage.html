@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard: Verification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+     />
+    <link rel="stylesheet" href="AdminVerificationPage.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="Assets/Ecologo.png"> 
+                <h4>Eco<span>Ride</span></h4>
+            </div>
+            <nav class="nav-menu">
+              <a href="index.html"><i class="ph ph-squares-four"></i> Overview</a>
+              <a href="AdminUserDashboard.html" ><i class="ph ph-user"></i> Users</a>
+              <a href="AdminBookingDashboard.html" ><i class="ph ph-identification-card"></i> Bookings</a>
+              <a href="AdminVerificationPage.html" class="active"><i class="ph ph-identification-card"></i> Verification</a>
+              <a href="AdminPaymentPage.html" ><i class="ph ph-wallet"></i> Payments</a>
+              <a href="AdminProfilePage.html"><i class="ph ph-gear-six"></i></i> Settings</a>
+          </nav>
+            <div class="support-container">
+              <div class="support-card">
+                <div class="headset">
+                    <i class="ph ph-headset"></i>
+                    <div>
+                        <p>Need Help?</p>
+                    <span>Visit our support center</span>
+                    </div>
+                </div> 
+                    <button class="btn-support">Contact Support</button>
+              </div>    
+            </div>
+            <div class="logout-btn">
+                <a href="AdminLogin.html"><i class="ph ph-sign-out"></i>Logout</a>
+            </div> 
+        </aside>
+
+          <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Top Header -->
+        <header class="top-header">
+            <div class="top-tab">
+                <h2>Verification</h2>
+
+                <div class="header-right">
+                    <div class="notification-bell">
+                        <i class="ph ph-bell"></i>
+                    </div>
+
+                    <div class="user-profile">
+                        <img src="Assets/Admin.jpg" alt="Admin Avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">Super Admin</span>
+                        </div>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="body-all">
+            <!-- Stats Cards Grid -->
+            <section class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div>
+                    <p class="stat-title">Total Verifications</p>
+                    <h3>24,568</h3>
+                  </div>
+                  <div class="icon-wrapper-1"><i class="ph-fill ph-users"></i></div>
+                </div>
+                <p class="stat-trend-1">20% <span class="text-muted">vs last 7 days</span></p>
+              </div>
+      
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div>
+                    <p class="stat-title">Pending</p>
+                    <h3>1,890</h3>
+                  </div>
+                  <div class="icon-wrapper-2"><i class="ph-fill ph-hourglass"></i></div>
+                </div>
+                <p class="stat-trend-2">10.4% <span class="text-muted">vs last 7 days</span></p>
+              </div>
+      
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div>
+                    <p class="stat-title">Confirmed</p>
+                    <h3>22,675</h3>
+                  </div>
+                  <div class="icon-wrapper-3"><i class="ph-fill ph-thumbs-up"></i></div>
+                </div>
+                <p class="stat-trend-3">17.9% <span class="text-muted">vs last 7 days</span></p>
+              </div>
+      
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div>
+                    <p class="stat-title">Denied</p>
+                    <h3>500</h3>
+                  </div>
+                  <div class="icon-wrapper-4"><i class="ph-fill ph-thumbs-down"></i></div>
+                </div>
+                <p class="stat-trend-4">5.3% <span class="text-muted">vs last 7 days</span></p>
+              </div>
+            </section>
+    <!-- Table Container Section -->
+    <section class="table-container">
+      <div class="table-header">
+        <div>
+          <h3>Verifications</h3>
+          <p class="text-muted">Monitor verifications in real time</p>
+        </div>
+        <div class="table-filters">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">Pending</button>
+          <button class="filter-btn">Confirmed</button>
+          <button class="filter-btn">Denied</button>
+        </div>
+      </div>
+
+      <!-- Responsive Table wrapper -->
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>RIDE ID</th>
+              <th>DRIVER</th>
+              <th>DOCUMENT</th>
+              <th>SUBMITTED ON</th>
+              <th>EXPIRY DATE</th>
+              <th>LICENSE ID</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>R10091</td>
+              <td><strong>Kelechi Obi</strong></td>
+              <td>Driver's license</td>
+              <td>May 21, 2026</td>
+              <td>14/4/2030</td>
+              <td>DL-2291-KO</td>
+              <td><span class="status-badge-pending">Pending</span></td>
+            </tr>
+            <tr>
+              <td>R10092</td>
+              <td><strong>Yemi Soyinka</strong></td>
+              <td>National ID</td>
+              <td>May 25, 2026</td>
+              <td>21/7/2028</td>
+              <td>VR-8823-YS</td>
+              <td><span class="status-badge-confirmed">Confirmed</span></td>
+            </tr>
+            <tr>
+              <td>R10093</td>
+              <td><strong>Kelechi Obi</strong></td>
+              <td>Birth Certificate</td>
+              <td>May 20, 2026</td>
+              <td>15/11/2025</td>
+              <td>SQ-6842-JL</td>
+              <td><span class="status-badge-denied">Denied</span></td>
+            </tr>
+            <tr>
+              <td>R10094</td>
+              <td><strong>Yemi Soyinka</strong></td>
+              <td>Insurance</td>
+              <td>May 22, 2026</td>
+              <td>25/9/2029</td>
+              <td>GT-3305-KI</td>
+              <td><span class="status-badge-pending">Pending</span></td>
+            </tr>
+            <tr>
+              <td>R10095</td>
+              <td><strong>Yemi Soyinka</strong></td>
+              <td>Driver's License</td>
+              <td>May 24, 2026</td>
+              <td>22/10/2027</td>
+              <td>HW-7728-PF</td>
+              <td><span class="status-badge-pending">Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

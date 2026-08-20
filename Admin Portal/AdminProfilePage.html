@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard: Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+     />
+    <link rel="stylesheet" href="AdminProfilePage.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="Assets/Ecologo.png"> 
+                <h4>Eco<span>Ride</span></h4>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html"><i class="ph ph-squares-four"></i> Overview</a>
+                <a href="AdminUserDashboard.html" ><i class="ph ph-user"></i> Users</a>
+                <a href="AdminBookingDashboard.html" ><i class="ph ph-identification-card"></i> Bookings</a>
+                <a href="AdminVerificationPage.html" ><i class="ph ph-identification-card"></i> Verification</a>
+                <a href="AdminPaymentPage.html"><i class="ph ph-wallet"></i> Payments</a>
+                <a href="AdminProfilePage.html" class="active"><i class="ph ph-gear-six"></i></i> Settings</a>
+            </nav>
+            <div class="support-container">
+              <div class="support-card">
+                <div class="headset">
+                    <i class="ph ph-headset"></i>
+                    <div>
+                        <p>Need Help?</p>
+                    <span>Visit our support center</span>
+                    </div>
+                </div> 
+                    <button class="btn-support">Contact Support</button>
+              </div>    
+            </div>
+            <div class="logout-btn">
+                <a href="AdminLogin.html"><i class="ph ph-sign-out"></i>Logout</a>
+            </div> 
+        </aside>
+
+
+                <!-- Main Content Area -->
+    <main>
+        <header>
+            <div>
+                <h1>Settings</h1>
+                <p>Manage and customize your platform settings and preferences.</p>
+            </div>
+            <div class="meta-info">
+
+                <div class="date">
+                    <i class="ph ph-calendar-blank"></i>
+                    <span> May 15 - May 21, 2024</span>
+                    <i class="ph ph-caret-down"></i>
+                </div>
+
+                <div class="bell">
+                    <i class="ph ph-bell"></i><span>3</span>
+                </div>
+
+                <div class="user-badge">
+                  <img src="Assets/Admin 2.jpg" alt="admin avatar"/>
+                  <div class="user-info">
+                    <span class="user-name">Admin User</span>
+                    <span class="user-role">Super Admin</span>
+                  </div>
+                <i class="ph ph-caret-down"></i>
+                </div>
+            </div>
+        </header>
+
+
+        <nav class="tabs">
+            <span class="active">General</span>
+            <span>Security</span>
+            <span>Notifications</span>
+            <span>Payment</span>
+            <span>Rides & Drivers</span>
+            <span>App Settings</span>
+            <span>Integrations</span>
+            <span>System</span>
+        </nav>
+        <div class="line"></div>
+
+        <div class="main-grid">
+            
+            <section class="left-column">
+                <h2>General Settings</h2>
+                
+                <div class="settings-cards">
+                    <div class="card">
+                       <div class="f-icon"><i class="ph-fill ph-building-office"></i></div> 
+                        <div class="details">
+                            <h3>Company Information</h3>
+                            <p>Manage your company name, address, and contact details.</p>
+                        </div>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+
+                    <div class="card">
+                        <div class="f-icon"><i class="ph-fill ph-globe"></i></div>
+                        <div class="details">
+                            <h3>Localization</h3>
+                            <p>Set your platform language, timezone, and regional preferences.</p>
+                        </div>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+
+                    <div class="card">
+                        <div class="f-icon"><i class="ph-fill ph-palette"></i></div>
+                        <div class="details">
+                            <h3>Appearance</h3>
+                            <p>Customize platform theme, colors and branding.</p>
+                        </div>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+
+                    <div class="card">
+                        <div class="f-icon"><i class="ph-fill ph-file"></i></div>
+                        <div class="details">
+                            <h3>Documents</h3>
+                            <p>Manage legal documents, terms of service and privacy policy.</p>
+                        </div>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+
+                    <div class="card">
+                        <div class="f-icon"><i class="ph-fill ph-envelope"></i></div>
+                        <div class="details">
+                            <h3>Email Settings</h3>
+                            <p>Configure email templates and sender preferences.</p>
+                        </div>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+
+                    <div class="card">
+                        <div class="f-icon"><i class="ph-fill ph-bell"></i></div>
+                        <div class="details">
+                            <h3>SMS settings</h3>
+                            <p>Configure SMS gateways and message templates.</p>
+                        </div>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+
+                    <div class="card">
+                        <div class="f-icon"><i class="ph-fill ph-cloud-arrow-down"></i></i></div>
+                        <div class="details">
+                            <h3>Storage Settings</h3>
+                            <p>Manage file storage, limits and upload preferences.</p>
+                        </div>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+
+                    <div class="card">
+                        <div class="f-icon"><i class="ph-fill ph-sliders"></i></div>
+                        <div class="details">
+                            <h3>System Preferences</h3>
+                            <p>Manage system behavior and administrative preferences.</p>
+                        </div>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+                </div>
+
+                <h2>General Settings</h2>
+                <div class="status-grid">
+                    <div class="status-card">
+                        <div class="f-icon"><i class="ph-fill ph-shield-check"></i></div>
+                        <h3>Security</h3>
+                        <p>Manage admin access, roles, and security preferences</p>
+                        <span class="tag">
+                            <i class="ph-fill ph-check-circle"></i>
+                            Configured 
+                        </span>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+                    <div class="status-card">
+                        <div class="f-icon"><i class="ph-fill ph-car"></i></div>
+                        <h3>Rides & Drivers</h3>
+                        <p>Manage ride types, pricing, cancellation and driver settings.</p>
+                        <span class="tag">
+                            <i class="ph-fill ph-check-circle"></i>
+                            Configured 
+                        </span>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+                    <div class="status-card">
+                        <div class="f-icon"><i class="ph-fill ph-wallet"></i></div>
+                        <h3>Payment</h3>
+                        <p>Configure payment methods, commission and payouts.</p>
+                        <span class="tag">
+                            <i class="ph-fill ph-check-circle"></i>
+                            Configured 
+                        </span>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+                    <div class="status-card">
+                        <div class="f-icon"><i class="ph-fill ph-gear-six"></i></div>
+                        <h3>App Settings</h3>
+                        <p>Manage app content, features and version configurations.</p>
+                        <span class="tag">
+                            <i class="ph-fill ph-check-circle"></i>
+                            Configured 
+                        </span>
+                        <i class="ph ph-caret-right"></i>
+                    </div>
+                </div>
+            </section>
+
+           
+            <aside class="right-column">
+                <div class="panel profile-panel">
+                    <h3>Profile Information</h3>
+                    <div class="avatar">
+                        <img src="Assets/Admin 2.jpg">
+                    <div class="name">
+                        <h4>Admin User</h4>
+                        <p>Super Admin</p>
+                    </div>
+                    </div>
+                    <button type="button">Change Password</button>
+                </div>
+
+                <div class="settings-container">
+                    <h3>Quick Settings</h3>
+                    <div class="settings-list">
+                       
+                        <div class="settings-item">
+                            <div class="item-left">
+                                <i class="ph ph-clock"></i>
+                                <span class="label">Timezone</span>
+                            </div>
+                            <div class="item-right">
+                                <span class="value">(GMT+1) West Africa Time</span>
+                                <span><i class="ph ph-caret-right"></i></span>
+                            </div>
+                        </div>
+            
+                        
+                        <div class="settings-item">
+                            <div class="item-left">
+                                <i class="ph ph-globe"></i>
+                                <span class="label">Language</span>
+                            </div>
+                            <div class="item-right">
+                                <span class="value">English(US)</span>
+                                <span><i class="ph ph-caret-right"></i></span>
+                            </div>
+                        </div>
+            
+                        
+                        <div class="settings-item">
+                            <div class="item-left">
+                                <i class="ph ph-calendar"></i>
+                                <span class="label">Date Format</span>
+                            </div>
+                            <div class="item-right">
+                                <span class="value">May 21,2024</span>
+                                <span><i class="ph ph-caret-right"></i></span>
+                            </div>
+                        </div>
+            
+                        
+                        <div class="settings-item">
+                            <div class="item-left">
+                                <i class="ph ph-clock"></i>
+                                <span class="label">Time Format</span>
+                            </div>
+                            <div class="item-right">
+                                <span class="value">12 Hour (AM/PM)</span>
+                                <span><i class="ph ph-caret-right"></i></span>
+                            </div>
+                        </div>
+            
+                       
+                        <div class="settings-item">
+                            <div class="item-left">
+                                <i class="ph ph-currency-ngn"></i>
+                                <span class="label">Currency</span>
+                            </div>
+                            <div class="item-right">
+                                <span class="value">NGN (N)</span>
+                                <span><i class="ph ph-caret-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel system-status">
+                    <h3>System Status</h3>
+                    <ul>
+                        <li><span>Platform Status</span> <span class="status-ok">Online</span></li>
+                        <li><span>Server Uptime</span> <span>99.9%</span></li>
+                        <li><span>Last Backup</span> <span>May 21, 2024 02:30AM</span></li>
+                        <li><span>Database Status</span> <span class="status-ok">Healthy</span></li>
+                    </ul>
+                </div>
+
+                <div class="danger-zone">
+                    <h3 class="danger-title">Danger Zone</h3>
+                    <div class="danger-item">
+                        <h3>Clear Cache</h3>
+                        <div class="delete">
+                            <i class="ph-fill ph-trash"></i>
+                        </div>
+                        <p>Clear application cache and temporary files.</p>
+                        
+                    </div>
+                    <div class="danger-item">
+                        <h3>System Logs</h3>
+                        <div class="delete">
+                            <i class="ph-fill ph-trash"></i>
+                        </div>
+                        <p>View and download system logs.</p>
+                        
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+</body>
+</html>

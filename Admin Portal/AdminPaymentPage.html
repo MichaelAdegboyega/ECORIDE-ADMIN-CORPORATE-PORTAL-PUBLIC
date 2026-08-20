@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard: Payment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+     />
+    <link rel="stylesheet" href="AdminPaymentPage.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="Assets/Ecologo.png"> 
+                <h4>Eco<span>Ride</span></h4>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html"><i class="ph ph-squares-four"></i> Overview</a>
+                <a href="AdminUserDashboard.html" ><i class="ph ph-user"></i> Users</a>
+                <a href="AdminBookingDashboard.html" ><i class="ph ph-identification-card"></i> Bookings</a>
+                <a href="AdminVerificationPage.html" ><i class="ph ph-identification-card"></i> Verification</a>
+                <a href="AdminPaymentPage.html" class="active"><i class="ph ph-wallet"></i> Payments</a>
+                <a href="AdminProfilePage.html"><i class="ph ph-gear-six"></i></i> Settings</a>
+            </nav>
+            <div class="support-container">
+              <div class="support-card">
+                <div class="headset">
+                    <i class="ph ph-headset"></i>
+                    <div>
+                        <p>Need Help?</p>
+                    <span>Visit our support center</span>
+                    </div>
+                </div> 
+                    <button class="btn-support">Contact Support</button>
+              </div>    
+            </div>
+            <div class="logout-btn">
+                <a href="AdminLogin.html"><i class="ph ph-sign-out"></i>Logout</a>
+            </div> 
+        </aside>
+
+          <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Top Header -->
+        <header class="top-header">
+            <div class="top-tab">
+                <h2>Payments</h2>
+
+                <div class="header-right">
+                    <div class="notification-bell">
+                        <i class="ph ph-bell"></i>
+                    </div>
+
+                    <div class="user-profile">
+                        <img src="Assets/Admin.jpg" alt="Admin Avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">Super Admin</span>
+                        </div>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="body-all">
+            <!-- Stats Cards Grid -->
+            <section class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div>
+                    <p class="stat-title">Total Revenues</p>
+                    <h3>₦48.9M</h3>
+                  </div>
+                  <div class="icon-wrapper-1"><i class="ph-fill ph-coins"></i></div>
+                </div>
+                <p class="stat-trend-1">9.2% <span class="text-muted">vs last 7 days</span></p>
+              </div>
+      
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div>
+                    <p class="stat-title">Commission Due</p>
+                    <h3>₦2.13M</h3>
+                  </div>
+                  <div class="icon-wrapper-2"><i class="ph-fill ph-hourglass"></i></div>
+                </div>
+                <p class="stat-trend-">15% <span>of gross fares</span></p>
+              </div>
+      
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div>
+                    <p class="stat-title">Overdue Balances</p>
+                    <h3>7 drivers</h3>
+                  </div>
+                  <div class="icon-wrapper-3"><i class="ph-fill ph-warning"></i></div>
+                </div>
+                <p class="stat-trend-3">₦283k <span>overdue</span></p>
+              </div>
+      
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div>
+                    <p class="stat-title">Disputed Fares</p>
+                    <h3>3</h3>
+                  </div>
+                  <div class="icon-wrapper-4"><i class="ph-fill ph-user-circle"></i></div>
+                </div>
+                <p class="stat-trend-4">Awaiting <span>meditation</span></p>
+              </div>
+            </section>
+    <!-- Table Container Section -->
+    <section class="table-container">
+      <div class="table-header">
+        <div>
+          <h3>Ride Fair Log</h3>
+          <p class="text-muted">
+            Fares paid directly between rider and driver - logged fro m in-app trip confirmation
+        </p>
+        </div>
+        <div class="table-filters">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">Completed</button>
+          <button class="filter-btn">Disputed</button>
+        </div>
+      </div>
+
+      <!-- Responsive Table wrapper -->
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>RIDE ID</th>
+              <th>RIDER</th>
+              <th>DRIVER</th>
+              <th>AMOUNT</th>
+              <th>METHOD</th>
+              <th>CONFIRMED BY</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>R10091</td>
+              <td><strong>Tola Adeyemi</strong></td>
+              <td><strong>Kelechi Obi</strong></td>
+              <td><strong>₦4,200</strong></td>
+              <td>Wallet</td>
+              <td><span class="span-by">Both Parties</span></td>
+              <td><span class="status-badge-completed">Completed</span></td>
+            </tr>
+            <tr>
+              <td>R10092</td>
+              <td><strong>James Okafor</strong></td>
+              <td><strong>Yemi Soyinka</strong></td>
+              <td><strong>₦3,150</strong></td>
+              <td>Bank Transfer</td>
+              <td><span class="span-by-rider">Rider Only</span></td>
+              <td><span class="status-badge-disputed">Disputed</span></td>
+            </tr>
+            <tr>
+              <td>R10093</td>
+              <td><strong>Michael Anthony</strong></td>
+              <td><strong>Kelechi Obi</strong></td>
+              <td><strong>₦1,900</strong></td>
+              <td>Card</td>
+              <td><span class="span-by">Both Parties</span></td>
+              <td><span class="status-badge-completed">Completed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-header">
+        <div>
+          <h3>Driver Commission Balances</h3>
+          <p class="text-muted">
+            15% platform commission owed per confirmed ride, billed weekly
+        </p>
+        </div>
+        <div class="table-filters">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">Due Soon</button>
+          <button class="filter-btn">Paid</button>
+          <button class="filter-btn">Overdue</button>
+        </div>
+      </div>
+
+      <!-- Responsive Table wrapper -->
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>DRIVER</th>
+              <th>RIDES COMPLETED</th>
+              <th>COMMISSION RATE</th>
+              <th>AMOUNT OWED</th>
+              <th>DUE DATE</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Kelechi Obi</strong></td>
+              <td><strong>38</strong></td>
+              <td><strong> 15%</strong></td>
+              <td><strong>₦31,200</strong></td>
+              <td>May 24, 2026</td>
+              <td><span class="status-badge-duesoon">Due Soon</span></td>
+            </tr>
+            <tr>
+              
+              <td><strong>Yemi Soyinka</strong></td>
+              <td><strong>36</strong></td>
+              <td><strong>15%</strong></td>
+              <td><strong> ₦0</strong></td>
+              <td>-</td>
+              <td><span class="status-badge-paid">Paid</span></td>
+            </tr>
+            <tr>
+              
+              <td><strong>Kelechi Obi</strong></td>
+              <td><strong>29</strong></td>
+              <td><strong>15%</strong></td>
+              <td><strong>₦41,800</strong></td>
+              <td>May 17, 2026</td>
+              <td><span class="status-badge-overdue">Overdue</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
