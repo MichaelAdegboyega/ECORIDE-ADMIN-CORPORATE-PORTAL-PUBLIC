@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trip Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+<link rel="stylesheet" href="CorporateDashboard.css"/>
+<link rel="stylesheet" href="EmployeeViewDashboard.css"/>
+<link rel="stylesheet" href="EmployeeDetail.css"/>
+<link rel="stylesheet" href="TripDetail.css"/>
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <i class="ph-fill ph-leaf logo-icon"></i>
+      <h1>Eco<span>Ride</span></h1>
+    </div>
+
+    <div class="company-card">
+      <div class="company-icon"><i class="ph-fill ph-buildings"></i></div>
+      <div class="company-info">
+        <span class="company-name">ACME Corporation</span>
+        <span class="company-plan">Enterprise Plan</span>
+      </div>
+      <i class="ph ph-caret-right"></i>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul id="sidebar-nav-list">
+        <li class="nav-item" data-href="CorporateDashboard.html"><i class="ph ph-squares-four"></i> Overview</li>
+        <li class="nav-item" data-href="EmployeeViewDashboard.html"><i class="ph ph-users"></i> Employees</li>
+        <li class="nav-item active" data-href="Trips.html"><i class="ph-fill ph-car"></i> Trips</li>
+        <li class="nav-item" data-href="Bookings.html"><i class="ph ph-bookmark-simple"></i> Bookings</li>
+        <li class="nav-item" data-href="Wallet.html"><i class="ph ph-wallet"></i> Wallet</li>
+        <li class="nav-item" data-href="Reports.html"><i class="ph ph-chart-bar"></i> Reports</li>
+        <li class="nav-item" data-href="CompanySettings.html"><i class="ph ph-gear"></i> Company Settings</li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="help-card">
+        <i class="ph-fill ph-headset"></i>
+        <div><strong>Need Help?</strong><p>Visit our support center</p></div>
+      </div>
+      <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
+      <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <header class="dash-topbar">
+      <div class="search-bar">
+        <input type="text" placeholder="Search for trips, bookings, invoices...">
+        <i class="ph ph-magnifying-glass"></i>
+      </div>
+      <div class="topbar-icons">
+        <button class="icon-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
+        <button class="icon-btn" aria-label="Help"><i class="ph ph-question"></i></button>
+        <div class="admin-profile">
+          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <div class="admin-info">
+            <span class="admin-name">Tunde Adewale</span>
+            <span class="admin-role">Super Admin</span>
+          </div>
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <a href="Trips.html" class="back-link"><i class="ph ph-arrow-left"></i> Back to Trips</a>
+
+    <div class="page-heading-row">
+      <div class="page-heading">
+        <h2>Trip Details</h2>
+        <p>View detailed information about the trip.</p>
+      </div>
+      <div class="page-heading-actions">
+        <div class="filter-dropdown" id="more-actions-dropdown">
+          <button class="filter-btn">More Actions <i class="ph ph-caret-down"></i></button>
+        </div>
+        <div class="filter-dropdown" id="print-export-dropdown">
+          <button class="print-export-btn">Print/Export <i class="ph ph-caret-down"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="trip-top-grid">
+      <section class="panel">
+        <div class="panel-header">
+          <h3>Trip Information</h3>
+          <span class="status-badge" id="trip-status-badge">—</span>
+        </div>
+        <ul class="info-rows" id="trip-info-rows"></ul>
+      </section>
+
+      <section class="panel">
+        <h3 class="panel-title-plain">Route Details</h3>
+        <div class="route-map-placeholder">
+          <i class="ph-fill ph-map-trifold"></i>
+        </div>
+        <div class="route-meta-row">
+          <div><span class="detail-label">Distance</span><span class="detail-value" id="route-distance">—</span></div>
+          <div><span class="detail-label">Duration</span><span class="detail-value" id="route-duration">—</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h3 class="panel-title-plain">Trip Summary</h3>
+        <ul class="info-rows" id="trip-summary-rows"></ul>
+      </section>
+    </div>
+
+    <div class="dash-columns trip-columns">
+      <div class="dash-col-left">
+        <section class="panel">
+          <h3 class="panel-title-plain">Passenger List</h3>
+          <table class="emp-table passenger-table">
+            <thead>
+              <tr>
+                <th>Passenger</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Boarding Point</th>
+                <th>Drop-off point</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody id="passenger-table-body"></tbody>
+          </table>
+          <div class="total-paid-row">
+            <span>Total Paid</span>
+            <strong id="total-paid">—</strong>
+          </div>
+        </section>
+
+        <div class="trip-bottom-row">
+          <section class="panel">
+            <div class="panel-header">
+              <h3>Trip Notes</h3>
+              <button class="add-note-btn" id="add-note-btn">Add Note</button>
+            </div>
+            <p class="muted-text" id="trip-notes">No additional notes for this trip.</p>
+          </section>
+
+          <section class="panel">
+            <h3 class="panel-title-plain">Driver Information</h3>
+            <div class="driver-info-row" id="driver-info"></div>
+          </section>
+        </div>
+      </div>
+
+      <div class="dash-col-right">
+        <section class="panel">
+          <h3 class="summary-title">Timeline</h3>
+          <ul class="timeline-list" id="timeline-list"></ul>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h3>Support/Issues</h3>
+            <button class="report-issue-btn" id="report-issue-btn">Report Issue</button>
+          </div>
+          <p class="muted-text">No issues reported for this trip.</p>
+        </section>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="TripDetail.js"></script>
+</body>
+</html>

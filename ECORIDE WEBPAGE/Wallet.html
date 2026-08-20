@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wallet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+<link rel="stylesheet" href="CorporateDashboard.css"/>
+<link rel="stylesheet" href="EmployeeViewDashboard.css"/>
+<link rel="stylesheet" href="Trips.css"/>
+<link rel="stylesheet" href="Wallet.css"/>
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <i class="ph-fill ph-leaf logo-icon"></i>
+      <h1>Eco<span>Ride</span></h1>
+    </div>
+
+    <div class="company-card">
+      <div class="company-icon"><i class="ph-fill ph-buildings"></i></div>
+      <div class="company-info">
+        <span class="company-name">ACME Corporation</span>
+        <span class="company-plan">Enterprise Plan</span>
+      </div>
+      <i class="ph ph-caret-right"></i>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul id="sidebar-nav-list">
+        <li class="nav-item" data-href="CorporateDashboard.html"><i class="ph ph-squares-four"></i> Overview</li>
+        <li class="nav-item" data-href="EmployeeViewDashboard.html"><i class="ph ph-users"></i> Employees</li>
+        <li class="nav-item" data-href="Trips.html"><i class="ph ph-car"></i> Trips</li>
+        <li class="nav-item" data-href="Bookings.html"><i class="ph ph-bookmark-simple"></i> Bookings</li>
+        <li class="nav-item active" data-href="Wallet.html"><i class="ph-fill ph-wallet"></i> Wallet</li>
+        <li class="nav-item" data-href="Reports.html"><i class="ph ph-chart-bar"></i> Reports</li>
+        <li class="nav-item" data-href="CompanySettings.html"><i class="ph ph-gear"></i> Company Settings</li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="help-card">
+        <i class="ph-fill ph-headset"></i>
+        <div><strong>Need Help?</strong><p>Visit our support center</p></div>
+      </div>
+      <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
+      <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <header class="dash-topbar">
+      <div class="search-bar">
+        <input type="text" placeholder="Search for transactions...">
+        <i class="ph ph-magnifying-glass"></i>
+      </div>
+      <div class="topbar-icons">
+        <button class="icon-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
+        <button class="icon-btn" aria-label="Help"><i class="ph ph-question"></i></button>
+        <div class="admin-profile">
+          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <div class="admin-info">
+            <span class="admin-name">Tunde Adewale</span>
+            <span class="admin-role">Super Admin</span>
+          </div>
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-heading">
+      <h2>Wallet</h2>
+      <p>Manage your company's transport wallet and transactions.</p>
+    </div>
+
+    <!-- ⚠️ No design reference for this page — built to match the rest
+         of the portal's visual language, reusing the balance figure
+         already shown on Overview. -->
+    <div class="wallet-hero">
+      <section class="panel wallet-hero-card">
+        <span class="wallet-hero-label">Company Wallet Balance</span>
+        <span class="wallet-hero-balance" id="wallet-hero-balance">₦2,335,600.00</span>
+        <span class="wallet-status"><i class="ph-fill ph-circle"></i> Available Balance</span>
+        <div class="wallet-hero-actions">
+          <button class="top-up-btn primary" id="top-up-btn">Top Up Wallet</button>
+          <button class="top-up-btn secondary" id="withdraw-btn">Withdraw</button>
+        </div>
+      </section>
+
+      <div class="wallet-stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-top"><span class="stat-icon"><i class="ph-fill ph-coins"></i></span>This Month Spend</div>
+          <div class="stat-value">₦4,568,890</div>
+          <span class="stat-delta">+4.3% vs last month</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-top"><span class="stat-icon"><i class="ph-fill ph-arrow-circle-down"></i></span>Total Top-Ups</div>
+          <div class="stat-value">₦12,000,000</div>
+          <span class="stat-delta">Since account opening</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-top"><span class="stat-icon"><i class="ph-fill ph-clock-countdown"></i></span>Pending Charges</div>
+          <div class="stat-value">₦86,400</div>
+          <span class="stat-delta neutral">Awaiting settlement</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="emp-tabs" id="wallet-tabs">
+      <button class="emp-tab active" data-tab="all">All Transactions</button>
+      <button class="emp-tab" data-tab="topup">Top-Ups</button>
+      <button class="emp-tab" data-tab="debit">Trip Charges</button>
+    </div>
+
+    <section class="panel table-panel">
+      <table class="emp-table">
+        <thead>
+          <tr>
+            <th>Transaction ID</th>
+            <th>Description</th>
+            <th>Date &amp; Time</th>
+            <th>Type</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody id="transactions-table-body"></tbody>
+      </table>
+      <div class="table-pagination" id="transactions-pagination"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Top Up modal -->
+<div class="modal-overlay" id="topup-modal-overlay">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Top Up Wallet</h3>
+      <button class="modal-close-btn" id="topup-modal-close"><i class="ph ph-x"></i></button>
+    </div>
+    <label for="topup-amount">Amount (₦)</label>
+    <input type="number" id="topup-amount" placeholder="e.g. 500000" min="0">
+    <button class="generate-report-btn" id="topup-confirm-btn">Confirm Top Up</button>
+  </div>
+</div>
+
+<script src="Wallet.js"></script>
+</body>
+</html>

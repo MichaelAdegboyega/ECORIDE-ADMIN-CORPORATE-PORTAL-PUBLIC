@@ -1,0 +1,34 @@
+/* Bookings.css — extends CorporateDashboard.css + Employees.css + Trips.css */
+
+.status-badge.pending {
+    background-color: #fff6e5;
+    color: #b7791f;
+  }
+  
+  .status-badge.approved {
+    background-color: #eaf7ee;
+    color: #1f7a3d;
+  }
+  
+  .booking-id-cell {
+    font-weight: 600;
+    color: #445048;
+  }
+  
+  .requested-by-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .requested-by-cell img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #e7ece9;
+  }
+  
+  #bookings-table-body tr {
+    cursor: default;
+  }

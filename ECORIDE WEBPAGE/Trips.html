@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trips</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+<link rel="stylesheet" href="CorporateDashboard.css"/>
+<link rel="stylesheet" href="EmployeeViewDashboard.css"/>
+<link rel="stylesheet" href="Trips.css"/>
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <i class="ph-fill ph-leaf logo-icon"></i>
+      <h1>Eco<span>Ride</span></h1>
+    </div>
+
+    <div class="company-card">
+      <div class="company-icon"><i class="ph-fill ph-buildings"></i></div>
+      <div class="company-info">
+        <span class="company-name">ACME Corporation</span>
+        <span class="company-plan">Enterprise Plan</span>
+      </div>
+      <i class="ph ph-caret-right"></i>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul id="sidebar-nav-list">
+        <li class="nav-item" data-href="CorporateDashboard.html"><i class="ph ph-squares-four"></i> Overview</li>
+        <li class="nav-item" data-href="EmployeeViewDashboard.html"><i class="ph ph-users"></i> Employees</li>
+        <li class="nav-item active" data-href="Trips.html"><i class="ph-fill ph-car"></i> Trips</li>
+        <li class="nav-item" data-href="Bookings.html"><i class="ph ph-bookmark-simple"></i> Bookings</li>
+        <li class="nav-item" data-href="Wallet.html"><i class="ph ph-wallet"></i> Wallet</li>
+        <li class="nav-item" data-href="Reports.html"><i class="ph ph-chart-bar"></i> Reports</li>
+        <li class="nav-item" data-href="CompanySettings.html"><i class="ph ph-gear"></i> Company Settings</li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="help-card">
+        <i class="ph-fill ph-headset"></i>
+        <div><strong>Need Help?</strong><p>Visit our support center</p></div>
+      </div>
+      <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
+      <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <header class="dash-topbar">
+      <div class="search-bar">
+        <input type="text" id="trip-search" placeholder="Search for trips, bookings...">
+        <i class="ph ph-magnifying-glass"></i>
+      </div>
+      <div class="topbar-icons">
+        <button class="icon-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
+        <button class="icon-btn" aria-label="Help"><i class="ph ph-question"></i></button>
+        <div class="admin-profile">
+          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <div class="admin-info">
+            <span class="admin-name">Tunde Adewale</span>
+            <span class="admin-role">Super Admin</span>
+          </div>
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-heading">
+      <h2>Trips</h2>
+      <p>Monitor all trips taken by employees</p>
+    </div>
+
+    <div class="emp-tabs" id="trip-tabs">
+      <button class="emp-tab active" data-tab="all">All Trips</button>
+      <button class="emp-tab" data-tab="upcoming">Upcoming</button>
+      <button class="emp-tab" data-tab="ongoing">Ongoing</button>
+      <button class="emp-tab" data-tab="completed">Completed</button>
+      <button class="emp-tab" data-tab="cancelled">Cancelled</button>
+    </div>
+
+    <section class="panel table-panel">
+      <table class="emp-table">
+        <thead>
+          <tr>
+            <th>Date &amp; Time</th>
+            <th>Route</th>
+            <th>Employee</th>
+            <th>Status</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody id="trips-table-body"></tbody>
+      </table>
+      <div class="table-pagination" id="trips-pagination"></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="Trips.js"></script>
+</body>
+</html>

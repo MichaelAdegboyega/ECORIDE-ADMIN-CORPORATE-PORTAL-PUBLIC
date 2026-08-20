@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+<link rel="stylesheet" href="CorporateDashboard.css"/>
+<link rel="stylesheet" href="EmployeeViewDashboard.css"/>
+<link rel="stylesheet" href="Trips.css"/>
+<link rel="stylesheet" href="Bookings.css"/>
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <i class="ph-fill ph-leaf logo-icon"></i>
+      <h1>Eco<span>Ride</span></h1>
+    </div>
+
+    <div class="company-card">
+      <div class="company-icon"><i class="ph-fill ph-buildings"></i></div>
+      <div class="company-info">
+        <span class="company-name">ACME Corporation</span>
+        <span class="company-plan">Enterprise Plan</span>
+      </div>
+      <i class="ph ph-caret-right"></i>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul id="sidebar-nav-list">
+        <li class="nav-item" data-href="CorporateDashboard.html"><i class="ph ph-squares-four"></i> Overview</li>
+        <li class="nav-item" data-href="EmployeeViewDashboard.html"><i class="ph ph-users"></i> Employees</li>
+        <li class="nav-item" data-href="Trips.html"><i class="ph ph-car"></i> Trips</li>
+        <li class="nav-item active" data-href="Bookings.html"><i class="ph-fill ph-bookmark-simple"></i> Bookings</li>
+        <li class="nav-item" data-href="Wallet.html"><i class="ph ph-wallet"></i> Wallet</li>
+        <li class="nav-item" data-href="Reports.html"><i class="ph ph-chart-bar"></i> Reports</li>
+        <li class="nav-item" data-href="CompanySettings.html"><i class="ph ph-gear"></i> Company Settings</li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="help-card">
+        <i class="ph-fill ph-headset"></i>
+        <div><strong>Need Help?</strong><p>Visit our support center</p></div>
+      </div>
+      <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
+      <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <header class="dash-topbar">
+      <div class="search-bar">
+        <input type="text" placeholder="Search for trips, bookings, invoice...">
+        <i class="ph ph-magnifying-glass"></i>
+      </div>
+      <div class="topbar-icons">
+        <button class="icon-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
+        <button class="icon-btn" aria-label="Help"><i class="ph ph-question"></i></button>
+        <div class="admin-profile">
+          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <div class="admin-info">
+            <span class="admin-name">Tunde Adewale</span>
+            <span class="admin-role">Super Admin</span>
+          </div>
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-heading">
+      <h2>Bookings</h2>
+      <p>Manage all ride bookings and requests</p>
+    </div>
+
+    <div class="emp-tabs" id="booking-tabs">
+      <button class="emp-tab active" data-tab="all">All Bookings</button>
+      <button class="emp-tab" data-tab="pending">Pending</button>
+      <button class="emp-tab" data-tab="approved">Approved</button>
+      <button class="emp-tab" data-tab="cancelled">Cancelled</button>
+    </div>
+
+    <div class="emp-toolbar">
+      <div class="search-bar small">
+        <input type="text" id="booking-search" placeholder="Search bookings">
+        <i class="ph ph-magnifying-glass"></i>
+      </div>
+      <div class="emp-toolbar-right">
+        <div class="filter-dropdown" id="date-range-filter">
+          <button class="filter-btn">Date Range <i class="ph ph-caret-down"></i></button>
+        </div>
+        <div class="filter-dropdown" id="booking-status-filter">
+          <button class="filter-btn">Status <i class="ph ph-caret-down"></i></button>
+        </div>
+        <button class="add-employee-btn" id="create-booking-btn">Create Booking</button>
+      </div>
+    </div>
+
+    <section class="panel table-panel">
+      <table class="emp-table">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Route</th>
+            <th>Date &amp; Time</th>
+            <th>Requested By</th>
+            <th>Seats</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="bookings-table-body"></tbody>
+      </table>
+      <div class="table-pagination" id="bookings-pagination"></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="Bookings.js"></script>
+</body>
+</html>

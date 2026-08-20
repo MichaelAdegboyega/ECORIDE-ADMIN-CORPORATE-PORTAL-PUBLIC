@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Booking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+<link rel="stylesheet" href="CorporateDashboard.css"/>
+<link rel="stylesheet" href="EmployeeViewDashboard.css"/>
+<link rel="stylesheet" href="CreateBooking.css"/>
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <i class="ph-fill ph-leaf logo-icon"></i>
+      <h1>Eco<span>Ride</span></h1>
+    </div>
+
+    <div class="company-card">
+      <div class="company-icon"><i class="ph-fill ph-buildings"></i></div>
+      <div class="company-info">
+        <span class="company-name">ACME Corporation</span>
+        <span class="company-plan">Enterprise Plan</span>
+      </div>
+      <i class="ph ph-caret-right"></i>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul id="sidebar-nav-list">
+        <li class="nav-item" data-href="CorporateDashboard.html"><i class="ph ph-squares-four"></i> Overview</li>
+        <li class="nav-item" data-href="EmployeeViewDashboard.html"><i class="ph ph-users"></i> Employees</li>
+        <li class="nav-item" data-href="Trips.html"><i class="ph ph-car"></i> Trips</li>
+        <li class="nav-item active" data-href="Bookings.html"><i class="ph-fill ph-bookmark-simple"></i> Bookings</li>
+        <li class="nav-item" data-href="Wallet.html"><i class="ph ph-wallet"></i> Wallet</li>
+        <li class="nav-item" data-href="Reports.html"><i class="ph ph-chart-bar"></i> Reports</li>
+        <li class="nav-item" data-href="CompanySettings.html"><i class="ph ph-gear"></i> Company Settings</li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="help-card">
+        <i class="ph-fill ph-headset"></i>
+        <div><strong>Need Help?</strong><p>Visit our support center</p></div>
+      </div>
+      <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
+      <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <header class="dash-topbar">
+      <div class="search-bar">
+        <input type="text" placeholder="Search for trips, bookings, invoices...">
+        <i class="ph ph-magnifying-glass"></i>
+      </div>
+      <div class="topbar-icons">
+        <button class="icon-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
+        <button class="icon-btn" aria-label="Help"><i class="ph ph-question"></i></button>
+        <div class="admin-profile">
+          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <div class="admin-info">
+            <span class="admin-name">Tunde Adewale</span>
+            <span class="admin-role">Super Admin</span>
+          </div>
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-heading">
+      <h2>Create Booking</h2>
+      <p>Schedule a new ride for your team.</p>
+    </div>
+
+    <section class="panel wizard-panel">
+
+      <div class="wizard-steps">
+        <div class="wizard-step active" data-step="1">
+          <span class="step-circle">1</span>
+          <span class="step-label">Route &amp; Time</span>
+        </div>
+        <div class="wizard-connector"></div>
+        <div class="wizard-step" data-step="2">
+          <span class="step-circle">2</span>
+          <span class="step-label">Passenger Details</span>
+        </div>
+        <div class="wizard-connector"></div>
+        <div class="wizard-step" data-step="3">
+          <span class="step-circle">3</span>
+          <span class="step-label">Review &amp; Confirm</span>
+        </div>
+      </div>
+
+      <!-- Step 1: Route & Time -->
+      <div class="wizard-step-content" id="step-1" >
+        <div class="wizard-grid">
+          <div class="wizard-field-group">
+            <h4>Route</h4>
+            <label for="pickup-location">Pick up location</label>
+            <div class="input-with-icon">
+              <input type="text" id="pickup-location" placeholder="e.g. Lekki Phase 1, Lagos">
+              <i class="ph ph-map-pin"></i>
+            </div>
+
+            <label for="dropoff-location">Drop off location</label>
+            <div class="input-with-icon">
+              <input type="text" id="dropoff-location" placeholder="e.g. Victoria Island, Lagos">
+              <i class="ph ph-map-pin"></i>
+            </div>
+
+            <button class="add-stop-btn" id="add-stop-btn"><i class="ph ph-plus"></i> Add Stop (Optional)</button>
+            <div id="extra-stops"></div>
+          </div>
+
+          <div class="wizard-field-group">
+            <h4>Date &amp; Time</h4>
+            <label for="booking-date">Date</label>
+            <div class="input-with-icon">
+              <input type="date" id="booking-date">
+              <i class="ph ph-calendar-blank"></i>
+            </div>
+
+            <label for="booking-time">Time</label>
+            <select id="booking-time">
+              <option>7:00 AM</option>
+              <option selected>8:00 AM</option>
+              <option>9:00 AM</option>
+              <option>1:00 PM</option>
+              <option>5:00 PM</option>
+              <option>9:00 PM</option>
+            </select>
+
+            <label for="seats-needed">Seats Needed</label>
+            <select id="seats-needed">
+              <option>1 Seat</option>
+              <option selected>2 Seats</option>
+              <option>3 Seats</option>
+              <option>4 Seats</option>
+              <option>6 Seats</option>
+              <option>8+ Seats</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="wizard-actions">
+          <span></span>
+          <button class="wizard-next-btn" data-next="2">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Passenger Details
+           ⚠️ Not shown in the design screenshots — built as a reasonable
+           default (select which employees are riding, matching the seat
+           count from step 1) rather than guessing at something more
+           elaborate with no reference. -->
+      <div class="wizard-step-content" id="step-2" style="display:none;">
+        <div class="wizard-field-group full-width">
+          <h4>Select Passengers</h4>
+          <p class="wizard-hint" id="seats-hint"></p>
+          <div class="passenger-picker" id="passenger-picker"></div>
+        </div>
+
+        <div class="wizard-actions">
+          <button class="wizard-back-btn" data-back="1">Back</button>
+          <button class="wizard-next-btn" data-next="3">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Review & Confirm
+           ⚠️ Also not shown in the design — a plain summary of steps 1–2
+           plus a Confirm button, matching the pattern used everywhere
+           else in this app for review-before-submit screens. -->
+      <div class="wizard-step-content" id="step-3" style="display:none;">
+        <div class="review-summary" id="review-summary"></div>
+
+        <div class="wizard-actions">
+          <button class="wizard-back-btn" data-back="2">Back</button>
+          <button class="wizard-confirm-btn" id="confirm-booking-btn">Confirm Booking</button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<script src="CreateBooking.js"></script>
+</body>
+</html>

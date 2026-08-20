@@ -168,9 +168,7 @@ function setupRowMenuActions() {
       closeRowMenu();
 
       if (action === "view") {
-        // Employee detail is its own page — not built yet (next in queue).
-        // TODO: link to EmployeeDetail.html?id=<employeeId> once built.
-        alert(`View Details for ${employeeId} — detail page coming next.`);
+        window.location.href = `EmployeeDetail.html?id=${encodeURIComponent(employeeId)}`;
       } else if (action === "edit") {
         alert(`Edit Employee (${employeeId}) is coming soon.`);
       } else if (action === "deactivate") {

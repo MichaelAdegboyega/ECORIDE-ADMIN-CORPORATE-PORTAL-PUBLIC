@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+<link rel="stylesheet" href="CorporateDashboard.css"/>
+<link rel="stylesheet" href="EmployeeViewDashboard.css"/>
+<link rel="stylesheet" href="EmployeeDetail.css"/>
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <i class="ph-fill ph-leaf logo-icon"></i>
+      <h1>Eco<span>Ride</span></h1>
+    </div>
+
+    <div class="company-card">
+      <div class="company-icon"><i class="ph-fill ph-buildings"></i></div>
+      <div class="company-info">
+        <span class="company-name">ACME Corporation</span>
+        <span class="company-plan">Enterprise Plan</span>
+      </div>
+      <i class="ph ph-caret-right"></i>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul id="sidebar-nav-list">
+        <li class="nav-item" data-href="CorporateDashboard.html"><i class="ph ph-squares-four"></i> Overview</li>
+        <li class="nav-item active" data-href="EmployeeViewDashboard.html"><i class="ph-fill ph-users"></i> Employees</li>
+        <li class="nav-item" data-href="Trips.html"><i class="ph ph-car"></i> Trips</li>
+        <li class="nav-item" data-href="Bookings.html"><i class="ph ph-bookmark-simple"></i> Bookings</li>
+        <li class="nav-item" data-href="Wallet.html"><i class="ph ph-wallet"></i> Wallet</li>
+        <li class="nav-item" data-href="Reports.html"><i class="ph ph-chart-bar"></i> Reports</li>
+        <li class="nav-item" data-href="CompanySettings.html"><i class="ph ph-gear"></i> Company Settings</li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="help-card">
+        <i class="ph-fill ph-headset"></i>
+        <div><strong>Need Help?</strong><p>Visit our support center</p></div>
+      </div>
+      <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
+      <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <header class="dash-topbar">
+      <div class="search-bar">
+        <input type="text" placeholder="Search">
+        <i class="ph ph-magnifying-glass"></i>
+      </div>
+      <div class="topbar-icons">
+        <button class="icon-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
+        <button class="icon-btn" aria-label="Help"><i class="ph ph-question"></i></button>
+        <div class="admin-profile">
+          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <div class="admin-info">
+            <span class="admin-name">Tunde Adewale</span>
+            <span class="admin-role">Super Admin</span>
+          </div>
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <a href="EmployeeViewDashboard.html" class="back-link"><i class="ph ph-arrow-left"></i> Back to Employees</a>
+
+    <div class="page-heading-row">
+      <div class="page-heading">
+        <h2>Employee Details</h2>
+        <p>View and manage employee information</p>
+      </div>
+      <div class="page-heading-actions">
+        <button class="edit-employee-btn" id="edit-employee-btn"><i class="ph ph-pencil-simple"></i> Edit Employee</button>
+        <button class="more-actions-btn" id="more-actions-btn"><i class="ph ph-dots-three"></i></button>
+      </div>
+    </div>
+
+    <!-- Profile card -->
+    <section class="panel profile-card">
+      <img src="Assets/avatar-placeholder.png" alt="" class="profile-avatar" id="profile-avatar">
+      <div class="profile-main">
+        <h3 id="profile-name">—</h3>
+        <p id="profile-title">—</p>
+        <p class="profile-dept" id="profile-dept">—</p>
+        <span class="status-badge active" id="profile-status">Active</span>
+      </div>
+      <div class="profile-detail-grid">
+        <div><span class="detail-label">Employee ID</span><span class="detail-value" id="detail-empid">—</span></div>
+        <div><span class="detail-label">Date Joined</span><span class="detail-value" id="detail-joined">—</span></div>
+        <div><span class="detail-label">Employee Type</span><span class="detail-value" id="detail-type">—</span></div>
+        <div><span class="detail-label">Email</span><span class="detail-value" id="detail-email">—</span></div>
+        <div><span class="detail-label">Manager</span><span class="detail-value" id="detail-manager">—</span></div>
+        <div><span class="detail-label">Work Mode</span><span class="detail-value" id="detail-workmode">—</span></div>
+        <div><span class="detail-label">Phone</span><span class="detail-value" id="detail-phone">—</span></div>
+        <div><span class="detail-label">Office Location</span><span class="detail-value" id="detail-office">—</span></div>
+      </div>
+    </section>
+
+    <div class="detail-tabs">
+      <button class="detail-tab active" data-tab="activity"><i class="ph ph-chart-line-up"></i> Activity</button>
+      <button class="detail-tab" data-tab="bookings"><i class="ph ph-calendar-blank"></i> Bookings</button>
+      <button class="detail-tab" data-tab="trips"><i class="ph ph-car"></i> Trips</button>
+      <button class="detail-tab" data-tab="expenses"><i class="ph ph-file-text"></i> Expenses</button>
+      <button class="detail-tab" data-tab="documents"><i class="ph ph-folder"></i> Documents</button>
+    </div>
+
+    <div class="dash-columns detail-columns">
+      <div class="dash-col-left">
+        <section class="panel" id="activity-panel">
+          <div class="panel-header">
+            <h3>Recent Activity</h3>
+            <select class="panel-select" id="activity-filter">
+              <option>All Activity</option>
+              <option>Trips</option>
+              <option>Bookings</option>
+              <option>Payments</option>
+            </select>
+          </div>
+          <ul class="activity-list" id="activity-list"></ul>
+          <button class="view-all-btn" id="view-all-activity">View All Activity</button>
+        </section>
+
+        <section class="panel" id="other-tab-panel" style="display:none;">
+          <div class="empty-state">
+            <i class="ph ph-folder-open"></i>
+            <p id="other-tab-label">Nothing here yet.</p>
+          </div>
+        </section>
+      </div>
+
+      <div class="dash-col-right">
+        <section class="panel">
+          <h3 class="summary-title">Summary</h3>
+          <div class="summary-grid" id="summary-grid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h3>Preferred Route</h3>
+            <a href="#" class="view-all-link">View All</a>
+          </div>
+          <ul class="preferred-routes" id="preferred-routes"></ul>
+        </section>
+
+        <section class="panel">
+          <h3 class="summary-title">Emergency Contact</h3>
+          <div class="emergency-contact" id="emergency-contact"></div>
+        </section>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="EmployeeDetail.js"></script>
+</body>
+</html>
