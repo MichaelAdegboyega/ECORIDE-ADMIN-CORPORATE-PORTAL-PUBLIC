@@ -112,7 +112,155 @@
   .modal-close-btn {
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 18px;/* Wallet.css — extends CorporateDashboard.css + Employees.css + Trips.css */
+
+    .wallet-hero {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .wallet-hero-card {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: linear-gradient(135deg, #1f7a3d, #34a853);
+      color: #ffffff;
+      border: none;
+    }
+    
+    .wallet-hero-label {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+    
+    .wallet-hero-balance {
+      font-size: 30px;
+      font-weight: 700;
+    }
+    
+    .wallet-hero-card .wallet-status {
+      color: #d5f2df;
+    }
+    
+    .wallet-hero-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    
+    .top-up-btn.primary {
+      background-color: #ffffff;
+      color: #1f7a3d;
+      border-color: transparent;
+    }
+    
+    .top-up-btn.secondary {
+      background-color: transparent;
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    
+    .wallet-stat-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    
+    .status-badge.credit, .status-badge.topup {
+      background-color: #eaf7ee;
+      color: #1f7a3d;
+    }
+    
+    .status-badge.debit {
+      background-color: #fdecec;
+      color: #c0392b;
+    }
+    
+    .txn-amount.credit {
+      color: #1f7a3d;
+      font-weight: 600;
+    }
+    
+    .txn-amount.debit {
+      color: #c0392b;
+      font-weight: 600;
+    }
+    
+    /* Top Up modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(17, 32, 40, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    
+    .modal-overlay.open {
+      display: flex;
+    }
+    
+    .modal-card {
+      background-color: #ffffff;
+      border-radius: 14px;
+      padding: 24px;
+      width: 360px;
+      max-width: 90vw;
+    }
+    
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    
+    .modal-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    
+    .modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #6b7a75;
+    }
+    
+    .modal-card label {
+      display: block;
+      font-size: 13px;
+      color: #6b7a75;
+      margin-bottom: 6px;
+    }
+    
+    .modal-card input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #e7ece9;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      font-family: inherit;
+    }
+    
+    @media (max-width: 1000px) {
+      .wallet-hero {
+        grid-template-columns: 1fr;
+      }
+      .wallet-stat-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .wallet-stat-cards {
+        grid-template-columns: 1fr;
+      }
+    }
     color: #6b7a75;
   }
   
