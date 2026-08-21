@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans';
   background-color: #f7f9f8;
   color: #112028;
 }
@@ -32,7 +32,7 @@ button {
    Sidebar
 --------------------------------------------------------------- */
 .sidebar {
-  width: 260px;
+  width: 280px;
   flex-shrink: 0;
   background-color: #ffffff;
   border-right: 1px solid #e7ece9;
@@ -51,42 +51,44 @@ button {
   align-items: center;
   gap: 8px;
   padding: 0 8px;
+  color:#34a853;
 }
 
-.logo-icon {
-  color: #34a853;
-  font-size: 26px;
+.sidebar-logo img{
+  width: 53px;
+  height: 53px;
 }
+
 
 .sidebar-logo h1 {
+
   font-size: 22px;
   font-weight: 700;
 }
 
 .sidebar-logo span {
-  color: #34a853;
+  color: #000000;
 }
 
 .company-card {
+  width: 255px;
+  height: 96px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  border: 1px solid #e7ece9;
+  gap: 8px;
+  border: 1px solid #d1d2d1;
   border-radius: 12px;
-  padding: 12px;
+  padding: 5px;
   cursor: pointer;
 }
 
 .company-icon {
-  width: 36px;
-  height: 36px;
   border-radius: 8px;
-  background-color: #eef6f0;
-  color: #34a853;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 50px;
 }
 
 .company-info {
@@ -96,13 +98,13 @@ button {
 }
 
 .company-name {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .company-plan {
-  font-size: 12px;
-  color: #6b7a75;
+  font-size: 16px;
+  color: #6b7280;
 }
 
 .sidebar-nav ul {
@@ -143,10 +145,12 @@ button {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 255px;
 }
 
 .help-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
   border: 1px solid #e7ece9;
@@ -156,23 +160,43 @@ button {
 }
 
 .help-card i {
-  font-size: 22px;
+  width: 40px;
+  height: 40px;
+  border:1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background-color: #c4e6cd;
   color: #34a853;
+  position: absolute;
+  left: 30px;
 }
 
 .help-card p {
-  color: #6b7a75;
+  font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+}
+
+.help-card span {
   font-size: 12px;
+  font-weight: 400;
+  color: #898a8d;
+  display: block;
+  margin-bottom: 12px;
 }
 
 .contact-support-btn {
+  width: 100%;
   background-color: #34a853;
   color: #ffffff;
   border: none;
-  border-radius: 10px;
-  padding: 12px;
-  font-size: 14px;
-  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .logout-btn {
