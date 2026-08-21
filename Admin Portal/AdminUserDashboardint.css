@@ -1,0 +1,24 @@
+/* AdminUserDashboard-interactive.css
+   Small additions specific to this page. The shared notif panel /
+   profile dropdown / row-menu styles come from
+   AdminMainDashboard-interactive.css (linked alongside this file). */
+
+   .search-box input:focus {
+    outline: 2px solid #34a853;
+    outline-offset: 1px;
+  }
+  
+  .actions {
+    cursor: pointer;
+  }
+  
+  #drivers-table-body tr.hidden-row,
+  #passengers-table-body tr.hidden-row {
+    display: none;
+  }
+  
+  .empty-row td {
+    text-align: center;
+    color: #979797;
+    padding: 24px;
+  }

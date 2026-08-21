@@ -18,24 +18,25 @@
       href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
      />
     <link rel="stylesheet" href="AdminMainDashboard.css">
+    <link rel="stylesheet" href="AdminMainDashboardint.css">
 </head>
 <body>
 
   <div class="dashboard-container">
-        
+
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="logo">
-                <img src="Assets/Ecologo.png"> 
+                <img src="Assets/Ecologo.png">
                 <h4>Eco<span>Ride</span></h4>
             </div>
             <nav class="nav-menu">
                 <a href="index.html" class="active"><i class="ph ph-squares-four"></i> Overview</a>
-                <a href="AdminUserDashboard.html" ><i class="ph ph-user"></i> Users</a>
-                <a href="AdminBookingDashboard.html" ><i class="ph ph-identification-card"></i> Bookings</a>
-                <a href="AdminVerificationPage.html" ><i class="ph ph-identification-card"></i> Verification</a>
+                <a href="AdminUserDashboard.html"><i class="ph ph-user"></i> Users</a>
+                <a href="AdminBookingDashboard.html"><i class="ph ph-identification-card"></i> Bookings</a>
+                <a href="AdminVerificationPage.html"><i class="ph ph-identification-card"></i> Verification</a>
                 <a href="AdminPaymentPage.html"><i class="ph ph-wallet"></i> Payments</a>
-                <a href="AdminProfilePage.html"><i class="ph ph-gear-six"></i></i> Settings</a>
+                <a href="AdminProfilePage.html"><i class="ph ph-gear-six"></i> Settings</a>
             </nav>
             <div class="support-container">
               <div class="support-card">
@@ -45,13 +46,13 @@
                         <p>Need Help?</p>
                     <span>Visit our support center</span>
                     </div>
-                </div> 
-                    <button class="btn-support">Contact Support</button>
-              </div>    
+                </div>
+                    <button class="btn-support" id="contact-support-btn">Contact Support</button>
+              </div>
             </div>
             <div class="logout-btn">
-                <a href="AdminLogin.html"><i class="ph ph-sign-out"></i>Logout</a>
-            </div> 
+                <a href="AdminLogin.html" id="logout-link"><i class="ph ph-sign-out"></i>Logout</a>
+            </div>
         </aside>
         <!-- Main Content Area -->
         <main class="main-content">
@@ -60,10 +61,11 @@
             <div class="top-tab">
                 <h2>Dashboard</h2>
                 <div class="header-right">
-                    <div class="notification-bell">
+                    <div class="notification-bell" id="notif-bell">
                         <i class="ph ph-bell"></i>
+                        <span class="notif-dot" id="notif-dot"></span>
                     </div>
-                    <div class="user-profile">
+                    <div class="user-profile" id="admin-profile-toggle">
                         <img src="Assets/Admin.jpg" alt="Admin Avatar">
                         <div class="user-info">
                             <span class="user-name">Admin User</span>
@@ -75,7 +77,23 @@
             </div>
         </header>
 
-            <p class="current-date">Thursday, July 30, 2026</p>
+        <!-- Notification panel (toggled by JS) -->
+        <div class="notif-panel" id="notif-panel">
+            <div class="notif-panel-header">
+                <strong>Notifications</strong>
+                <button id="mark-all-read-btn">Mark all as read</button>
+            </div>
+            <ul id="notif-panel-list"></ul>
+        </div>
+
+        <!-- Admin profile dropdown (toggled by JS) -->
+        <div class="admin-dropdown" id="admin-dropdown">
+            <a href="AdminProfilePage.html"><i class="ph ph-user-circle"></i> View Profile</a>
+            <a href="AdminProfilePage.html"><i class="ph ph-gear-six"></i> Settings</a>
+            <a href="AdminLogin.html" id="dropdown-logout-link"><i class="ph ph-sign-out"></i> Logout</a>
+        </div>
+
+            <p class="current-date" id="current-date">Thursday, July 30, 2026</p>
 
             <!-- Top Summary Stats Grid -->
             <section class="stats-grid">
@@ -89,7 +107,7 @@
                   </div>
                   <p class="stat-trend-1">12.6% <span class="text-muted">vs last 7 days</span></p>
                 </div>
-        
+
                 <div class="stat-card">
                   <div class="stat-header">
                     <div>
@@ -100,7 +118,7 @@
                   </div>
                   <p class="stat-trend-2">12.6% <span class="text-muted">vs last 7 days</span></p>
                 </div>
-        
+
                 <div class="stat-card">
                   <div class="stat-header">
                     <div>
@@ -111,7 +129,7 @@
                   </div>
                   <p class="stat-trend-3">12.6% <span class="text-muted">vs last 7 days</span></p>
                 </div>
-        
+
                 <div class="stat-card">
                   <div class="stat-header">
                     <div>
@@ -136,21 +154,18 @@
                             <li><span class="dot gray-dot"></span> 10 corporate</li>
                         </ul>
                         <!-- CSS Donut Chart Approximation -->
-                        <div class="donut-chart"></div>
+                        <div class="donut-chart" id="donut-chart"></div>
+                        <div class="donut-tooltip" id="donut-tooltip"></div>
                     </div>
                 </div>
-                
+
                 <div class="chart-card revenue-chart">
                     <h4>Total Revenue = $240,899</h4>
                     <!-- Pure CSS Bar Chart Visual Grid -->
-                    <div class="bar-chart">
+                    <div class="bar-chart" id="revenue-bar-chart">
                         <div class="bar-y-axis"><span>500k</span><span>300k</span><span>100k</span><span>0</span></div>
-                        <div class="bar-container"><div class="bar" style="height: 40%"></div><span>Jan</span></div>
-                        <div class="bar-container"><div class="bar" style="height: 75%"></div><span>Feb</span></div>
-                        <div class="bar-container"><div class="bar" style="height: 60%"></div><span>Mar</span></div>
-                        <div class="bar-container"><div class="bar" style="height: 80%"></div><span>Apr</span></div>
-                        <div class="bar-container"><div class="bar" style="height: 95%"></div><span>May</span></div>
                     </div>
+                    <div class="bar-tooltip" id="bar-tooltip"></div>
                 </div>
             </section>
 
@@ -159,145 +174,19 @@
                 <h4>Activity feed</h4>
                 <div class="table-responsive">
                     <table class="feed-table">
-                        
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="feed-desc">
-                                        <div><i class="ph-fill ph-bell"></i></div>
-                                        <div><strong>Pending Review</strong><br><small>Adaeze Okonkwo Nm verification</small></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge purple-bg">Passenger</span></td>
-                                <td>
-                                    <i class="ph ph-envelope-simple"></i>
-                                    <i class="ph ph-bell"></i>
-                                    <i class="ph ph-chat-circle-dots"></i>
-                                </td>
-                                <td><span class="status-lbl pending">Pending</span></td>
-                                <td><small>May 21, 2024<br>10:30 AM</small></td>
-                                <td>
-                                    <div class="img"><img src="Assets/Driver.jpg">
-                                    <strong class="name">Admin User</strong>
-                                    </div>
-                                </td>
-                                <td>•••</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="feed-desc">
-                                        <div><i class="ph-fill ph-car"></i></div>
-                                        <div><strong>Weekend Ride Discount!</strong><br><small>Enjoy up to 20% off on all Economy ride...</small></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge purple-bg">All Users</span></td>
-                                <td>
-                                    <i class="ph ph-envelope-simple"></i>
-                                    <i class="ph ph-bell"></i>
-                                    <i class="ph ph-chat-circle-dots"></i>
-                                </td>
-                                <td><span class="status-lbl sent">Sent</span></td>
-                                <td><small>May 21, 2024<br>10:30 AM</small></td>
-                                <td>
-                                    <div class="img"><img src="Assets/Driver.jpg">
-                                    <strong class="name">Admin User</strong>
-                                    </div>
-                                </td>
-                                <td>•••</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="feed-desc">
-                                        <div><i class="ph-fill ph-gift"></i></div>
-                                        <div><strong>Weekend Ride Discount!</strong><br><small>Enjoy up to 20% off on all Economy ride...</small></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge purple-bg">All Users</span></td>
-                                <td>
-                                    <i class="ph ph-envelope-simple"></i>
-                                    <i class="ph ph-bell"></i>
-                                    <i class="ph ph-chat-circle-dots"></i>
-                                </td>
-                                <td><span class="status-lbl scheduled">Schedule</span></td>
-                                <td><small>May 21, 2024<br>10:30 AM</small></td>
-                                <td>
-                                    <div class="img"><img src="Assets/Driver.jpg">
-                                    <strong class="name">Admin User</strong>
-                                    </div>
-                                </td>
-                                <td>•••</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="feed-desc">
-                                        <div><i class="ph-fill ph-wrench"></i></div>
-                                        <div><strong>Weekend Ride Discount!</strong><br><small>Enjoy up to 20% off on all Economy ride...</small></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge purple-bg">All Users</span></td>
-                                <td>
-                                    <i class="ph ph-envelope-simple"></i>
-                                    <i class="ph ph-bell"></i>
-                                    <i class="ph ph-chat-circle-dots"></i>
-                                </td>
-                                <td><span class="status-lbl sent">Sent</span></td>
-                                <td><small>May 21, 2024<br>10:30 AM</small></td>
-                                <td>
-                                    <div class="img"><img src="Assets/Driver.jpg">
-                                    <strong class="name">Admin User</strong>
-                                    </div>
-                                </td>
-                                <td>•••</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="feed-desc">
-                                        <div><i class="ph-fill ph-warning"></i></div>
-                                        <div><strong>Failed Verification</strong><br><small>Olatunji Kanu drivers license verification</small></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge purple-bg">Driver</span></td>
-                                <td>
-                                    <i class="ph ph-envelope-simple"></i>
-                                    <i class="ph ph-bell"></i>
-                                    <i class="ph ph-chat-circle-dots"></i>
-                                </td>
-                                <td><span class="status-lbl flagged">Flagged</span></td>
-                                <td><small>May 21, 2024<br>10:30 AM</small></td>
-                                <td>
-                                    <div class="img"><img src="Assets/Driver.jpg">
-                                    <strong class="name">Admin User</strong>
-                                    </div>
-                                </td>
-                                <td>•••</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="feed-desc">
-                                        <div><i class="ph-fill ph-wallet"></i></div>
-                                        <div><strong>Weekend Ride Discount!</strong><br><small>Enjoy up to 20% off on all Economy ride...</small></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge purple-bg">All Users</span></td>
-                                <td>
-                                    <i class="ph ph-envelope-simple"></i>
-                                    <i class="ph ph-bell"></i>
-                                    <i class="ph ph-chat-circle-dots"></i>
-                                </td>
-                                <td><span class="status-lbl sent">Sent</span></td>
-                                <td><small>May 21, 2024<br>10:30 AM</small></td>
-                                <td>
-                                    <div class="img"><img src="Assets/Driver.jpg">
-                                    <strong class="name">Admin User</strong>
-                                    </div>
-                                </td>
-                                <td>•••</td>
-                            </tr>
-                        </tbody>
+                        <tbody id="feed-table-body"></tbody>
                     </table>
                 </div>
             </section>
         </main>
     </div>
+
+<!-- Row-action dropdown menu (positioned by JS, shared by all ••• buttons) -->
+<div class="row-menu" id="feed-row-menu">
+  <button data-action="view">View Details</button>
+  <button data-action="dismiss">Dismiss</button>
+</div>
+
+<script src="AdminMainDashboard.js"></script>
 </body>
 </html>

@@ -112,7 +112,7 @@
   
   /* Route map placeholder */
   .route-map-placeholder {
-    height: 160px;
+    height: 250px;
     border-radius: 10px;
     background-color: #eef2ef;
     display: flex;
@@ -122,7 +122,10 @@
     font-size: 40px;
     margin-bottom: 14px;
   }
-  
+  .route-map-placeholder img{
+    height: 250px;
+    width: 320px;
+  }
   .route-meta-row {
     display: flex;
     justify-content: space-between;

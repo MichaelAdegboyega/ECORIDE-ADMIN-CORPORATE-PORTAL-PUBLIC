@@ -1,0 +1,153 @@
+/* DriverDetail.css — ⚠️ no design reference for this page. Built to
+   match the existing admin visual language (AdminUserDashboard.css +
+   AdminVerificationPage.css tokens: #34a853 green, same status badge
+   shapes, same table styling). */
+
+   .driver-body {
+    padding-bottom: 40px;
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #34a853;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 20px;
+  }
+  
+  .driver-profile-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .driver-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  .driver-profile-main {
+    min-width: 160px;
+  }
+  
+  .driver-profile-main h3 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  .driver-profile-main p {
+    font-size: 13px;
+    color: #757575;
+    margin-top: 2px;
+  }
+  
+  .driver-profile-main .status {
+    margin-top: 8px;
+  }
+  
+  .driver-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 14px 40px;
+    flex: 1;
+  }
+  
+  .detail-label {
+    display: block;
+    font-size: 12px;
+    color: #979797;
+  }
+  
+  .detail-value {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  
+  .driver-profile-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  
+  .btn-approve {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #34a853;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .btn-suspend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #ffffff;
+    color: #ec2a35;
+    border: 1px solid #ec2a35;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .driver-columns {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  
+  .driver-panel {
+    background-color: #ffffff;
+    margin: 0 0 20px 0;
+    padding: 20px;
+  }
+  
+  .panel-title-plain {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .muted-text {
+    font-size: 13px;
+    color: #757575;
+    margin-bottom: 14px;
+  }
+  
+  .btn-add-note {
+    border: 1px solid rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 1000px) {
+    .driver-columns {
+      grid-template-columns: 1fr;
+    }
+    .driver-detail-grid {
+      grid-template-columns: repeat(2, auto);
+    }
+  }
