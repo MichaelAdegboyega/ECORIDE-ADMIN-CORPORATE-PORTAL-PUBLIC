@@ -1,0 +1,140 @@
+/* BookingDetail.css — ⚠️ no design reference. Reuses DriverDetail.css's
+   panel/back-link/detail-grid patterns and AdminBookingDashboard.css's
+   status-badge classes for visual consistency across the admin portal. */
+
+   .page-heading-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .page-heading-row h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .booking-top-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 20px;
+    margin-bottom: 0;
+    align-items: start;
+  }
+  
+  .info-rows {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #757575;
+  }
+  
+  .info-row strong {
+    color: #17191c;
+    font-weight: 600;
+  }
+  
+  .total-paid-row {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 14px;
+    margin-top: 10px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    font-size: 14px;
+  }
+  
+  .person-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .person-row img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  .person-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .person-meta {
+    font-size: 12px;
+    color: #757575;
+    margin-top: 2px;
+  }
+  
+  .person-row .view-link {
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 600;
+    color: #34a853;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  /* Timeline (matches TripDetail.css pattern from the corporate portal) */
+  .timeline-list {
+    list-style: none;
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid #eef0f1;
+  }
+  
+  .timeline-item {
+    position: relative;
+    padding-bottom: 18px;
+  }
+  
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+  
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -25px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #34a853;
+  }
+  
+  .timeline-title {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .timeline-time {
+    font-size: 12px;
+    color: #757575;
+    margin-top: 2px;
+  }
+  
+  .panel-header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 1000px) {
+    .booking-top-grid {
+      grid-template-columns: 1fr;
+    }
+  }

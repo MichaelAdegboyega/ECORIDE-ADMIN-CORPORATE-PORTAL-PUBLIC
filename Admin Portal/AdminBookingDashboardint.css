@@ -1,0 +1,36 @@
+/* AdminBookingDashboard-interactive.css
+   Small additions specific to this page. Shared notif panel / profile
+   dropdown styles come from AdminMainDashboard-interactive.css. */
+
+/* Fix: .status-badge-completed previously reused the same gray as
+   Verification's "Pending" state, which read as unintentional given
+   Active is green and Cancelled is red. Given its own distinct blue,
+   pulled from the existing palette (matches icon-wrapper-2's #1484D8). */
+   .status-badge-completed {
+    background-color: rgba(20, 132, 216, 0.18) !important;
+    color: #1484D8 !important;
+  }
+  
+  .search-box input:focus {
+    outline: 2px solid #34a853;
+    outline-offset: 1px;
+  }
+  
+  .filter-btn {
+    border-radius: 6px;
+    background-color: #ffffff;
+  }
+  
+  #bookings-table-body tr {
+    cursor: pointer;
+  }
+  
+  #bookings-table-body tr:hover {
+    background-color: #fafcfb;
+  }
+  
+  .empty-row td {
+    text-align: center;
+    color: #979797;
+    padding: 24px;
+  }

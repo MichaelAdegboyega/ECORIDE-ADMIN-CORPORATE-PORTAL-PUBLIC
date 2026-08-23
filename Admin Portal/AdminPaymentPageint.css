@@ -1,0 +1,36 @@
+/* AdminPaymentPage-interactive.css
+   Small additions specific to this page. Shared notif panel / profile
+   dropdown styles come from AdminMainDashboard-interactive.css. */
+
+/* Fix: icon-wrapper-4 (Disputed Fares) previously duplicated
+   icon-wrapper-1's yellow. Given its own color, matching the
+   purple used for the 4th stat card on other admin pages. */
+   .icon-wrapper-4 {
+    background: #eee2ff !important;
+    color: purple !important;
+  }
+  
+  .stat-trend-4 {
+    color: purple !important;
+  }
+  
+  .filter-btn {
+    border-radius: 6px;
+    background-color: #ffffff;
+  }
+  
+  #fare-log-table-body tr,
+  #commission-table-body tr {
+    cursor: pointer;
+  }
+  
+  #fare-log-table-body tr:hover,
+  #commission-table-body tr:hover {
+    background-color: #fafcfb;
+  }
+  
+  .empty-row td {
+    text-align: center;
+    color: #979797;
+    padding: 24px;
+  }

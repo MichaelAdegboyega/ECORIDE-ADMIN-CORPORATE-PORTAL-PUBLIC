@@ -1,0 +1,233 @@
+/* AdminProfilePage-interactive.css
+   Additions for interactivity, plus notif panel / profile dropdown
+   styles (this page's header markup differs from other admin pages —
+   .bell/.user-badge instead of .notification-bell/.user-profile — so
+   these are redefined here rather than reusing AdminMainDashboard-
+   interactive.css directly). */
+
+   .tabs span {
+    display: inline-block;
+    padding-bottom: 8px;
+  }
+  
+  /* Fix: .bell's count span had no styling at all in the original CSS,
+     so it rendered at default text size instead of as a small badge. */
+  .bell {
+    position: relative;
+  }
+  
+  .bell span {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: #ec2a35;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 3px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  
+  .card, .status-card, .settings-item {
+    transition: border-color 0.15s ease;
+  }
+  
+  .status-card {
+    cursor: pointer;
+  }
+  
+  .status-card .tag {
+    cursor: default;
+  }
+  
+  /* Notification panel */
+  .notif-panel {
+    position: absolute;
+    top: 90px;
+    right: 40px;
+    width: 320px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    z-index: 50;
+    max-height: 380px;
+    overflow-y: auto;
+  }
+  
+  .notif-panel.open {
+    display: flex;
+  }
+  
+  .notif-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+  }
+  
+  .notif-panel-header button {
+    background: none;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: #34a853;
+  }
+  
+  .notif-panel-item {
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+    list-style: none;
+  }
+  
+  .notif-panel-item:last-child {
+    border-bottom: none;
+  }
+  
+  .notif-panel-item i {
+    color: #34a853;
+    font-size: 16px;
+    margin-top: 2px;
+  }
+  
+  .notif-panel-item-title {
+    font-weight: 600;
+  }
+  
+  .notif-panel-item-time {
+    font-size: 11px;
+    color: #979797;
+    margin-top: 2px;
+  }
+  
+  /* Admin profile dropdown */
+  .admin-dropdown {
+    position: absolute;
+    top: 90px;
+    right: 40px;
+    width: 200px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    padding: 6px;
+    z-index: 50;
+  }
+  
+  .admin-dropdown.open {
+    display: flex;
+  }
+  
+  .admin-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #111827;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+  
+  .admin-dropdown a:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Placeholder for un-built tabs */
+  .placeholder-panel {
+    text-align: center;
+    padding: 60px 20px;
+    color: #979797;
+    grid-column: 1 / -1;
+  }
+  
+  .placeholder-panel i {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  /* Modals (shared pattern with CorporateDashboard's Top Up modal) */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(17, 32, 40, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+  
+  .modal-overlay.open {
+    display: flex;
+  }
+  
+  .modal-card {
+    background-color: #ffffff;
+    border-radius: 14px;
+    padding: 24px;
+    width: 360px;
+    max-width: 90vw;
+  }
+  
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  .modal-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  
+  .modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #6b7a75;
+  }
+  
+  .modal-card label {
+    display: block;
+    font-size: 13px;
+    color: #6b7a75;
+    margin-bottom: 6px;
+  }
+  
+  .modal-card input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #e7ece9;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    font-family: inherit;
+  }
+  
+  .generate-report-btn {
+    width: 100%;
+    background-color: #34a853;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+  }

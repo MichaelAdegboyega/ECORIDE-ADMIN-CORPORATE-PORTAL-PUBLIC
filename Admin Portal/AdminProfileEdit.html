@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <link rel="stylesheet" href="AdminUserDashboard.css">
+    <link rel="stylesheet" href="AdminMainDashboardint.css">
+    <link rel="stylesheet" href="AdminProfileView.css">
+    <link rel="stylesheet" href="AdminProfileEdit.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="Assets/Ecologo.png">
+                <h4>Eco<span>Ride</span></h4>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html"><i class="ph ph-squares-four"></i> Overview</a>
+                <a href="AdminUserDashboard.html"><i class="ph ph-user"></i> Users</a>
+                <a href="AdminBookingDashboard.html"><i class="ph ph-identification-card"></i> Bookings</a>
+                <a href="AdminVerificationPage.html"><i class="ph ph-identification-card"></i> Verification</a>
+                <a href="AdminPaymentPage.html"><i class="ph ph-wallet"></i> Payments</a>
+                <a href="AdminProfilePage.html"><i class="ph ph-gear-six"></i> Settings</a>
+            </nav>
+            <div class="support-container">
+              <div class="support-card">
+                <div class="headset">
+                    <i class="ph ph-headset"></i>
+                    <div>
+                        <p>Need Help?</p>
+                    <span>Visit our support center</span>
+                    </div>
+                </div>
+                    <button class="btn-support" id="contact-support-btn">Contact Support</button>
+              </div>
+            </div>
+            <div class="logout-btn">
+                <a href="AdminLogin.html"><i class="ph ph-sign-out"></i>Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+        <header class="top-header">
+            <div class="top-tab profile-top-tab">
+                <div>
+                    <h2>Profile</h2>
+                    <p class="text-muted">Update and edit your personal information and photo</p>
+                </div>
+                <div class="header-right">
+                    <div class="notification-bell" id="notif-bell">
+                        <i class="ph ph-bell"></i>
+                        <span class="notif-dot" id="notif-dot"></span>
+                    </div>
+                    <div class="user-profile" id="admin-profile-toggle">
+                        <img src="Assets/Admin.jpg" alt="Admin Avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">Super Admin</span>
+                        </div>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="notif-panel" id="notif-panel">
+            <div class="notif-panel-header"><strong>Notifications</strong><button id="mark-all-read-btn">Mark all as read</button></div>
+            <ul id="notif-panel-list"></ul>
+        </div>
+        <div class="admin-dropdown" id="admin-dropdown">
+            <a href="AdminProfileView.html"><i class="ph ph-user-circle"></i> View Profile</a>
+            <a href="AdminProfilePage.html"><i class="ph ph-gear-six"></i> Settings</a>
+            <a href="AdminLogin.html"><i class="ph ph-sign-out"></i> Logout</a>
+        </div>
+
+        <section class="body-all profile-edit-body">
+
+            <div class="profile-info-panel edit-profile-panel">
+                <h3>Edit Profile</h3>
+
+                <div class="avatar-row">
+                    <img src="Assets/Admin.jpg" alt="" class="profile-summary-avatar" id="edit-avatar-preview">
+                    <button class="change-photo-btn" id="change-photo-btn">Change Photo</button>
+                    <input type="file" id="photo-file-input" accept="image/*" hidden>
+                </div>
+
+                <form id="edit-profile-form">
+                    <div class="form-grid">
+                        <div>
+                            <label for="full-name">Full name</label>
+                            <input type="text" id="full-name" required>
+                        </div>
+                        <div>
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div>
+                            <label for="phone">Phone number</label>
+                            <div class="phone-input-group">
+                                <span class="phone-flag">🇳🇬 +234</span>
+                                <input type="tel" id="phone" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="role">Role</label>
+                            <input type="text" id="role" disabled>
+                        </div>
+                        <div>
+                            <label for="dob">Date of Birth</label>
+                            <div class="input-with-icon">
+                                <input type="date" id="dob" required>
+                                <i class="ph ph-calendar-blank"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="country">Country</label>
+                            <div class="input-with-icon">
+                                <input type="text" id="country" required>
+                                <i class="ph ph-map-pin"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="city">City</label>
+                            <div class="input-with-icon">
+                                <input type="text" id="city" required>
+                                <i class="ph ph-map-pin"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="postal-code">Postal Code</label>
+                            <input type="text" id="postal-code">
+                        </div>
+                    </div>
+
+                    <h3 class="security-heading">Password &amp; Security</h3>
+
+                    <div class="security-row">
+                        <div>
+                            <div class="security-row-title">Change Password</div>
+                            <div class="security-row-sub" id="password-last-changed">Last changed 3 months ago</div>
+                        </div>
+                        <button type="button" class="update-btn" id="update-password-btn">Update</button>
+                    </div>
+
+                    <div class="security-row">
+                        <div>
+                            <div class="security-row-title">Two-Factor Authentication</div>
+                            <div class="security-row-sub">Add an extra layer of security to your account</div>
+                        </div>
+                        <button type="button" class="toggle-switch on" id="twofa-toggle" aria-label="Toggle Two-Factor Authentication"></button>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn" id="cancel-edit-btn">Cancel</button>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+      </main>
+  </div>
+
+<!-- Change Password modal (same pattern as Settings page) -->
+<div class="modal-overlay" id="password-modal-overlay">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Change Password</h3>
+      <button class="modal-close-btn" id="password-modal-close"><i class="ph ph-x"></i></button>
+    </div>
+    <label for="current-password">Current Password</label>
+    <input type="password" id="current-password">
+    <label for="new-password">New Password</label>
+    <input type="password" id="new-password">
+    <label for="confirm-password">Confirm New Password</label>
+    <input type="password" id="confirm-password">
+    <button class="save-btn full-width" id="password-save-btn">Update Password</button>
+  </div>
+</div>
+
+<script src="AdminProfileEdit.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <link rel="stylesheet" href="AdminBookingDashboard.css">
+    <link rel="stylesheet" href="AdminMainDashboardint.css">
+    <link rel="stylesheet" href="DriverDetail.css">
+    <link rel="stylesheet" href="BookingDetail.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="Assets/Ecologo.png">
+                <h4>Eco<span>Ride</span></h4>
+            </div>
+            <nav class="nav-menu">
+              <a href="index.html"><i class="ph ph-squares-four"></i> Overview</a>
+              <a href="AdminUserDashboard.html"><i class="ph ph-user"></i> Users</a>
+              <a href="AdminBookingDashboard.html" class="active"><i class="ph ph-identification-card"></i> Bookings</a>
+              <a href="AdminVerificationPage.html"><i class="ph ph-identification-card"></i> Verification</a>
+              <a href="AdminPaymentPage.html"><i class="ph ph-wallet"></i> Payments</a>
+              <a href="AdminProfilePage.html"><i class="ph ph-gear-six"></i> Settings</a>
+          </nav>
+            <div class="support-container">
+              <div class="support-card">
+                <div class="headset">
+                    <i class="ph ph-headset"></i>
+                    <div>
+                        <p>Need Help?</p>
+                    <span>Visit our support center</span>
+                    </div>
+                </div>
+                    <button class="btn-support" id="contact-support-btn">Contact Support</button>
+              </div>
+            </div>
+            <div class="logout-btn">
+                <a href="AdminLogin.html"><i class="ph ph-sign-out"></i>Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+        <header class="top-header">
+            <div class="top-tab">
+                <h2>Booking Details</h2>
+                <div class="header-right">
+                    <div class="notification-bell" id="notif-bell">
+                        <i class="ph ph-bell"></i>
+                        <span class="notif-dot" id="notif-dot"></span>
+                    </div>
+                    <div class="user-profile" id="admin-profile-toggle">
+                        <img src="Assets/Admin.jpg" alt="Admin Avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">Super Admin</span>
+                        </div>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="notif-panel" id="notif-panel">
+            <div class="notif-panel-header"><strong>Notifications</strong><button id="mark-all-read-btn">Mark all as read</button></div>
+            <ul id="notif-panel-list"></ul>
+        </div>
+        <div class="admin-dropdown" id="admin-dropdown">
+            <a href="AdminProfilePage.html"><i class="ph ph-user-circle"></i> View Profile</a>
+            <a href="AdminProfilePage.html"><i class="ph ph-gear-six"></i> Settings</a>
+            <a href="AdminLogin.html"><i class="ph ph-sign-out"></i> Logout</a>
+        </div>
+
+        <section class="body-all driver-body">
+
+            <a href="AdminBookingDashboard.html" class="back-link"><i class="ph ph-arrow-left"></i> Back to Bookings</a>
+
+            <div class="page-heading-row">
+                <div>
+                    <h2 id="booking-ride-id">—</h2>
+                    <p class="text-muted">Full details for this ride booking.</p>
+                </div>
+                <span class="status-badge-completed" id="booking-status-badge">—</span>
+            </div>
+
+            <div class="booking-top-grid">
+                <!-- Trip info -->
+                <section class="table-container driver-panel">
+                    <h3 class="panel-title-plain">Trip Information</h3>
+                    <ul class="info-rows" id="booking-info-rows"></ul>
+                </section>
+
+                <!-- Fare breakdown -->
+                <section class="table-container driver-panel">
+                    <h3 class="panel-title-plain">Fare Breakdown</h3>
+                    <ul class="info-rows" id="fare-breakdown-rows"></ul>
+                    <div class="total-paid-row">
+                        <span>Total Fare</span>
+                        <strong id="booking-total-fare">—</strong>
+                    </div>
+                </section>
+            </div>
+
+            <div class="driver-columns">
+                <div class="driver-col-left">
+                    <!-- Driver + Passenger cards -->
+                    <section class="table-container driver-panel">
+                        <h3 class="panel-title-plain">Driver</h3>
+                        <div class="person-row" id="booking-driver-row"></div>
+                    </section>
+
+                    <section class="table-container driver-panel">
+                        <h3 class="panel-title-plain">Passenger</h3>
+                        <div class="person-row" id="booking-passenger-row"></div>
+                    </section>
+                </div>
+
+                <div class="driver-col-right">
+                    <section class="table-container driver-panel">
+                        <h3 class="panel-title-plain">Timeline</h3>
+                        <ul class="timeline-list" id="booking-timeline-list"></ul>
+                    </section>
+
+                    <section class="table-container driver-panel">
+                        <div class="panel-header-flex">
+                            <h3 class="panel-title-plain">Support / Issues</h3>
+                            <button class="btn-add-note" id="flag-booking-btn">Flag Issue</button>
+                        </div>
+                        <p class="muted-text">No issues reported for this booking.</p>
+                    </section>
+                </div>
+            </div>
+
+        </section>
+      </main>
+  </div>
+
+<script src="BookingDetail.js"></script>
+</body>
+</html>

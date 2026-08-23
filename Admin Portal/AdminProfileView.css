@@ -1,0 +1,114 @@
+/* AdminProfileView.css
+   ⚠️ Built from screenshots only (no HTML/CSS provided for these two
+   pages) — matches the established admin visual language
+   (AdminUserDashboard.css tokens: #34a853 green, Plus Jakarta Sans,
+   same card/border/radius conventions). Shared by both the view and
+   edit profile pages. */
+
+   .profile-top-tab {
+    justify-content: space-between !important;
+    gap: 0 !important;
+  }
+  
+  .profile-view-body, .profile-edit-body {
+    padding-top: 20px;
+  }
+  
+  .section-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #17191c;
+    margin: 20px 0 12px 20px;
+  }
+  
+  .profile-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: #f0f1f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0 20px 20px;
+  }
+  
+  .profile-summary-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #e7ece9;
+    flex-shrink: 0;
+  }
+  
+  .profile-summary-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  
+  .profile-summary-card p {
+    font-size: 13px;
+    color: #757575;
+    margin-top: 2px;
+  }
+  
+  .profile-info-panel {
+    background-color: #f0f1f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0 20px 20px;
+  }
+  
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .panel-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  
+  .edit-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #34a853;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .info-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .detail-label {
+    display: block;
+    font-size: 12px;
+    color: #979797;
+  }
+  
+  .detail-value {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #17191c;
+    margin-top: 4px;
+  }
+  
+  @media (max-width: 900px) {
+    .info-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
