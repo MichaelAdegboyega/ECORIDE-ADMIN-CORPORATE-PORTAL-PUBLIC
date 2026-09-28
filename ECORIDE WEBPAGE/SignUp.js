@@ -71,8 +71,7 @@ form.addEventListener("submit", async (e) => {
     // use the email the server confirms back, not just what the user typed —
     // guards against any trimming/normalization the backend applies
     localStorage.setItem("pendingEmail", data.email);
-
-    window.location.href = "VerifyEmail.html";
+    window.location.href = "EmailVerification.html";
 
   } catch (err) {
     // network failure, server down, CORS issue, etc.
