@@ -88,7 +88,10 @@ form.addEventListener("submit", async (e) => {
     const res = await fetch(`${API_BASE}${RESET_PASSWORD_PATH}/${encodeURIComponent(resetToken)}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password: newPassword }),
+      // Backend validates newPassword + confirmPassword as separate fields
+      // (confirmed via its "Validation failed" response), not a single
+      // "password" field — updated to match.
+      body: JSON.stringify({ newPassword, confirmPassword }),
     });
 
     const data = await res.json();
