@@ -95,7 +95,7 @@ span{
 }
 
 .input-group {
-    margin-bottom: 1px;
+    margin-bottom: 5px;
 }
 
 .input-group .label {
@@ -125,7 +125,7 @@ input:focus {
 }
 
 .input-1 {
-    margin-bottom: 1px;
+    margin-bottom: 5px;
     
 }
 
@@ -187,7 +187,7 @@ button {
     background-color: #34a853;
     color: #FAFAFA;
     border: none;
-    border-radius: 50px;
+    border-radius: 12px;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;  
@@ -242,6 +242,7 @@ button:hover {
     display:flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
     
 }
 .dnt-acct a{

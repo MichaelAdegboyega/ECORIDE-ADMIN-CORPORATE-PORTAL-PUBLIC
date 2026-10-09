@@ -1,7 +1,10 @@
 // Landing.js
-// Handles two independent pieces of interactivity on the landing page:
+// Handles independent pieces of interactivity on the landing page:
 //   1. Mobile nav menu toggle (hamburger button)
-//   2. FAQ accordion (expand/collapse answers)
+//   2. Sticky header background color change on scroll
+//   3. FAQ accordion (expand/collapse answers)
+//   4. App store redirects (OS auto-detect)
+//   5. Staggered entrance for the "Why Choose EcoRide?" feature boxes
 
 // ---------------------------------------------------------------
 // 1. Mobile nav toggle
@@ -16,8 +19,10 @@ function closeMobileNav() {
   navList.classList.remove("open");
   hamburger.setAttribute("aria-expanded", "false");
   const icon = hamburger.querySelector("i");
-  icon.classList.add("ph-list");
-  icon.classList.remove("ph-x");
+  if (icon) {
+    icon.classList.add("ph-list");
+    icon.classList.remove("ph-x");
+  }
 }
 
 hamburger.addEventListener("click", () => {
@@ -25,19 +30,37 @@ hamburger.addEventListener("click", () => {
   hamburger.setAttribute("aria-expanded", String(isOpen));
 
   const icon = hamburger.querySelector("i");
-  icon.classList.toggle("ph-list", !isOpen);
-  icon.classList.toggle("ph-x", isOpen);
+  if (icon) {
+    icon.classList.toggle("ph-list", !isOpen);
+    icon.classList.toggle("ph-x", isOpen);
+  }
 });
 
-// Close the menu if the user clicks a nav link (common mobile UX —
-// otherwise the menu stays open after navigating, or after clicking
-// a same-page anchor like these "#" placeholders).
+// Close the menu if the user clicks a nav link (common mobile UX)
 navList.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", closeMobileNav);
 });
 
 // ---------------------------------------------------------------
-// 2. FAQ accordion
+// 2. Sticky Header Scroll Interaction
+// Monitors vertical scroll depth. Toggles a '.scrolled' class on 
+// the header container to transition background colors smoothly.
+// ---------------------------------------------------------------
+window.addEventListener('scroll', () => {
+  const headerElement = document.querySelector('.headings');
+  
+  if (headerElement) {
+    // If the user scrolls down more than 40px, apply the deep green styles
+    if (window.scrollY > 40) {
+      headerElement.classList.add('scrolled');
+    } else {
+      headerElement.classList.remove('scrolled');
+    }
+  }
+}, { passive: true }); // Passive option improves mobile scrolling performance
+
+// ---------------------------------------------------------------
+// 3. FAQ accordion
 // Each .faq-item contains a .faq-question (clickable) and a
 // .faq-answer (hidden by default via CSS, shown when .faq-item
 // has the "active" class). Clicking a question toggles its own
@@ -50,31 +73,28 @@ faqItems.forEach((item) => {
   const question = item.querySelector(".faq-question");
   const icon = item.querySelector(".plus-icon");
 
-  question.addEventListener("click", () => {
-    const isOpen = item.classList.contains("active");
+  if (question) {
+    question.addEventListener("click", () => {
+      const isOpen = item.classList.contains("active");
 
-    // close every item first, so only one is open at a time
-    faqItems.forEach((otherItem) => {
-      otherItem.classList.remove("active");
-      otherItem.querySelector(".plus-icon").textContent = "+";
+      // close every item first, so only one is open at a time
+      faqItems.forEach((otherItem) => {
+        otherItem.classList.remove("active");
+        const otherIcon = otherItem.querySelector(".plus-icon");
+        if (otherIcon) otherIcon.textContent = "+";
+      });
+
+      // then reopen this one, unless it was the one already open
+      if (!isOpen) {
+        item.classList.add("active");
+        if (icon) icon.textContent = "−";
+      }
     });
-
-    // then reopen this one, unless it was the one already open
-    // (in which case the loop above already closed it — clicking
-    // an open question closes it, matching standard accordion behavior)
-    if (!isOpen) {
-      item.classList.add("active");
-      icon.textContent = "−";
-    }
-  });
+  }
 });
 
 // ---------------------------------------------------------------
-// 3. App store redirects (OS auto-detect)
-//
-// ⚠️ PLACEHOLDER URLS — app isn't published yet. Replace APP_STORE_URL
-// and PLAY_STORE_URL below with the real listing URLs once live; that's
-// the only change needed, every button below reads from these two.
+// 4. App store redirects (OS auto-detect)
 // ---------------------------------------------------------------
 const APP_STORE_URL = "#"; // TODO: replace with real App Store URL once published
 const PLAY_STORE_URL = "#"; // TODO: replace with real Play Store URL once published
@@ -93,21 +113,46 @@ function goToStore() {
   } else if (os === "android") {
     window.location.href = PLAY_STORE_URL;
   } else {
-    // desktop / unknown device — no store to redirect to, so just
-    // scroll to the QR code section instead of guessing
+    // desktop / unknown device — scroll to the QR code section
     document.querySelector(".download")?.scrollIntoView({ behavior: "smooth" });
   }
 }
 
-document.getElementById("download-app-btn").addEventListener("click", goToStore);
-document.getElementById("become-driver-btn").addEventListener("click", goToStore);
+document.getElementById("download-app-btn")?.addEventListener("click", goToStore);
+document.getElementById("become-driver-btn")?.addEventListener("click", goToStore);
 
-// Store icon links always go to their specific store, regardless of
-// visiting device — someone might be sharing the App Store link with
-// an iPhone user from a desktop browser, for instance.
-document.getElementById("app-store-link").addEventListener("click", (e) => {
-  if (APP_STORE_URL === "#") e.preventDefault(); // not published yet
+// Store icon links validation
+document.getElementById("app-store-link")?.addEventListener("click", (e) => {
+  if (APP_STORE_URL === "#") e.preventDefault();
 });
-document.getElementById("play-store-link").addEventListener("click", (e) => {
-  if (PLAY_STORE_URL === "#") e.preventDefault(); // not published yet
+document.getElementById("play-store-link")?.addEventListener("click", (e) => {
+  if (PLAY_STORE_URL === "#") e.preventDefault();
 });
+
+// ---------------------------------------------------------------
+// 5. Staggered entrance for the "Why Choose EcoRide?" feature boxes
+// ---------------------------------------------------------------
+(function setupEcorideReveal() {
+  const wholeBox = document.querySelector(".whole-box");
+  if (!wholeBox) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion) {
+    wholeBox.classList.add("in-view");
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          wholeBox.classList.add("in-view");
+          observer.unobserve(wholeBox); // only animate the first time it appears
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  observer.observe(wholeBox);
+})();

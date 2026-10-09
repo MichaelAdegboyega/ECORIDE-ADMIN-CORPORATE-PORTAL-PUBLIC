@@ -65,7 +65,6 @@ body {
 .Header {
     background-color: #fff;
     width: 523px;  
-    
     margin-bottom: 150px;
 }
 span{
@@ -100,6 +99,7 @@ span{
     display: flex;
     gap: 25px;
 }
+
 #login-form input[type="password"],
 #login-form input[type="text"]{
     width: 100%;
@@ -107,7 +107,7 @@ span{
 
 
 .input-group {
-    margin-bottom: 1px;
+    margin-bottom: 5px;
 }
 
 .input-group .label {
@@ -132,7 +132,7 @@ input:focus {
 }
 
 .input-1 {
-    margin-bottom: 1px;
+    margin-bottom: 5px;
     
 }
 
@@ -168,7 +168,7 @@ input:focus {
 
 
 .input-2 {
-    margin-bottom: 1px;
+    margin-bottom: 5px;
     
 }
 
@@ -180,7 +180,7 @@ input:focus {
 
 .input-2 input {
     width: 100%;
-    height: 56px;
+    height: 60px;
     padding: 12px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 50px;
@@ -191,7 +191,7 @@ input:focus {
 }
 .input-2 .ph-eye{
     position: absolute;
-    top: 76%;
+    top: 78%;
     right: 15%;
     cursor: pointer;
     width: 20px;
@@ -286,11 +286,12 @@ button {
     background-color: #34a853;
     color: #FAFAFA;
     border: none;
-    border-radius: 50px;
+    border-radius: 12px;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;  
-    margin-top: 86px;
+    margin-top: 50px;
+    margin-bottom: 10px;
 }
 
 .already-have-acct{
