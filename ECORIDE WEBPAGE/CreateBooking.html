@@ -17,9 +17,9 @@
 
 <div class="dash-layout">
 
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <img src="Assets/Ecologo.png">
+      <img src="Assets/Ecologo.png" alt="EcoRide">
       <h1>Eco<span>Ride</span></h1>
     </div>
 
@@ -35,24 +35,25 @@
     <nav class="sidebar-nav">
       <ul id="sidebar-nav-list">
         <li class="nav-item" data-href="CorporateDashboard.html"><i class="ph ph-squares-four"></i> Overview</li>
-        <li class="nav-item" data-href="EmployeeViewDashboard.html"><i class="ph ph-users"></i> Employees</li>
-        <li class="nav-item" data-href="Trips.html"><i class="ph ph-car"></i> Trips</li>
-        <li class="nav-item active" data-href="Bookings.html"><i class="ph-fill ph-bookmark-simple"></i> Bookings</li>
+        <li class="nav-item" data-href="EmployeeViewDashboard.html"><i class="ph-fill ph-users"></i> Employees</li>
+        <li class="nav-item sub-green-icon" data-href="Trips.html"><i class="ph-fill ph-car"></i> Trips</li>
+        <li class="nav-item" data-href="Bookings.html"><i class="ph ph-identification-card"></i> Bookings</li>
         <li class="nav-item" data-href="Wallet.html"><i class="ph ph-wallet"></i> Wallet</li>
-        <li class="nav-item" data-href="Reports.html"><i class="ph ph-chart-bar"></i> Reports</li>
+        <li class="nav-item active-light" data-href="Reports.html"><i class="ph ph-file-text"></i> Reports</li>
         <li class="nav-item" data-href="CompanySettings.html"><i class="ph ph-gear"></i> Company Settings</li>
       </ul>
     </nav>
 
     <div class="sidebar-bottom">
       <div class="help-card">
-        <i class="ph-fill ph-headset"></i>
-        <div>
-          <p>Need Help?</p>
-          <span>Visit our support center</span>
+        <div class="help-card-header">
+          <div class="help-icon"><i class="ph-fill ph-headset"></i></div>
+          <div class="help-text">
+            <p>Need Help?</p>
+            <span>Visit our support center</span>
+          </div>
         </div>
         <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
-      
       </div>
       <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
     </div>
@@ -60,16 +61,25 @@
 
   <main class="dash-main">
 
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
     <header class="dash-topbar">
-      <div class="search-bar">
+      <button class="menu-toggle-btn" id="sidebar-toggle" aria-label="Toggle navigation">
+        <i class="ph ph-list"></i>
+      </button>
+      <div class="search-bar dual-icon-search">
+        <i class="ph ph-magnifying-glass search-icon-left"></i>
         <input type="text" placeholder="Search for trips, bookings, invoices...">
-        <i class="ph ph-magnifying-glass"></i>
+        <i class="ph ph-magnifying-glass search-icon-right"></i>
       </div>
       <div class="topbar-icons">
-        <button class="icon-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
+        <button class="icon-btn notif-badge-btn" aria-label="Notifications">
+          <i class="ph ph-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
         <button class="icon-btn" aria-label="Help"><i class="ph ph-question"></i></button>
         <div class="admin-profile">
-          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <img src="Assets/Admin.jpg" alt="Tunde Adewale" class="avatar">
           <div class="admin-info">
             <span class="admin-name">Tunde Adewale</span>
             <span class="admin-role">Super Admin</span>
@@ -79,119 +89,116 @@
       </div>
     </header>
 
-    <div class="page-heading">
-      <h2>Create Booking</h2>
-      <p>Schedule a new ride for your team.</p>
+    <div class="create-booking-wrap">
+      <div class="page-heading create-booking-heading">
+        <h2>Create Booking</h2>
+        <p>Schedule a new ride for your team.</p>
+      </div>
+
+      <section class="panel wizard-panel">
+
+        <div class="wizard-steps">
+          <div class="wizard-step active" data-step="1">
+            <span class="step-circle">1</span>
+            <span class="step-label">Route &amp; Time</span>
+          </div>
+          <div class="wizard-connector"></div>
+          <div class="wizard-step" data-step="2">
+            <span class="step-circle">2</span>
+            <span class="step-label">Passenger Details</span>
+          </div>
+          <div class="wizard-connector"></div>
+          <div class="wizard-step" data-step="3">
+            <span class="step-circle">3</span>
+            <span class="step-label">Review &amp; Confirm</span>
+          </div>
+        </div>
+
+        <div class="wizard-step-content" id="step-1">
+          <div class="wizard-grid">
+            <div class="wizard-field-group">
+              <h4>Route</h4>
+              <label for="pickup-location">Pick up location</label>
+              <div class="input-with-icon">
+                <input type="text" id="pickup-location" value="Lekki Phase 1, Lagos" placeholder="Enter pick up location">
+                <i class="ph ph-map-pin"></i>
+              </div>
+
+              <label for="dropoff-location">Drop off location</label>
+              <div class="input-with-icon">
+                <input type="text" id="dropoff-location" value="Victoria Island, Lagos" placeholder="Enter drop off location">
+                <i class="ph ph-map-pin"></i>
+              </div>
+
+              <button class="add-stop-btn" id="add-stop-btn" type="button">+ Add Stop (Optional)</button>
+              <div id="extra-stops"></div>
+            </div>
+
+            <div class="wizard-field-group">
+              <h4>Date &amp; Time</h4>
+              <label for="booking-date">Date</label>
+              <div class="input-with-icon">
+                <input type="text" id="booking-date" value="May 24, 2024" placeholder="Select date">
+                <i class="ph ph-calendar-blank"></i>
+              </div>
+
+              <label for="booking-time">Time</label>
+              <div class="select-with-icon">
+                <select id="booking-time">
+                  <option>7:00AM</option>
+                  <option selected>8:00AM</option>
+                  <option>9:00AM</option>
+                  <option>1:00PM</option>
+                  <option>5:00PM</option>
+                  <option>9:00PM</option>
+                </select>
+                <i class="ph-bold ph-caret-down"></i>
+              </div>
+
+              <label for="seats-needed">Seats Needed</label>
+              <div class="select-with-icon">
+                <select id="seats-needed">
+                  <option>1 Seat</option>
+                  <option selected>2 Seats</option>
+                  <option>3 Seats</option>
+                  <option>4 Seats</option>
+                  <option>6 Seats</option>
+                  <option>8+ Seats</option>
+                </select>
+                <i class="ph-bold ph-caret-down"></i>
+              </div>
+
+              <div class="card-next-row">
+                <button class="wizard-next-btn" data-next="2" type="button">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-step-content" id="step-2" style="display:none;">
+          <div class="wizard-field-group full-width">
+            <h4>Select Passengers</h4>
+            <p class="wizard-hint" id="seats-hint"></p>
+            <div class="passenger-picker" id="passenger-picker"></div>
+          </div>
+
+          <div class="wizard-actions">
+            <button class="wizard-back-btn" data-back="1" type="button">Back</button>
+            <button class="wizard-next-btn" data-next="3" type="button">Next</button>
+          </div>
+        </div>
+
+        <div class="wizard-step-content" id="step-3" style="display:none;">
+          <div class="review-summary" id="review-summary"></div>
+
+          <div class="wizard-actions">
+            <button class="wizard-back-btn" data-back="2" type="button">Back</button>
+            <button class="wizard-confirm-btn" id="confirm-booking-btn" type="button">Confirm Booking</button>
+          </div>
+        </div>
+
+      </section>
     </div>
-
-    <section class="panel wizard-panel">
-
-      <div class="wizard-steps">
-        <div class="wizard-step active" data-step="1">
-          <span class="step-circle">1</span>
-          <span class="step-label">Route &amp; Time</span>
-        </div>
-        <div class="wizard-connector"></div>
-        <div class="wizard-step" data-step="2">
-          <span class="step-circle">2</span>
-          <span class="step-label">Passenger Details</span>
-        </div>
-        <div class="wizard-connector"></div>
-        <div class="wizard-step" data-step="3">
-          <span class="step-circle">3</span>
-          <span class="step-label">Review &amp; Confirm</span>
-        </div>
-      </div>
-
-      <!-- Step 1: Route & Time -->
-      <div class="wizard-step-content" id="step-1" >
-        <div class="wizard-grid">
-          <div class="wizard-field-group">
-            <h4>Route</h4>
-            <label for="pickup-location">Pick up location</label>
-            <div class="input-with-icon">
-              <input type="text" id="pickup-location" placeholder="e.g. Lekki Phase 1, Lagos">
-              <i class="ph ph-map-pin"></i>
-            </div>
-
-            <label for="dropoff-location">Drop off location</label>
-            <div class="input-with-icon">
-              <input type="text" id="dropoff-location" placeholder="e.g. Victoria Island, Lagos">
-              <i class="ph ph-map-pin"></i>
-            </div>
-
-            <button class="add-stop-btn" id="add-stop-btn"><i class="ph ph-plus"></i> Add Stop (Optional)</button>
-            <div id="extra-stops"></div>
-          </div>
-
-          <div class="wizard-field-group">
-            <h4>Date &amp; Time</h4>
-            <label for="booking-date">Date</label>
-            <div class="input-with-icon">
-              <input type="date" id="booking-date">
-              <i class="ph ph-calendar-blank"></i>
-            </div>
-
-            <label for="booking-time">Time</label>
-            <select id="booking-time">
-              <option>7:00 AM</option>
-              <option selected>8:00 AM</option>
-              <option>9:00 AM</option>
-              <option>1:00 PM</option>
-              <option>5:00 PM</option>
-              <option>9:00 PM</option>
-            </select>
-
-            <label for="seats-needed">Seats Needed</label>
-            <select id="seats-needed">
-              <option>1 Seat</option>
-              <option selected>2 Seats</option>
-              <option>3 Seats</option>
-              <option>4 Seats</option>
-              <option>6 Seats</option>
-              <option>8+ Seats</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="wizard-actions">
-          <span></span>
-          <button class="wizard-next-btn" data-next="2">Next</button>
-        </div>
-      </div>
-
-      <!-- Step 2: Passenger Details
-           ⚠️ Not shown in the design screenshots — built as a reasonable
-           default (select which employees are riding, matching the seat
-           count from step 1) rather than guessing at something more
-           elaborate with no reference. -->
-      <div class="wizard-step-content" id="step-2" style="display:none;">
-        <div class="wizard-field-group full-width">
-          <h4>Select Passengers</h4>
-          <p class="wizard-hint" id="seats-hint"></p>
-          <div class="passenger-picker" id="passenger-picker"></div>
-        </div>
-
-        <div class="wizard-actions">
-          <button class="wizard-back-btn" data-back="1">Back</button>
-          <button class="wizard-next-btn" data-next="3">Next</button>
-        </div>
-      </div>
-
-      <!-- Step 3: Review & Confirm
-           ⚠️ Also not shown in the design — a plain summary of steps 1–2
-           plus a Confirm button, matching the pattern used everywhere
-           else in this app for review-before-submit screens. -->
-      <div class="wizard-step-content" id="step-3" style="display:none;">
-        <div class="review-summary" id="review-summary"></div>
-
-        <div class="wizard-actions">
-          <button class="wizard-back-btn" data-back="2">Back</button>
-          <button class="wizard-confirm-btn" id="confirm-booking-btn">Confirm Booking</button>
-        </div>
-      </div>
-
-    </section>
 
   </main>
 </div>

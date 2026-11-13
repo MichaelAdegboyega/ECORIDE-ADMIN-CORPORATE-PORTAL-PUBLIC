@@ -1,49 +1,69 @@
-// CorporateDashboard.js
-//
-// ⚠️ MOCK DATA — GET /api/v1/corporate/dashboard isn't confirmed yet
-// (flagged earlier: the corporate flow doc shows a sample response shape,
-// but the actual endpoint hasn't been verified against the deployed
-// backend). Everything below reads from the MOCK_DATA object so that
-// swapping in a real fetch() later only means replacing renderDashboard's
-// data source — the render functions themselves don't need to change if
-// the real response matches this shape.
-
 const MOCK_DATA = {
   stats: [
-    { icon: "ph-users-three", label: "Active Employees", value: "1,248", delta: "+12.6% vs last 7 days", deltaType: "up" },
-    { icon: "ph-car", label: "Today's Trips", value: "356", delta: "+10.2% vs last 7 days", deltaType: "up" },
-    { icon: "ph-coins", label: "Monthly Transport Spend", value: "₦4,568,890", delta: "+4.3% vs last month", deltaType: "up" },
-    { icon: "ph-calendar-check", label: "Pending Ride Requests", value: "18", delta: "View and approve requests", deltaType: "neutral", action: true },
+    {
+      icon: "ph-user",
+      iconClass: "green",
+      label: "Active Employees",
+      value: "1,248",
+      deltaHighlight: "12.6%",
+      deltaText: "vs last 7 days",
+    },
+    {
+      icon: "ph-car-profile",
+      iconFill: true,
+      iconClass: "blue",
+      label: "Today's Trips",
+      value: "356",
+      deltaHighlight: "10.2%",
+      deltaText: "vs last 7 days",
+    },
+    {
+      icon: "ph-coins",
+      iconFill: true,
+      iconClass: "green",
+      label: "Monthly Transport Spend",
+      value: "N4,568,890",
+      deltaHighlight: "4.3%",
+      deltaText: "vs last month",
+    },
+    {
+      icon: "ph-calendar-check",
+      iconClass: "dark-green",
+      label: "Pending Ride Requests",
+      value: "18",
+      deltaText: "View and approve requests",
+      action: true,
+    },
   ],
 
   bookings: [
-    { date: "July 21, 2026, 8:00 AM", from: "Lekki Phase 1", to: "Victoria Island", seats: 12, avatars: 3, more: 7 },
-    { date: "July 21, 2026, 1:45 PM", from: "Ikeja", to: "Victoria Island", seats: 8, avatars: 3, more: 3 },
-    { date: "July 22, 2026, 8:45 AM", from: "Ikeja", to: "Lekki Phase 1", seats: 10, avatars: 3, more: 6 },
-    { date: "July 22, 2026, 9:00 PM", from: "Victoria Island", to: "Ikeja", seats: 6, avatars: 3, more: 2 },
+    { date: "July 21, 2026.  8:00 AM", from: "Lekki Phase 1", to: "Victoria Island", seats: 12, more: 7 },
+    { date: "July 21, 2026.  1:45 PM", from: "Ikeja", to: "Victoria Island", seats: 8, more: 3 },
+    { date: "July 22, 2026.  8:45 AM", from: "Ikeja", to: "Lekki Phase 1", seats: 10, more: 6 },
+    { date: "July 22, 2026.  9:00 PM", from: "Victoria Island", to: "Ikeja", seats: 6, more: 2 },
   ],
 
   requests: [
-    { id: "r1", name: "Sarah Johnson", from: "Ikeja", to: "VI", date: "July 22, 2026, 8:45 AM", seats: 10 },
-    { id: "r2", name: "Michael Ade", from: "Ikeja", to: "Surulere", date: "July 22, 2026, 7:15 AM", seats: 6 },
-    { id: "r3", name: "Linda Chukwu", from: "Lekki", to: "VI", date: "July 22, 2026, 6:30 PM", seats: 4 },
+    { id: "r1", name: "Sarah Johnson", from: "Ikeja", to: "VI", date: "July 22, 2026.  8:45 AM", seats: 10, avatar: "Assets/Review.jpg" },
+    { id: "r2", name: "Michael Ade", from: "Ikeja", to: "Surulere", date: "July 22, 2026.  7:15 AM", seats: 6, avatar: "Assets/Review.jpg" },
+    { id: "r3", name: "Linda Chukwu", from: "Lekki", to: "VI", date: "July 22, 2026.  6:30 PM", seats: 4, avatar: "Assets/Review.jpg" },
   ],
 
   quickActions: [
-    { icon: "ph-plus-circle", title: "Create Ride", sub: "Schedule a ride" },
-    { icon: "ph-user-plus", title: "Invite Employee", sub: "Add team member" },
-    { icon: "ph-download-simple", title: "Download Report", sub: "Get insights" },
+    { icon: "ph-car", iconType: "ph", iconClass: "green", title: "Create Ride", sub: "Schedule a ride" },
+    { icon: "ph-user", iconType: "ph-fill", iconClass: "green", title: "Invite Employee", sub: "Add team member" },
+    { icon: "ph-file-text", iconType: "ph-fill", iconClass: "blue", title: "Download Report", sub: "Get insights" },
   ],
 
   chart: [
-    { label: "Jan", value: 210000 },
-    { label: "Feb", value: 390000 },
-    { label: "Mar", value: 260000 },
-    { label: "Apr", value: 310000 },
-    { label: "May", value: 460000 },
+    { label: "Jan", value: 140000 },
+    { label: "Feb", value: 400000 },
+    { label: "Mar", value: 300000 },
+    { label: "Apr", value: 370000 },
+    { label: "May", value: 500000 },
   ],
 
-  wallet: { balance: "₦2,335,600.00" },
+  wallet: { balance: "₦ 2,335,600.00" },
 
   routes: [
     { from: "Lekki Phase 1", to: "Victoria Island", trips: 142 },
@@ -54,24 +74,35 @@ const MOCK_DATA = {
   ],
 };
 
-// ---------------------------------------------------------------
-// Render: Stat cards
-// ---------------------------------------------------------------
+const BOOKING_AVATARS = [
+  "Assets/Driver.jpg",
+  "Assets/Admin 2.jpg",
+  "Assets/Review.jpg",
+];
+
 function renderStatCards(stats) {
   const container = document.getElementById("stat-cards");
-  container.innerHTML = stats.map((stat) => `
-    <div class="stat-card">
-      <div class="stat-card-top">
-        <span class="stat-icon"><i class="ph-fill ${stat.icon}"></i></span>
-        ${stat.label}
+  container.innerHTML = stats.map((stat) => {
+    const iconPrefix = stat.iconFill ? "ph-fill" : "ph";
+    const footerHtml = stat.action
+      ? `<span class="stat-action" data-action="pending-requests">${stat.deltaText}</span>`
+      : `<span class="stat-delta"><em>${stat.deltaHighlight}</em> ${stat.deltaText}</span>`;
+
+    return `
+      <div class="stat-card">
+        <div class="stat-card-main">
+          <span class="stat-icon ${stat.iconClass || "green"}">
+            <i class="${iconPrefix} ${stat.icon}"></i>
+          </span>
+          <div class="stat-card-info">
+            <span class="stat-label">${stat.label}</span>
+            <div class="stat-value">${stat.value}</div>
+          </div>
+        </div>
+        ${footerHtml}
       </div>
-      <div class="stat-value">${stat.value}</div>
-      ${stat.action
-        ? `<span class="stat-action" data-action="pending-requests">${stat.delta}</span>`
-        : `<span class="stat-delta ${stat.deltaType === "neutral" ? "neutral" : ""}">${stat.delta}</span>`
-      }
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
   const pendingAction = container.querySelector('[data-action="pending-requests"]');
   if (pendingAction) {
@@ -81,41 +112,38 @@ function renderStatCards(stats) {
   }
 }
 
-// ---------------------------------------------------------------
-// Render: Upcoming bookings
-// ---------------------------------------------------------------
 function renderBookings(bookings) {
   const list = document.getElementById("bookings-list");
   list.innerHTML = bookings.map((b) => `
     <li class="booking-item">
-      <div class="booking-icon"><i class="ph-fill ph-calendar-blank"></i></div>
+      <div class="booking-icon"><i class="ph ph-calendar-plus"></i></div>
       <div class="booking-meta">
         <div class="booking-date">${b.date}</div>
         <div class="booking-route">${b.from} <i class="ph ph-arrow-right"></i> ${b.to}</div>
       </div>
       <span class="seats-pill">${b.seats} Seats</span>
       <div class="avatars-stack">
-        ${Array.from({ length: b.avatars }).map(() => `<img src="Assets/avatar-placeholder.png" alt="">`).join("")}
+        ${BOOKING_AVATARS.map((src) => `<img src="${src}" alt="Passenger">`).join("")}
         ${b.more ? `<span class="avatars-more">+${b.more}</span>` : ""}
       </div>
     </li>
   `).join("");
 }
 
-// ---------------------------------------------------------------
-// Render + interact: Recent ride requests (approve / decline)
-// ---------------------------------------------------------------
 function renderRequests(requests) {
   const list = document.getElementById("requests-list");
 
   list.innerHTML = requests.map((r) => `
     <li class="request-item" data-id="${r.id}">
-      <img src="Assets/avatar-placeholder.png" alt="" class="request-avatar">
-      <div class="booking-meta">
+      <img src="${r.avatar}" alt="${r.name}" class="request-avatar">
+      <div class="request-meta">
         <div class="request-name">${r.name}</div>
         <div class="request-route">${r.from} <i class="ph ph-arrow-right"></i> ${r.to}</div>
       </div>
-      <div class="request-datetime">${r.date}</div>
+      <div class="request-datetime">
+        <i class="ph ph-calendar-blank"></i>
+        <span>${r.date}</span>
+      </div>
       <span class="request-seats">${r.seats} Seats</span>
       <div class="request-actions">
         <button class="approve-btn" data-id="${r.id}" data-decision="approved">Approve</button>
@@ -130,9 +158,6 @@ function renderRequests(requests) {
 }
 
 function handleRequestDecision(id, decision) {
-  // TODO: replace with the real approve/decline API call once that
-  // endpoint is confirmed, e.g.:
-  //   PATCH /api/v1/corporate/ride-requests/:id  { status: decision }
   const item = document.querySelector(`.request-item[data-id="${id}"]`);
   if (!item) return;
 
@@ -143,43 +168,40 @@ function handleRequestDecision(id, decision) {
   item.classList.add("resolved");
 }
 
-// ---------------------------------------------------------------
-// Render: Quick actions
-// ---------------------------------------------------------------
 function renderQuickActions(actions) {
   const container = document.getElementById("quick-actions");
   container.innerHTML = actions.map((a) => `
     <button class="quick-action-btn" data-action="${a.title}">
-      <span class="quick-action-icon"><i class="ph ${a.icon}"></i></span>
-      <span>
-        <span class="quick-action-title">${a.title}</span><br>
+      <span class="quick-action-icon ${a.iconClass || "green"}">
+        <i class="${a.iconType} ${a.icon}"></i>
+      </span>
+      <span class="quick-action-text">
+        <span class="quick-action-title">${a.title}</span>
         <span class="quick-action-sub">${a.sub}</span>
       </span>
+      <i class="ph ph-caret-right quick-action-arrow"></i>
     </button>
   `).join("");
 
   container.querySelectorAll(".quick-action-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
-      // Placeholder — each of these should route to a real page/modal
-      // once those flows exist (create ride form, invite modal, report export).
       alert(`"${btn.dataset.action}" is coming soon.`);
     });
   });
 }
 
-// ---------------------------------------------------------------
-// Render + interact: Monthly spend chart (hover for tooltip)
-// ---------------------------------------------------------------
 function renderChart(data) {
   const barsContainer = document.getElementById("chart-bars");
   const tooltip = document.getElementById("chart-tooltip");
-  const maxValue = Math.max(...data.map((d) => d.value));
+  const maxValue = 500000;
 
   barsContainer.innerHTML = data.map((d, i) => {
     const heightPct = Math.round((d.value / maxValue) * 100);
     return `
       <div class="chart-bar-col" data-index="${i}">
-        <div class="chart-bar" style="height: ${heightPct}%"></div>
+        <div class="chart-bar-wrap">
+          <div class="chart-bar" style="height: ${heightPct}%"></div>
+        </div>
         <span class="chart-bar-label">${d.label}</span>
       </div>
     `;
@@ -191,26 +213,19 @@ function renderChart(data) {
       cols.forEach((c) => c.classList.remove("active"));
       col.classList.add("active");
       const d = data[col.dataset.index];
-      tooltip.innerHTML = `${d.label}<strong>₦${d.value.toLocaleString()}</strong>`;
-      tooltip.classList.add("visible");
+      tooltip.innerHTML = `<span>${d.label}</span><strong>₦ ${d.value.toLocaleString()}</strong>`;
     });
     col.addEventListener("mouseleave", () => {
       col.classList.remove("active");
-      tooltip.classList.remove("visible");
+      tooltip.innerHTML = `<span>July</span><strong>₦ 4,568,890</strong>`;
     });
   });
 }
 
-// ---------------------------------------------------------------
-// Render: Wallet
-// ---------------------------------------------------------------
 function renderWallet(wallet) {
   document.getElementById("wallet-balance").textContent = wallet.balance;
 }
 
-// ---------------------------------------------------------------
-// Render: Top routes
-// ---------------------------------------------------------------
 function renderRoutes(routes) {
   const list = document.getElementById("routes-list");
   const maxTrips = Math.max(...routes.map((r) => r.trips));
@@ -221,7 +236,7 @@ function renderRoutes(routes) {
       <div class="route-meta">
         <div class="route-name">${r.from} <i class="ph ph-arrow-right"></i> ${r.to}</div>
         <div class="route-bar-track">
-          <div class="route-bar-fill" style="width: ${(r.trips / maxTrips) * 100}%"></div>
+          <div class="route-bar-fill" style="width: ${(r.trips / maxTrips) * 90}%"></div>
         </div>
       </div>
       <span class="route-count">${r.trips}</span>
@@ -229,10 +244,6 @@ function renderRoutes(routes) {
   `).join("");
 }
 
-// ---------------------------------------------------------------
-// Sidebar nav — active state (no page routing yet, just visual state
-// plus a placeholder for wiring real navigation later)
-// ---------------------------------------------------------------
 function setupSidebarNav() {
   document.querySelectorAll("#sidebar-nav-list .nav-item").forEach((item) => {
     item.addEventListener("click", () => {
@@ -242,10 +253,23 @@ function setupSidebarNav() {
   });
 }
 
-// ---------------------------------------------------------------
-// Misc top-bar / panel controls
-// ---------------------------------------------------------------
 function setupMiscControls() {
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.getElementById("sidebar-toggle");
+  const backdrop = document.getElementById("sidebar-backdrop");
+
+  if (toggleBtn && sidebar && backdrop) {
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      backdrop.classList.toggle("active");
+    });
+
+    backdrop.addEventListener("click", () => {
+      sidebar.classList.remove("open");
+      backdrop.classList.remove("active");
+    });
+  }
+
   document.getElementById("top-up-btn").addEventListener("click", () => {
     window.location.href = "Wallet.html";
   });
@@ -255,8 +279,6 @@ function setupMiscControls() {
   });
 
   document.getElementById("logout-btn").addEventListener("click", () => {
-    // TODO: call the real logout endpoint / clear the httpOnly session
-    // cookie server-side once that flow exists, then redirect.
     window.location.href = "Login.html";
   });
 
@@ -270,9 +292,6 @@ function setupMiscControls() {
   });
 }
 
-// ---------------------------------------------------------------
-// Init
-// ---------------------------------------------------------------
 function renderDashboard(data) {
   renderStatCards(data.stats);
   renderBookings(data.bookings);

@@ -17,9 +17,9 @@
 
 <div class="dash-layout">
 
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <img src="Assets/Ecologo.png">
+      <img src="Assets/Ecologo.png" alt="EcoRide">
       <h1>Eco<span>Ride</span></h1>
     </div>
 
@@ -35,24 +35,25 @@
     <nav class="sidebar-nav">
       <ul id="sidebar-nav-list">
         <li class="nav-item" data-href="CorporateDashboard.html"><i class="ph ph-squares-four"></i> Overview</li>
-        <li class="nav-item active" data-href="EmployeeViewDashboard.html"><i class="ph-fill ph-users"></i> Employees</li>
+        <li class="nav-item active" data-href="EmployeeViewDashboard.html"><i class="ph ph-user"></i> Employees</li>
         <li class="nav-item" data-href="Trips.html"><i class="ph ph-car"></i> Trips</li>
-        <li class="nav-item" data-href="Bookings.html"><i class="ph ph-bookmark-simple"></i> Bookings</li>
+        <li class="nav-item" data-href="Bookings.html"><i class="ph ph-identification-card"></i> Bookings</li>
         <li class="nav-item" data-href="Wallet.html"><i class="ph ph-wallet"></i> Wallet</li>
-        <li class="nav-item" data-href="Reports.html"><i class="ph ph-chart-bar"></i> Reports</li>
+        <li class="nav-item" data-href="Reports.html"><i class="ph ph-file-text"></i> Reports</li>
         <li class="nav-item" data-href="CompanySettings.html"><i class="ph ph-gear"></i> Company Settings</li>
       </ul>
     </nav>
 
     <div class="sidebar-bottom">
       <div class="help-card">
-        <i class="ph-fill ph-headset"></i>
-        <div>
-          <p>Need Help?</p>
-          <span>Visit our support center</span>
+        <div class="help-card-header">
+          <div class="help-icon"><i class="ph-fill ph-headset"></i></div>
+          <div class="help-text">
+            <p>Need Help?</p>
+            <span>Visit our support center</span>
+          </div>
         </div>
         <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
-      
       </div>
       <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
     </div>
@@ -60,8 +61,13 @@
 
   <main class="dash-main">
 
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
     <header class="dash-topbar">
-      <div class="search-bar">
+      <button class="menu-toggle-btn" id="sidebar-toggle" aria-label="Toggle navigation">
+        <i class="ph ph-list"></i>
+      </button>
+      <div class="search-bar topbar-search-short">
         <input type="text" placeholder="Search">
         <i class="ph ph-magnifying-glass"></i>
       </div>
@@ -69,7 +75,7 @@
         <button class="icon-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
         <button class="icon-btn" aria-label="Help"><i class="ph ph-question"></i></button>
         <div class="admin-profile">
-          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <img src="Assets/Admin.jpg" alt="Tunde Adewale" class="avatar">
           <div class="admin-info">
             <span class="admin-name">Tunde Adewale</span>
             <span class="admin-role">Super Admin</span>
@@ -79,90 +85,96 @@
       </div>
     </header>
 
-    <a href="EmployeeViewDashboard.html" class="back-link"><i class="ph ph-arrow-left"></i> Back to Employees</a>
+    <div class="detail-page-wrap">
+      <a href="EmployeeViewDashboard.html" class="back-link"><i class="ph ph-caret-left"></i> Back to Employees</a>
 
-    <div class="page-heading-row">
-      <div class="page-heading">
-        <h2>Employee Details</h2>
-        <p>View and manage employee information</p>
-      </div>
-      <div class="page-heading-actions">
-        <button class="edit-employee-btn" id="edit-employee-btn"><i class="ph ph-pencil-simple"></i> Edit Employee</button>
-        <button class="more-actions-btn" id="more-actions-btn"><i class="ph ph-dots-three"></i></button>
-      </div>
-    </div>
-
-    <!-- Profile card -->
-    <section class="panel profile-card">
-      <img src="Assets/avatar-placeholder.png" alt="" class="profile-avatar" id="profile-avatar">
-      <div class="profile-main">
-        <h3 id="profile-name">—</h3>
-        <p id="profile-title">—</p>
-        <p class="profile-dept" id="profile-dept">—</p>
-        <span class="status-badge active" id="profile-status">Active</span>
-      </div>
-      <div class="profile-detail-grid">
-        <div><span class="detail-label">Employee ID</span><span class="detail-value" id="detail-empid">—</span></div>
-        <div><span class="detail-label">Date Joined</span><span class="detail-value" id="detail-joined">—</span></div>
-        <div><span class="detail-label">Employee Type</span><span class="detail-value" id="detail-type">—</span></div>
-        <div><span class="detail-label">Email</span><span class="detail-value" id="detail-email">—</span></div>
-        <div><span class="detail-label">Manager</span><span class="detail-value" id="detail-manager">—</span></div>
-        <div><span class="detail-label">Work Mode</span><span class="detail-value" id="detail-workmode">—</span></div>
-        <div><span class="detail-label">Phone</span><span class="detail-value" id="detail-phone">—</span></div>
-        <div><span class="detail-label">Office Location</span><span class="detail-value" id="detail-office">—</span></div>
-      </div>
-    </section>
-
-    <div class="detail-tabs">
-      <button class="detail-tab active" data-tab="activity"><i class="ph ph-chart-line-up"></i> Activity</button>
-      <button class="detail-tab" data-tab="bookings"><i class="ph ph-calendar-blank"></i> Bookings</button>
-      <button class="detail-tab" data-tab="trips"><i class="ph ph-car"></i> Trips</button>
-      <button class="detail-tab" data-tab="expenses"><i class="ph ph-file-text"></i> Expenses</button>
-      <button class="detail-tab" data-tab="documents"><i class="ph ph-folder"></i> Documents</button>
-    </div>
-
-    <div class="dash-columns detail-columns">
-      <div class="dash-col-left">
-        <section class="panel" id="activity-panel">
-          <div class="panel-header">
-            <h3>Recent Activity</h3>
-            <select class="panel-select" id="activity-filter">
-              <option>All Activity</option>
-              <option>Trips</option>
-              <option>Bookings</option>
-              <option>Payments</option>
-            </select>
-          </div>
-          <ul class="activity-list" id="activity-list"></ul>
-          <button class="view-all-btn" id="view-all-activity">View All Activity</button>
-        </section>
-
-        <section class="panel" id="other-tab-panel" style="display:none;">
-          <div class="empty-state">
-            <i class="ph ph-folder-open"></i>
-            <p id="other-tab-label">Nothing here yet.</p>
-          </div>
-        </section>
+      <div class="page-heading-row">
+        <div class="page-heading">
+          <h2>Employee Details</h2>
+          <p>View and manage employee information</p>
+        </div>
+        <div class="page-heading-actions">
+          <button class="edit-employee-btn" id="edit-employee-btn">Edit Employee</button>
+          <button class="more-actions-btn" id="more-actions-btn" aria-label="More actions">
+            <span class="dots-solid"><span></span><span></span><span></span></span>
+          </button>
+        </div>
       </div>
 
-      <div class="dash-col-right">
-        <section class="panel">
-          <h3 class="summary-title">Summary</h3>
-          <div class="summary-grid" id="summary-grid"></div>
-        </section>
+      <section class="panel profile-card">
+        <div class="profile-avatar-col">
+          <img src="Assets/Review.jpg" alt="Sarah Johnson" class="profile-avatar" id="profile-avatar">
+          <span class="profile-status-pill active" id="profile-status">Active</span>
+        </div>
+        <div class="profile-main">
+          <h3 id="profile-name">Sarah Johnson</h3>
+          <p id="profile-title">Marketing Manager</p>
+          <p class="profile-dept" id="profile-dept">Marketing Department</p>
+        </div>
+        <div class="profile-detail-grid">
+          <div><span class="detail-label">Employee ID</span><span class="detail-value" id="detail-empid">EMP-2026-004</span></div>
+          <div><span class="detail-label">Date Joined</span><span class="detail-value" id="detail-joined">May 12, 2024</span></div>
+          <div><span class="detail-label">Employee Type</span><span class="detail-value" id="detail-type">Full-time</span></div>
+          <div><span class="detail-label">Email</span><span class="detail-value" id="detail-email">sarah.johnson@acme.com</span></div>
+          <div><span class="detail-label">Manager</span><span class="detail-value" id="detail-manager">David Wilson</span></div>
+          <div><span class="detail-label">Work Mode</span><span class="detail-value" id="detail-workmode">Hybrid</span></div>
+          <div><span class="detail-label">Phone</span><span class="detail-value" id="detail-phone">+234 812 345 6789</span></div>
+          <div><span class="detail-label">Office Location</span><span class="detail-value" id="detail-office">Victoria Island</span></div>
+          <div></div>
+        </div>
+      </section>
 
-        <section class="panel">
-          <div class="panel-header">
-            <h3>Preferred Route</h3>
-            <a href="#" class="view-all-link">View All</a>
-          </div>
-          <ul class="preferred-routes" id="preferred-routes"></ul>
-        </section>
+      <div class="detail-tabs">
+        <button class="detail-tab active" data-tab="activity"><i class="ph ph-pulse"></i> Activity</button>
+        <button class="detail-tab" data-tab="bookings"><i class="ph ph-calendar-blank"></i> Bookings</button>
+        <button class="detail-tab" data-tab="trips"><i class="ph ph-car"></i> Trips</button>
+        <button class="detail-tab" data-tab="expenses"><i class="ph ph-file-text"></i> Expenses</button>
+        <button class="detail-tab" data-tab="documents"><i class="ph ph-folder"></i> Documents</button>
+      </div>
 
-        <section class="panel">
-          <h3 class="summary-title">Emergency Contact</h3>
-          <div class="emergency-contact" id="emergency-contact"></div>
-        </section>
+      <div class="dash-columns detail-columns">
+        <div class="dash-col-left">
+          <section class="panel activity-panel" id="activity-panel">
+            <div class="panel-header">
+              <h3>Recent Activity</h3>
+              <select class="panel-select" id="activity-filter">
+                <option>All Activity</option>
+                <option>Trips</option>
+                <option>Bookings</option>
+                <option>Payments</option>
+              </select>
+            </div>
+            <ul class="activity-list" id="activity-list"></ul>
+            <button class="view-all-btn" id="view-all-activity">View All Activity</button>
+          </section>
+
+          <section class="panel" id="other-tab-panel" style="display:none;">
+            <div class="empty-state">
+              <i class="ph ph-folder-open"></i>
+              <p id="other-tab-label">Nothing here yet.</p>
+            </div>
+          </section>
+        </div>
+
+        <div class="dash-col-right detail-col-right">
+          <section class="panel summary-panel">
+            <h3 class="summary-title">Summary</h3>
+            <div class="summary-grid" id="summary-grid"></div>
+          </section>
+
+          <section class="panel preferred-panel">
+            <div class="panel-header">
+              <h3>Preferred Route</h3>
+              <a href="#" class="preferred-view-all" id="preferred-view-all">View All</a>
+            </div>
+            <ul class="preferred-routes" id="preferred-routes"></ul>
+          </section>
+
+          <section class="panel emergency-panel">
+            <h3 class="summary-title">Emergency Contact</h3>
+            <div class="emergency-contact" id="emergency-contact"></div>
+          </section>
+        </div>
       </div>
     </div>
 

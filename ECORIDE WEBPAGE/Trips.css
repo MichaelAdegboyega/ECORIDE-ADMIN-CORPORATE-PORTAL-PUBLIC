@@ -1,48 +1,80 @@
-/* Trips.css — extends CorporateDashboard.css + Employees.css (table/tabs/pagination base) */
+.trips-tabs {
+  margin-bottom: 16px;
+}
+
+.trips-table th:first-child,
+.trips-table td:first-child {
+  text-align: center;
+  padding-left: 16px;
+}
+
+.trip-date-cell {
+  color: #6b7280;
+  font-size: 10.5px;
+}
 
 .route-cell {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: #445048;
+  justify-content: center;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 10.5px;
+}
+
+.route-cell i {
+  font-size: 13px;
+  color: #4b5563;
 }
 
 .trip-employee-cell {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #112028;
+  min-width: 115px;
+  text-align: left;
 }
 
 .trip-employee-cell img {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   object-fit: cover;
-  background-color: #e7ece9;
+  background-color: #e5e7eb;
+  flex-shrink: 0;
 }
 
 .status-badge.completed {
-  background-color: #eaf7ee;
+  background-color: #8fd19e;
   color: #1f7a3d;
+  padding: 4px 12px;
 }
 
 .status-badge.cancelled {
-  background-color: #fdecec;
-  color: #c0392b;
+  background-color: #f18b85;
+  color: #b91c1c;
+  padding: 4px 14px;
 }
 
 .status-badge.upcoming {
-  background-color: #fff6e5;
-  color: #b7791f;
+  background-color: #fef0c7;
+  color: #b45309;
+  padding: 4px 12px;
 }
 
 .status-badge.ongoing {
-  background-color: #eaf1fb;
-  color: #2563eb;
+  background-color: #dceeff;
+  color: #1d4ed8;
+  padding: 4px 12px;
 }
 
 .trip-amount {
-  font-weight: 600;
+  color: #6b7280;
+  font-size: 10.5px;
+  font-weight: 400;
 }
 
 #trips-table-body tr {

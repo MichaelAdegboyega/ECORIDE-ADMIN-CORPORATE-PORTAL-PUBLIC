@@ -17,9 +17,9 @@
 
 <div class="dash-layout">
 
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <img src="Assets/Ecologo.png">
+      <img src="Assets/Ecologo.png" alt="EcoRide">
       <h1>Eco<span>Ride</span></h1>
     </div>
 
@@ -35,24 +35,25 @@
     <nav class="sidebar-nav">
       <ul id="sidebar-nav-list">
         <li class="nav-item" data-href="CorporateDashboard.html"><i class="ph ph-squares-four"></i> Overview</li>
-        <li class="nav-item" data-href="EmployeeViewDashboard.html"><i class="ph ph-users"></i> Employees</li>
-        <li class="nav-item" data-href="Trips.html"><i class="ph ph-car"></i> Trips</li>
-        <li class="nav-item" data-href="Bookings.html"><i class="ph ph-bookmark-simple"></i> Bookings</li>
+        <li class="nav-item" data-href="EmployeeViewDashboard.html"><i class="ph-fill ph-users"></i> Employees</li>
+        <li class="nav-item sub-green-icon" data-href="Trips.html"><i class="ph-fill ph-car"></i> Trips</li>
+        <li class="nav-item" data-href="Bookings.html"><i class="ph ph-identification-card"></i> Bookings</li>
         <li class="nav-item" data-href="Wallet.html"><i class="ph ph-wallet"></i> Wallet</li>
-        <li class="nav-item active" data-href="Reports.html"><i class="ph-fill ph-chart-bar"></i> Reports</li>
+        <li class="nav-item active-light" data-href="Reports.html"><i class="ph ph-file-text"></i> Reports</li>
         <li class="nav-item" data-href="CompanySettings.html"><i class="ph ph-gear"></i> Company Settings</li>
       </ul>
     </nav>
 
     <div class="sidebar-bottom">
       <div class="help-card">
-        <i class="ph-fill ph-headset"></i>
-        <div>
-          <p>Need Help?</p>
-          <span>Visit our support center</span>
+        <div class="help-card-header">
+          <div class="help-icon"><i class="ph-fill ph-headset"></i></div>
+          <div class="help-text">
+            <p>Need Help?</p>
+            <span>Visit our support center</span>
+          </div>
         </div>
         <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
-      
       </div>
       <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
     </div>
@@ -60,16 +61,25 @@
 
   <main class="dash-main">
 
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
     <header class="dash-topbar">
-      <div class="search-bar">
+      <button class="menu-toggle-btn" id="sidebar-toggle" aria-label="Toggle navigation">
+        <i class="ph ph-list"></i>
+      </button>
+      <div class="search-bar dual-icon-search">
+        <i class="ph ph-magnifying-glass search-icon-left"></i>
         <input type="text" placeholder="Search for trips, bookings, invoices...">
-        <i class="ph ph-magnifying-glass"></i>
+        <i class="ph ph-magnifying-glass search-icon-right"></i>
       </div>
       <div class="topbar-icons">
-        <button class="icon-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
+        <button class="icon-btn notif-badge-btn" aria-label="Notifications">
+          <i class="ph ph-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
         <button class="icon-btn" aria-label="Help"><i class="ph ph-question"></i></button>
         <div class="admin-profile">
-          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <img src="Assets/Admin.jpg" alt="Tunde Adewale" class="avatar">
           <div class="admin-info">
             <span class="admin-name">Tunde Adewale</span>
             <span class="admin-role">Super Admin</span>
@@ -79,65 +89,74 @@
       </div>
     </header>
 
-    <div class="page-heading">
-      <h2>Reports</h2>
-      <p>Generate and analyse business reports.</p>
-    </div>
-
-    <div class="report-type-cards" id="report-type-cards"></div>
-
-    <div class="dash-columns reports-columns">
-
-      <div class="dash-col-left">
-        <section class="panel">
-          <div class="panel-header">
-            <h3>Recent Reports</h3>
-            <button class="view-all-btn-sm" id="view-all-reports-btn">View All</button>
-          </div>
-          <ul class="recent-reports-list" id="recent-reports-list"></ul>
-          <button class="view-all-btn" id="view-all-reports-bottom-btn">View All Reports</button>
-        </section>
+    <div class="reports-page-wrap">
+      <div class="page-heading reports-heading">
+        <h2>Reports</h2>
+        <p>Generate and analyse business reports.</p>
       </div>
 
-      <div class="dash-col-right">
-        <section class="panel">
-          <h3 class="summary-title">Quick Filters</h3>
+      <div class="report-type-cards" id="report-type-cards"></div>
 
-          <label class="filter-label" for="filter-date-range">Data Range</label>
-          <div class="input-with-icon">
-            <input type="text" id="filter-date-range" value="May 1, 2024 - May 21, 2024" readonly>
-            <i class="ph ph-calendar-blank"></i>
-          </div>
+      <div class="dash-columns reports-columns">
 
-          <label class="filter-label" for="filter-department">Department</label>
-          <select id="filter-department">
-            <option>All Departments</option>
-            <option>Marketing</option>
-            <option>Operations</option>
-            <option>Finance</option>
-            <option>Sales</option>
-            <option>HR</option>
-            <option>Support</option>
-          </select>
+        <div class="dash-col-left">
+          <section class="panel recent-reports-panel">
+            <div class="panel-header recent-reports-header">
+              <h3>Recent Reports</h3>
+              <button class="view-all-btn-sm" id="view-all-reports-btn">View All</button>
+            </div>
+            <ul class="recent-reports-list" id="recent-reports-list"></ul>
+            <button class="view-all-reports-outline-btn" id="view-all-reports-bottom-btn">View All Reports</button>
+          </section>
+        </div>
 
-          <label class="filter-label" for="filter-report-type">Report Type</label>
-          <select id="filter-report-type">
-            <option>All Reports</option>
-            <option>Trips Report</option>
-            <option>Spend Report</option>
-            <option>Employee Report</option>
-          </select>
+        <div class="dash-col-right">
+          <section class="panel quick-filters-panel">
+            <h3 class="quick-filters-title">Quick Filters</h3>
 
-          <button class="generate-report-btn" id="generate-report-btn">Generate Report</button>
-        </section>
+            <label class="filter-label" for="filter-date-range">Data Range</label>
+            <div class="date-range-field">
+              <i class="ph ph-calendar-blank date-icon-left"></i>
+              <input type="text" id="filter-date-range" value="May 1, 2024 - May 21, 2024" readonly>
+              <i class="ph ph-caret-down date-icon-right"></i>
+            </div>
+
+            <label class="filter-label" for="filter-department">Department</label>
+            <div class="custom-select-wrap">
+              <select id="filter-department">
+                <option>All Departments</option>
+                <option>Marketing</option>
+                <option>Operations</option>
+                <option>Finance</option>
+                <option>Sales</option>
+                <option>HR</option>
+                <option>Support</option>
+              </select>
+              <i class="ph ph-caret-down"></i>
+            </div>
+
+            <label class="filter-label" for="filter-report-type">Report Type</label>
+            <div class="custom-select-wrap">
+              <select id="filter-report-type">
+                <option>All Reports</option>
+                <option>Trips Report</option>
+                <option>Spend Report</option>
+                <option>Employee Report</option>
+              </select>
+              <i class="ph ph-caret-down"></i>
+            </div>
+
+            <button class="generate-report-btn" id="generate-report-btn">Generate Report</button>
+          </section>
+        </div>
+
       </div>
 
+      <section class="panel reports-summary-panel">
+        <h3 class="reports-summary-heading" id="reports-summary-title">Reports Summary (May 1– May 21,2024)</h3>
+        <div class="reports-summary-grid" id="reports-summary-grid"></div>
+      </section>
     </div>
-
-    <section class="panel reports-summary-panel">
-      <h3 class="summary-title" id="reports-summary-title">Reports Summary</h3>
-      <div class="reports-summary-grid" id="reports-summary-grid"></div>
-    </section>
 
   </main>
 </div>

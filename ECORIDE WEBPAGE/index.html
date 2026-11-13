@@ -44,20 +44,23 @@
 </header>
 <main>
 <!--Hero Section-->
-    <section class="Hero-section">
-        <div class="hero-wrapper">
-            <h1>The Smarter Way to</h1>
-            <h1 class="text">Move Together</h1>
-            <p>EcoRide connect passengers,drivers,and
-                organizations through shared and smart commute
-                solutions.
-            </p>
+    <div class="hero-bg">
+        <section class="Hero-section">
+            <div class="hero-wrapper">
+                <h1>The Smarter Way to</h1>
+                <h1 class="text">Move Together</h1>
+                <p>EcoRide connects passengers, drivers, and organizations through shared and smart commute solutions.</p>
 
-            <div class="button">
-               <a href="Login.html"> <button class="butt-sec"> Corporate Page</button></a>
+                <div class="hero-buttons">
+                   <button class="btn-book" id="book-ride-btn">Book a Ride</button>
+                   <a href="Login.html"><button class="btn-org">For Organization</button></a>
+                </div>
             </div>
-        </div>
-    </section>
+            <div class="hero-image">
+                <img src="Assets/CarLand.png" alt="EcoRide Commute" class="hero-car-img">
+            </div>
+        </section>
+    </div>
 
 <!--Why Ecoride-->
     <section class="ecoride">
@@ -244,21 +247,39 @@
 
 <!--Download Section-->
     <section class="download">
-        <div class="download-text">
-            <img src="Assets/phone.png" alt="dashboard screen" class="phone-image">
-           <div class="download-text-only">
-            <h1 class="headword">Download the<span>EcoRide</span>App</h1>
-            <p class="paraword">Book rides, track trips, and manage 
-                your account from your smartphone.</p>
+        <div class="download-container">
+            <div class="download-text">
+                <img src="Assets/phone.png" alt="EcoRide Mobile App" class="phone-image">
+                <div class="download-text-only">
+                    <h1 class="headword">Download the <span>EcoRide</span> App</h1>
+                    <p class="paraword">Book rides, track trips, and manage 
+                        your account from your smartphone.</p>
+                </div>
             </div>
+            <div class="download-svg">
+                <img src="Assets/QR CODE.svg" alt="Scan QR code to download">
+                <div class="download-svg2">
+                   <a href="#" id="app-store-link"><img src="Assets/APP STORE.svg" alt="Download on App Store"></a>
+                   <a href="#" id="play-store-link"><img src="Assets/PLAY STORE.svg" alt="Get it on Google Play"></a>
+                </div>
+            </div>  
         </div>
-        <div class="download-svg">
-                <img src="Assets/QR CODE.svg">
-            <div class="download-svg2">
-               <a href="#" id="app-store-link"><img src="Assets/APP STORE.svg"></a>
-               <a href="#" id="play-store-link"><img src="Assets/PLAY STORE.svg"></a>
+    </section>
+
+<!--Drive with EcoRide Banner-->
+    <section class="driver-banner-section">
+        <div class="driver-banner">
+            <div class="driver-banner-left">
+                <div class="driver-banner-icon">
+                    <i class="ph-fill ph-users"></i>
+                </div>
+                <div class="driver-banner-text">
+                    <h3>Drive with EcoRide</h3>
+                    <p>Join Thousands of drivers earning more with flexible hours</p>
+                </div>
             </div>
-        </div>  
+            <a href="Login.html"><button class="driver-banner-btn" id="driver-banner-btn">Sign In</button></a>
+        </div>
     </section>
 </main>
 <footer>

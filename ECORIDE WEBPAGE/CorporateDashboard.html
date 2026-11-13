@@ -16,9 +16,9 @@
 <div class="dash-layout">
 
   <!-- Sidebar -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <img src="Assets/Ecologo.png">
+      <img src="Assets/Ecologo.png" alt="EcoRide">
       <h1>Eco<span>Ride</span></h1>
     </div>
 
@@ -34,22 +34,22 @@
     <nav class="sidebar-nav">
       <ul id="sidebar-nav-list">
         <li class="nav-item active" data-view="overview" data-href="CorporateDashboard.html">
-          <i class="ph-fill ph-squares-four"></i> Overview
+          <i class="ph ph-squares-four"></i> Overview
         </li>
         <li class="nav-item" data-view="employees" data-href="EmployeeViewDashboard.html">
-          <i class="ph ph-users"></i> Employees
+          <i class="ph ph-user"></i> Employees
         </li>
         <li class="nav-item" data-view="trips" data-href="Trips.html">
           <i class="ph ph-car"></i> Trips
         </li>
         <li class="nav-item" data-view="bookings" data-href="Bookings.html">
-          <i class="ph ph-bookmark-simple"></i> Bookings
+          <i class="ph ph-identification-card"></i> Bookings
         </li>
         <li class="nav-item" data-view="wallet" data-href="Wallet.html">
           <i class="ph ph-wallet"></i> Wallet
         </li>
         <li class="nav-item" data-view="reports" data-href="Reports.html">
-          <i class="ph ph-chart-bar"></i> Reports
+          <i class="ph ph-file-text"></i> Reports
         </li>
         <li class="nav-item" data-view="settings" data-href="CompanySettings.html">
           <i class="ph ph-gear"></i> Company Settings
@@ -59,13 +59,14 @@
 
     <div class="sidebar-bottom">
       <div class="help-card">
-        <i class="ph-fill ph-headset"></i>
-        <div>
-          <p>Need Help?</p>
-          <span>Visit our support center</span>
+        <div class="help-card-header">
+          <div class="help-icon"><i class="ph-fill ph-headset"></i></div>
+          <div class="help-text">
+            <p>Need Help?</p>
+            <span>Visit our support center</span>
+          </div>
         </div>
         <button class="contact-support-btn" id="contact-support-btn">Contact Support</button>
-      
       </div>
       <button class="logout-btn" id="logout-btn"><i class="ph ph-sign-out"></i> Logout</button>
     </div>
@@ -74,7 +75,12 @@
   <!-- Main -->
   <main class="dash-main">
 
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
     <header class="dash-topbar">
+      <button class="menu-toggle-btn" id="sidebar-toggle" aria-label="Toggle navigation">
+        <i class="ph ph-list"></i>
+      </button>
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Search for trips, bookings, invoice...">
         <i class="ph ph-magnifying-glass"></i>
@@ -83,7 +89,7 @@
         <button class="icon-btn" id="notif-btn" aria-label="Notifications"><i class="ph ph-bell"></i></button>
         <button class="icon-btn" id="help-btn" aria-label="Help"><i class="ph ph-question"></i></button>
         <div class="admin-profile" id="admin-profile-toggle">
-          <img src="Assets/admin-avatar.png" alt="" class="avatar">
+          <img src="Assets/Admin.jpg" alt="Acme Corporation" class="avatar">
           <div class="admin-info">
             <span class="admin-name">Acme Corporation</span>
             <span class="admin-role">Super Admin</span>
@@ -106,34 +112,30 @@
     </div>
 
     <!-- Stat cards -->
-    <section class="stat-cards" id="stat-cards">
-      <!-- populated by JS -->
-    </section>
+    <section class="stat-cards" id="stat-cards"></section>
 
     <div class="dash-columns">
 
       <!-- Left column -->
       <div class="dash-col-left">
 
-        <section class="panel">
-          <div class="panel-header">
-            <h3>Upcoming Bookings</h3>
+        <section class="bookings-section">
+          <h3 class="section-heading">Upcoming Bookings</h3>
+          <div class="panel bookings-panel">
+            <ul class="bookings-list" id="bookings-list"></ul>
           </div>
-          <ul class="bookings-list" id="bookings-list"></ul>
         </section>
 
-        <section class="panel">
-          <div class="panel-header">
-            <h3>Recent Ride Requests</h3>
+        <section class="requests-section">
+          <div class="section-header-row">
+            <h3 class="section-heading">Recent Ride Requests</h3>
             <a href="#" class="view-all-link" id="view-all-requests">View All</a>
           </div>
           <ul class="requests-list" id="requests-list"></ul>
         </section>
 
-        <section class="panel">
-          <div class="panel-header">
-            <h3>Quick Actions</h3>
-          </div>
+        <section class="quick-actions-section">
+          <h3 class="section-heading">Quick Actions</h3>
           <div class="quick-actions" id="quick-actions"></div>
         </section>
 
@@ -142,7 +144,7 @@
       <!-- Right column -->
       <div class="dash-col-right">
 
-        <section class="panel">
+        <section class="panel spend-panel">
           <div class="panel-header">
             <h3>Monthly Spend Overview</h3>
             <select class="panel-select" id="spend-range-select">
@@ -152,22 +154,35 @@
             </select>
           </div>
           <div class="chart-area">
-            <div class="chart-bars" id="chart-bars"></div>
-            <div class="chart-tooltip" id="chart-tooltip"></div>
+            <div class="chart-plot">
+              <div class="chart-y-axis">
+                <span>500k</span>
+                <span>400k</span>
+                <span>300k</span>
+                <span>200k</span>
+                <span>100k</span>
+                <span>0</span>
+              </div>
+              <div class="chart-bars" id="chart-bars"></div>
+            </div>
+            <div class="chart-tooltip visible" id="chart-tooltip">
+              <span>July</span>
+              <strong>₦ 4,568,890</strong>
+            </div>
           </div>
         </section>
 
         <section class="panel wallet-panel">
-          <div class="wallet-icon"><i class="ph-fill ph-briefcase"></i></div>
+          <div class="wallet-icon"><i class="ph-fill ph-wallet"></i></div>
           <div class="wallet-info">
             <h3>Company Wallet Balance</h3>
-            <p class="wallet-balance" id="wallet-balance">₦2,335,600.00</p>
+            <p class="wallet-balance" id="wallet-balance">₦ 2,335,600.00</p>
             <span class="wallet-status"><i class="ph-fill ph-circle"></i> Available Balance</span>
           </div>
           <button class="top-up-btn" id="top-up-btn">Top Up Wallet</button>
         </section>
 
-        <section class="panel">
+        <section class="panel routes-panel">
           <div class="panel-header">
             <h3>Top Routes</h3>
             <select class="panel-select" id="routes-sort-select">

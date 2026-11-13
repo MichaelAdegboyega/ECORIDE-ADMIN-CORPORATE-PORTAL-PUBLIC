@@ -1,42 +1,40 @@
-// Employees.js
-//
-// ⚠️ MOCK DATA — no confirmed GET /api/v1/corporate/employees endpoint yet
-// (same situation as the Overview dashboard). MOCK_EMPLOYEES below stands
-// in for that response. Swapping to a real fetch() later only means
-// replacing how `state.employees` is populated — everything else (render,
-// filter, paginate) already works off that array.
-
 const PAGE_SIZE = 7;
-const TOTAL_MOCK_COUNT = 48; // matches "Showing 1 to 7 of 48 employees" in the design
+const TOTAL_MOCK_COUNT = 48;
 
-const FIRST_NAMES = ["Sarah", "Michael", "Linda", "James", "Tolu", "Esther", "David", "Grace", "Peter", "Amaka", "Chidi", "Blessing"];
-const LAST_NAMES = ["Johnson", "Ade", "Mo", "Okafor", "Bamidele", "Bright", "Wilson", "Eze", "Obi", "Adewale", "Okoro", "Nwosu"];
+const INITIAL_EMPLOYEES = [
+  { id: "EMP-2026-004", name: "Sarah Johnson", department: "Marketing", email: "sarahj@acme.com", status: "active", joined: "June 21, 2025" },
+  { id: "EMP-2026-002", name: "Michael Ade", department: "Operations", email: "michael@acme.com", status: "active", joined: "May 21, 2025" },
+  { id: "EMP-2026-003", name: "Linda Mo", department: "Finance", email: "linda@acme.com", status: "active", joined: "June 16, 2025" },
+  { id: "EMP-2026-005", name: "James Okafor", department: "Sales", email: "james@acme.com", status: "active", joined: "May 10, 2026" },
+  { id: "EMP-2026-006", name: "Tolu Bamidele", department: "HR", email: "tolu@acme.com", status: "active", joined: "May 01, 2026" },
+  { id: "EMP-2026-007", name: "Esther Bright", department: "Support", email: "esther@acme.com", status: "inactive", joined: "June 06, 2025" },
+  { id: "EMP-2026-008", name: "David Wilson", department: "Operations", email: "david@acme.com", status: "active", joined: "May 27, 2026" },
+];
+
+const FIRST_NAMES = ["Grace", "Peter", "Amaka", "Chidi", "Blessing", "Kunle", "Ngozi", "Samuel", "Fatima", "Emeka"];
+const LAST_NAMES = ["Eze", "Obi", "Adewale", "Okoro", "Nwosu", "Bakare", "Ibrahim", "Ojo", "Bello", "Nwachukwu"];
 const DEPARTMENTS = ["Marketing", "Operations", "Finance", "Sales", "HR", "Support"];
 
 function generateMockEmployees(count) {
-  const employees = [];
-  for (let i = 0; i < count; i++) {
+  const employees = [...INITIAL_EMPLOYEES];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  for (let i = employees.length; i < count; i++) {
     const first = FIRST_NAMES[i % FIRST_NAMES.length];
-    const last = LAST_NAMES[(i + 3) % LAST_NAMES.length];
+    const last = LAST_NAMES[(i + 2) % LAST_NAMES.length];
     const dept = DEPARTMENTS[i % DEPARTMENTS.length];
+    const day = String((i % 27) + 1).padStart(2, "0");
+    const year = i % 2 === 0 ? 2025 : 2026;
     employees.push({
-      id: `EMP-2026-${String(i + 1).padStart(3, "0")}`,
+      id: `EMP-2026-${String(i + 2).padStart(3, "0")}`,
       name: `${first} ${last}`,
       department: dept,
-      email: `${first.toLowerCase()}${i}@acme.com`,
+      email: `${first.toLowerCase()}@acme.com`,
       status: i % 6 === 5 ? "inactive" : "active",
-      joined: mockJoinDate(i),
+      joined: `${months[i % months.length]} ${day}, ${year}`,
     });
   }
   return employees;
-}
-
-function mockJoinDate(i) {
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const month = months[i % 12];
-  const day = (i % 28) + 1;
-  const year = i % 3 === 0 ? 2026 : 2025;
-  return `${month} ${day}, ${year}`;
 }
 
 const state = {
@@ -48,14 +46,13 @@ const state = {
   statusFilter: "All",
 };
 
-// ---------------------------------------------------------------
-// Filtering + pagination
-// ---------------------------------------------------------------
 function applyFilters() {
   state.filtered = state.employees.filter((emp) => {
-    const matchesSearch = state.searchTerm === "" ||
+    const matchesSearch =
+      state.searchTerm === "" ||
       emp.name.toLowerCase().includes(state.searchTerm) ||
-      emp.email.toLowerCase().includes(state.searchTerm);
+      emp.email.toLowerCase().includes(state.searchTerm) ||
+      emp.department.toLowerCase().includes(state.searchTerm);
     const matchesDept = state.departmentFilter === "All" || emp.department === state.departmentFilter;
     const matchesStatus = state.statusFilter === "All" || emp.status === state.statusFilter.toLowerCase();
     return matchesSearch && matchesDept && matchesStatus;
@@ -69,9 +66,6 @@ function getPageItems() {
   return state.filtered.slice(start, start + PAGE_SIZE);
 }
 
-// ---------------------------------------------------------------
-// Render: table body
-// ---------------------------------------------------------------
 function renderTable() {
   const tbody = document.getElementById("employees-table-body");
   const pageItems = getPageItems();
@@ -83,29 +77,40 @@ function renderTable() {
       <tr data-id="${emp.id}">
         <td>
           <div class="emp-name-cell">
-            <img src="Assets/avatar-placeholder.png" alt="">
-            ${emp.name}
+            <img src="Assets/Driver.jpg" alt="${emp.name}">
+            <span>${emp.name}</span>
           </div>
         </td>
-        <td>${emp.department}</td>
+        <td class="emp-dept">${emp.department}</td>
         <td class="emp-email">${emp.email}</td>
         <td><span class="status-badge ${emp.status}">${emp.status === "active" ? "Active" : "Inactive"}</span></td>
-        <td>${emp.joined}</td>
-        <td><button class="row-actions-btn" data-id="${emp.id}"><i class="ph ph-dots-three"></i></button></td>
+        <td class="emp-joined">${emp.joined}</td>
+        <td>
+          <button class="row-actions-btn" data-id="${emp.id}" aria-label="Row actions">
+            <span class="dots-outline"><span></span><span></span><span></span></span>
+          </button>
+        </td>
       </tr>
     `).join("");
   }
 
-  document.querySelectorAll(".row-actions-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => openRowMenu(e.currentTarget, btn.dataset.id));
+  tbody.querySelectorAll("tr[data-id]").forEach((row) => {
+    row.addEventListener("click", (e) => {
+      if (e.target.closest(".row-actions-btn")) return;
+      window.location.href = `EmployeeDetail.html?id=${encodeURIComponent(row.dataset.id)}`;
+    });
+  });
+
+  tbody.querySelectorAll(".row-actions-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openRowMenu(e.currentTarget, btn.dataset.id);
+    });
   });
 
   renderPagination();
 }
 
-// ---------------------------------------------------------------
-// Render: pagination
-// ---------------------------------------------------------------
 function renderPagination() {
   const container = document.getElementById("employees-pagination");
   const total = state.filtered.length;
@@ -118,13 +123,14 @@ function renderPagination() {
   for (let p = 1; p <= Math.min(maxVisible, totalPages); p++) {
     pageButtons.push(p);
   }
+  const lastLabel = totalPages > maxVisible ? 10 : totalPages;
 
   container.innerHTML = `
     <span>Showing ${start} to ${end} of ${total} employees</span>
     <div class="pagination-controls">
       <button class="page-btn" id="prev-page" ${state.currentPage === 1 ? "disabled" : ""}><i class="ph ph-caret-left"></i></button>
       ${pageButtons.map((p) => `<button class="page-btn ${p === state.currentPage ? "active" : ""}" data-page="${p}">${p}</button>`).join("")}
-      ${totalPages > maxVisible ? `<span>...</span><button class="page-btn" data-page="${totalPages}">${totalPages}</button>` : ""}
+      ${totalPages > maxVisible ? `<span class="page-ellipsis">•••</span><button class="page-btn ${state.currentPage === totalPages ? "active" : ""}" data-page="${totalPages}">${lastLabel}</button>` : ""}
       <button class="page-btn" id="next-page" ${state.currentPage === totalPages ? "disabled" : ""}><i class="ph ph-caret-right"></i></button>
     </div>
   `;
@@ -135,22 +141,27 @@ function renderPagination() {
       renderTable();
     });
   });
+
   document.getElementById("prev-page").addEventListener("click", () => {
-    if (state.currentPage > 1) { state.currentPage--; renderTable(); }
+    if (state.currentPage > 1) {
+      state.currentPage--;
+      renderTable();
+    }
   });
+
   document.getElementById("next-page").addEventListener("click", () => {
-    if (state.currentPage < totalPages) { state.currentPage++; renderTable(); }
+    if (state.currentPage < totalPages) {
+      state.currentPage++;
+      renderTable();
+    }
   });
 }
 
-// ---------------------------------------------------------------
-// Row-action menu (View Details / Edit / Deactivate)
-// ---------------------------------------------------------------
 function openRowMenu(anchorEl, employeeId) {
   const menu = document.getElementById("row-menu");
   const rect = anchorEl.getBoundingClientRect();
   menu.style.top = `${rect.bottom + window.scrollY + 4}px`;
-  menu.style.left = `${rect.left + window.scrollX - 130}px`;
+  menu.style.left = `${rect.left + window.scrollX - 115}px`;
   menu.classList.add("open");
   menu.dataset.employeeId = employeeId;
 }
@@ -174,7 +185,6 @@ function setupRowMenuActions() {
       } else if (action === "deactivate") {
         const emp = state.employees.find((e) => e.id === employeeId);
         if (emp && confirm(`Deactivate ${emp.name}?`)) {
-          // TODO: replace with real PATCH /api/v1/corporate/employees/:id
           emp.status = "inactive";
           applyFilters();
         }
@@ -182,7 +192,6 @@ function setupRowMenuActions() {
     });
   });
 
-  // close menu on outside click
   document.addEventListener("click", (e) => {
     if (!menu.contains(e.target) && !e.target.closest(".row-actions-btn")) {
       closeRowMenu();
@@ -190,9 +199,6 @@ function setupRowMenuActions() {
   });
 }
 
-// ---------------------------------------------------------------
-// Filter dropdowns (Department / Status)
-// ---------------------------------------------------------------
 function setupFilterDropdown(containerId, options, onSelect) {
   const container = document.getElementById(containerId);
   const btn = container.querySelector(".filter-btn");
@@ -224,9 +230,6 @@ function setupFilterDropdown(containerId, options, onSelect) {
   });
 }
 
-// ---------------------------------------------------------------
-// Tabs (All Employees / Invitations)
-// ---------------------------------------------------------------
 function setupTabs() {
   const tabs = document.querySelectorAll(".emp-tab");
   tabs.forEach((tab) => {
@@ -240,10 +243,6 @@ function setupTabs() {
   });
 }
 
-// ---------------------------------------------------------------
-// Sidebar nav (shared pattern — active state + real page links this
-// time, since these pages now actually exist)
-// ---------------------------------------------------------------
 function setupSidebarNav() {
   document.querySelectorAll("#sidebar-nav-list .nav-item").forEach((item) => {
     item.addEventListener("click", () => {
@@ -254,6 +253,21 @@ function setupSidebarNav() {
 }
 
 function setupMiscControls() {
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.getElementById("sidebar-toggle");
+  const backdrop = document.getElementById("sidebar-backdrop");
+
+  if (toggleBtn && sidebar && backdrop) {
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      backdrop.classList.toggle("active");
+    });
+    backdrop.addEventListener("click", () => {
+      sidebar.classList.remove("open");
+      backdrop.classList.remove("active");
+    });
+  }
+
   document.getElementById("contact-support-btn").addEventListener("click", () => {
     alert("Contact Support is coming soon.");
   });
@@ -263,11 +277,16 @@ function setupMiscControls() {
   document.getElementById("add-employee-btn").addEventListener("click", () => {
     alert("Add Employee form is coming soon.");
   });
+
+  const topSearch = document.getElementById("search-input");
+  if (topSearch) {
+    topSearch.addEventListener("input", (e) => {
+      state.searchTerm = e.target.value.trim().toLowerCase();
+      applyFilters();
+    });
+  }
 }
 
-// ---------------------------------------------------------------
-// Init
-// ---------------------------------------------------------------
 document.getElementById("employee-search").addEventListener("input", (e) => {
   state.searchTerm = e.target.value.trim().toLowerCase();
   applyFilters();

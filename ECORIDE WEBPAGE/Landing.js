@@ -120,6 +120,10 @@ function goToStore() {
 
 document.getElementById("download-app-btn")?.addEventListener("click", goToStore);
 document.getElementById("become-driver-btn")?.addEventListener("click", goToStore);
+document.getElementById("book-ride-btn")?.addEventListener("click", () => {
+  document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+});
+// Driver banner Sign In button navigates to Login.html via anchor wrapper
 
 // Store icon links validation
 document.getElementById("app-store-link")?.addEventListener("click", (e) => {

@@ -1,25 +1,30 @@
-// Trips.js
-//
-// ⚠️ MOCK DATA — no confirmed GET /api/v1/corporate/trips endpoint yet
-// (same pattern as Employees/Overview). MOCK_TRIPS below stands in for
-// that response; swap generateMockTrips() for a real fetch() later —
-// render/filter/paginate logic doesn't need to change.
-
 const PAGE_SIZE = 7;
-const TOTAL_MOCK_COUNT = 124; // matches "Showing 7 of 124 trips" in the design
+const TOTAL_MOCK_COUNT = 124;
+
+const INITIAL_TRIPS = [
+  { id: "TRP-2024-0647", date: "July 22, 2026", time: "8:45 AM", from: "Ikeja", to: "VI", employee: "Sarah Johnson", status: "completed", amount: 4200 },
+  { id: "TRP-2024-0648", date: "July 22, 2026", time: "8:45 AM", from: "Ikeja", to: "VI", employee: "Michael Ade", status: "completed", amount: 3150 },
+  { id: "TRP-2024-0649", date: "July 22, 2026", time: "7:15 AM", from: "Ikeja", to: "VI", employee: "Linda Mo", status: "completed", amount: 1900 },
+  { id: "TRP-2024-0650", date: "July 22, 2026", time: "9:25 AM", from: "Ikeja", to: "VI", employee: "James Okafor", status: "completed", amount: 2000 },
+  { id: "TRP-2024-0651", date: "July 22, 2026", time: "8:30 AM", from: "Ikeja", to: "VI", employee: "Tolu Bamidele", status: "completed", amount: 3200 },
+  { id: "TRP-2024-0652", date: "July 22, 2026", time: "7:45 AM", from: "Ikeja", to: "VI", employee: "Esther Bright", status: "cancelled", amount: 0 },
+  { id: "TRP-2024-0653", date: "July 22, 2026", time: "9:00 AM", from: "Ikeja", to: "VI", employee: "David Wilson", status: "completed", amount: 1600 },
+];
 
 const EMPLOYEES = ["Sarah Johnson", "Michael Ade", "Linda Mo", "James Okafor", "Tolu Bamidele", "Esther Bright", "David Wilson"];
 const STATUSES = ["completed", "completed", "completed", "completed", "completed", "cancelled", "upcoming", "ongoing"];
 const AMOUNTS = [4200, 3150, 1900, 2000, 3200, 0, 1600, 2750];
 
 function generateMockTrips(count) {
-  const trips = [];
-  for (let i = 0; i < count; i++) {
+  const trips = [...INITIAL_TRIPS];
+  const times = ["8:45 AM", "7:15 AM", "9:25 AM", "8:30 AM", "7:45 AM", "9:00 AM"];
+
+  for (let i = trips.length; i < count; i++) {
     const status = STATUSES[i % STATUSES.length];
     trips.push({
-      id: `TRP-2026-${String(i + 1).padStart(4, "0")}`,
+      id: `TRP-2024-${String(647 + i).padStart(4, "0")}`,
       date: "July 22, 2026",
-      time: mockTime(i),
+      time: times[i % times.length],
       from: "Ikeja",
       to: "VI",
       employee: EMPLOYEES[i % EMPLOYEES.length],
@@ -30,15 +35,6 @@ function generateMockTrips(count) {
   return trips;
 }
 
-function mockTime(i) {
-  const hours = [7, 8, 9];
-  const mins = ["00", "15", "25", "30", "45"];
-  const h = hours[i % hours.length];
-  const m = mins[i % mins.length];
-  const period = h < 12 ? "AM" : "PM";
-  return `${h}:${m} ${period}`;
-}
-
 const state = {
   trips: generateMockTrips(TOTAL_MOCK_COUNT),
   filtered: [],
@@ -47,15 +43,15 @@ const state = {
   searchTerm: "",
 };
 
-// ---------------------------------------------------------------
-// Filtering + pagination
-// ---------------------------------------------------------------
 function applyFilters() {
   state.filtered = state.trips.filter((trip) => {
     const matchesTab = state.activeTab === "all" || trip.status === state.activeTab;
-    const matchesSearch = state.searchTerm === "" ||
+    const matchesSearch =
+      state.searchTerm === "" ||
       trip.employee.toLowerCase().includes(state.searchTerm) ||
-      trip.id.toLowerCase().includes(state.searchTerm);
+      trip.id.toLowerCase().includes(state.searchTerm) ||
+      trip.from.toLowerCase().includes(state.searchTerm) ||
+      trip.to.toLowerCase().includes(state.searchTerm);
     return matchesTab && matchesSearch;
   });
   state.currentPage = 1;
@@ -67,9 +63,10 @@ function getPageItems() {
   return state.filtered.slice(start, start + PAGE_SIZE);
 }
 
-// ---------------------------------------------------------------
-// Render: table
-// ---------------------------------------------------------------
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 function renderTable() {
   const tbody = document.getElementById("trips-table-body");
   const pageItems = getPageItems();
@@ -79,12 +76,12 @@ function renderTable() {
   } else {
     tbody.innerHTML = pageItems.map((trip) => `
       <tr data-id="${trip.id}">
-        <td>${trip.date}. &nbsp;${trip.time}</td>
+        <td class="trip-date-cell">${trip.date}. &nbsp;${trip.time}</td>
         <td><span class="route-cell">${trip.from} <i class="ph ph-arrow-right"></i> ${trip.to}</span></td>
         <td>
           <div class="trip-employee-cell">
-            <img src="Assets/avatar-placeholder.png" alt="">
-            ${trip.employee}
+            <img src="Assets/Driver.jpg" alt="${trip.employee}">
+            <span>${trip.employee}</span>
           </div>
         </td>
         <td><span class="status-badge ${trip.status}">${capitalize(trip.status)}</span></td>
@@ -102,13 +99,6 @@ function renderTable() {
   renderPagination();
 }
 
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-// ---------------------------------------------------------------
-// Render: pagination
-// ---------------------------------------------------------------
 function renderPagination() {
   const container = document.getElementById("trips-pagination");
   const total = state.filtered.length;
@@ -120,13 +110,14 @@ function renderPagination() {
   for (let p = 1; p <= Math.min(maxVisible, totalPages); p++) {
     pageButtons.push(p);
   }
+  const lastLabel = totalPages > maxVisible ? 10 : totalPages;
 
   container.innerHTML = `
     <span>Showing ${Math.max(0, shown)} of ${total} trips</span>
     <div class="pagination-controls">
       <button class="page-btn" id="prev-page" ${state.currentPage === 1 ? "disabled" : ""}><i class="ph ph-caret-left"></i></button>
       ${pageButtons.map((p) => `<button class="page-btn ${p === state.currentPage ? "active" : ""}" data-page="${p}">${p}</button>`).join("")}
-      ${totalPages > maxVisible ? `<span>...</span><button class="page-btn" data-page="${totalPages}">${totalPages}</button>` : ""}
+      ${totalPages > maxVisible ? `<span class="page-ellipsis">•••</span><button class="page-btn ${state.currentPage === totalPages ? "active" : ""}" data-page="${totalPages}">${lastLabel}</button>` : ""}
       <button class="page-btn" id="next-page" ${state.currentPage === totalPages ? "disabled" : ""}><i class="ph ph-caret-right"></i></button>
     </div>
   `;
@@ -137,17 +128,22 @@ function renderPagination() {
       renderTable();
     });
   });
+
   document.getElementById("prev-page").addEventListener("click", () => {
-    if (state.currentPage > 1) { state.currentPage--; renderTable(); }
+    if (state.currentPage > 1) {
+      state.currentPage--;
+      renderTable();
+    }
   });
+
   document.getElementById("next-page").addEventListener("click", () => {
-    if (state.currentPage < totalPages) { state.currentPage++; renderTable(); }
+    if (state.currentPage < totalPages) {
+      state.currentPage++;
+      renderTable();
+    }
   });
 }
 
-// ---------------------------------------------------------------
-// Tabs
-// ---------------------------------------------------------------
 function setupTabs() {
   const tabs = document.querySelectorAll("#trip-tabs .emp-tab");
   tabs.forEach((tab) => {
@@ -160,9 +156,6 @@ function setupTabs() {
   });
 }
 
-// ---------------------------------------------------------------
-// Sidebar nav + misc controls
-// ---------------------------------------------------------------
 function setupSidebarNav() {
   document.querySelectorAll("#sidebar-nav-list .nav-item").forEach((item) => {
     item.addEventListener("click", () => {
@@ -173,6 +166,21 @@ function setupSidebarNav() {
 }
 
 function setupMiscControls() {
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.getElementById("sidebar-toggle");
+  const backdrop = document.getElementById("sidebar-backdrop");
+
+  if (toggleBtn && sidebar && backdrop) {
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      backdrop.classList.toggle("active");
+    });
+    backdrop.addEventListener("click", () => {
+      sidebar.classList.remove("open");
+      backdrop.classList.remove("active");
+    });
+  }
+
   document.getElementById("contact-support-btn").addEventListener("click", () => {
     alert("Contact Support is coming soon.");
   });
@@ -185,9 +193,6 @@ function setupMiscControls() {
   });
 }
 
-// ---------------------------------------------------------------
-// Init
-// ---------------------------------------------------------------
 setupTabs();
 setupSidebarNav();
 setupMiscControls();

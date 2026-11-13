@@ -1,18 +1,23 @@
-// Select the DOM elements
 const showPassword = document.querySelector('#show-password');
 const passwordInput = document.querySelector('#password');
 
-// Listen for a click event on the button
-showPassword.addEventListener('click', function () {
-    this.classList.toggle("ph-eye-slash");
-    // Check the current type attribute
-    const isHidden = passwordInput.getAttribute('type') === 'password';
-    
-    // Toggle the type attribute
-    passwordInput.setAttribute('type', isHidden ? 'text' : 'password');
-    
-});
+if (showPassword && passwordInput) {
+    showPassword.addEventListener('click', function () {
+        const isHidden = passwordInput.getAttribute('type') === 'password';
+        passwordInput.setAttribute('type', isHidden ? 'text' : 'password');
+        this.classList.toggle('ph-eye-slash', !isHidden);
+        this.classList.toggle('ph-eye', isHidden);
+    });
+}
 
+const showConfirmPassword = document.querySelector('#confirm-password');
+const confirmPasswordInput = document.querySelector('#confirmPassword');
 
-
-
+if (showConfirmPassword && confirmPasswordInput) {
+    showConfirmPassword.addEventListener('click', function () {
+        const isHidden = confirmPasswordInput.getAttribute('type') === 'password';
+        confirmPasswordInput.setAttribute('type', isHidden ? 'text' : 'password');
+        this.classList.toggle('ph-eye-slash', !isHidden);
+        this.classList.toggle('ph-eye', isHidden);
+    });
+}

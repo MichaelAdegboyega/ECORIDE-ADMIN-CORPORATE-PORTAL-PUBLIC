@@ -1,91 +1,93 @@
-// EmployeeDetail.js
-//
-// ⚠️ MOCK DATA — no confirmed GET /api/v1/corporate/employees/:id endpoint
-// yet. This reads ?id=EMP-2026-XXX from the URL (set by Employees.js when
-// linking here) and generates matching mock data deterministically from
-// that id, so clicking different employees actually shows different
-// details instead of always the same hardcoded person. Once a real
-// endpoint exists, replace getEmployeeById() below with a fetch() call —
-// everything else (render functions) already expects this same shape.
-
-const FIRST_NAMES = ["Sarah", "Michael", "Linda", "James", "Tolu", "Esther", "David", "Grace", "Peter", "Amaka", "Chidi", "Blessing"];
-const LAST_NAMES = ["Johnson", "Ade", "Mo", "Okafor", "Bamidele", "Bright", "Wilson", "Eze", "Obi", "Adewale", "Okoro", "Nwosu"];
-const DEPARTMENTS = ["Marketing", "Operations", "Finance", "Sales", "HR", "Support"];
-const TITLES = {
-  Marketing: "Marketing Manager", Operations: "Operations Associate", Finance: "Finance Analyst",
-  Sales: "Sales Executive", HR: "HR Officer", Support: "Support Specialist",
+const EMPLOYEES_MAP = {
+  "EMP-2026-004": {
+    name: "Sarah Johnson",
+    title: "Marketing Manager",
+    department: "Marketing Department",
+    status: "active",
+    employeeId: "EMP-2026-004",
+    joined: "May 12, 2024",
+    type: "Full-time",
+    email: "sarah.johnson@acme.com",
+    manager: "David Wilson",
+    workMode: "Hybrid",
+    phone: "+234 812 345 6789",
+    office: "Victoria Island",
+  },
+  "EMP-2026-002": {
+    name: "Michael Ade",
+    title: "Operations Manager",
+    department: "Operations Department",
+    status: "active",
+    employeeId: "EMP-2026-002",
+    joined: "May 21, 2025",
+    type: "Full-time",
+    email: "michael.ade@acme.com",
+    manager: "David Wilson",
+    workMode: "Hybrid",
+    phone: "+234 812 345 6789",
+    office: "Victoria Island",
+  },
+  "EMP-2026-003": {
+    name: "Linda Mo",
+    title: "Finance Analyst",
+    department: "Finance Department",
+    status: "active",
+    employeeId: "EMP-2026-003",
+    joined: "June 16, 2025",
+    type: "Full-time",
+    email: "linda.mo@acme.com",
+    manager: "David Wilson",
+    workMode: "Hybrid",
+    phone: "+234 812 345 6789",
+    office: "Victoria Island",
+  },
 };
-const MANAGERS = ["David Wilson", "Grace Eze", "Peter Obi", "Amaka Adewale"];
-const OFFICES = ["Victoria Island", "Ikeja", "Lekki Phase 1", "Surulere"];
-const WORK_MODES = ["Hybrid", "Remote", "On-site"];
 
 function getEmployeeIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
-  return params.get("id") || "EMP-2026-004"; // fallback to the design's original example
+  return params.get("id") || "EMP-2026-004";
 }
 
 function getEmployeeById(id) {
-  // parse the numeric suffix so the same id always maps to the same
-  // generated person (matches the generation logic in Employees.js)
-  const match = id.match(/(\d+)$/);
-  const i = match ? Math.max(0, parseInt(match[1], 10) - 1) : 0;
-
-  const first = FIRST_NAMES[i % FIRST_NAMES.length];
-  const last = LAST_NAMES[(i + 3) % LAST_NAMES.length];
-  const department = DEPARTMENTS[i % DEPARTMENTS.length];
-  const status = i % 6 === 5 ? "inactive" : "active";
+  const base = EMPLOYEES_MAP[id] || EMPLOYEES_MAP["EMP-2026-004"];
 
   return {
-    name: `${first} ${last}`,
-    title: TITLES[department],
-    department: `${department} Department`,
-    status,
-    employeeId: id,
-    joined: "May 12, 2024",
-    type: i % 4 === 0 ? "Part-time" : "Full-time",
-    email: `${first.toLowerCase()}.${last.toLowerCase()}@acme.com`,
-    manager: MANAGERS[i % MANAGERS.length],
-    workMode: WORK_MODES[i % WORK_MODES.length],
-    phone: `+234 8${String(10000000 + i * 137).slice(0, 8)}`,
-    office: OFFICES[i % OFFICES.length],
-
+    ...base,
     summary: [
-      { icon: "ph-car", label: "Total Trips", value: String(10 + (i * 3) % 40), delta: "+12.6% vs last 7 days" },
-      { icon: "ph-coins", label: "Total Spend", value: `₦${(100000 + i * 4300).toLocaleString()}`, delta: "+8% vs last 7 days" },
-      { icon: "ph-wallet", label: "This Month Spend", value: `₦${(60000 + i * 1900).toLocaleString()}`, delta: "+5% vs last 7 days" },
-      { icon: "ph-star", label: "Average rating", value: (4.2 + (i % 8) * 0.1).toFixed(1), delta: "+0.3% vs last 7 days" },
+      { icon: "ph-car", iconType: "ph", label: "Total Trips", value: "24", deltaHighlight: "+12.6%", deltaText: "vs last 7 days" },
+      { icon: "ph-credit-card", iconType: "ph", label: "Total Spend", value: "N156,800", deltaHighlight: "+8%", deltaText: "vs last 7 days" },
+      { icon: "ph-credit-card", iconType: "ph", label: "This Month Spend", value: "N99,400", deltaHighlight: "+5%", deltaText: "vs last 7 days" },
+      { icon: "ph-star", iconType: "ph-fill", iconClass: "star", label: "Average rating", value: "4.8", deltaHighlight: "+0.3%", deltaText: "vs last 7 days" },
     ],
-
     preferredRoutes: [
       { from: "Lekki Phase 1", to: "Victoria Island" },
       { from: "Ikeja", to: "Victoria Island" },
       { from: "Surulere", to: "Lekki Phase 1" },
     ],
-
-    emergencyContact: { name: "Michael Johnson", relationship: "Brother", phone: "+234 803 467 7985" },
-
+    emergencyContact: {
+      name: "Michael Johnson",
+      relationship: "Brother",
+      phone: "+234 803 467 7985",
+    },
     activity: [
-      { icon: "ph-car", title: "Booked morning commute", sub: "Lekki Phase 1 → Victoria Island", time: "July 21, 2026, 8:00 AM" },
-      { icon: "ph-check-circle", title: "Completed ride", sub: "Lekki Phase 1 → Victoria Island", time: "July 21, 2026, 8:45 AM" },
-      { icon: "ph-calendar-check", title: "Booking approved", sub: "Monthly recurring booking", time: "July 20, 2026, 4:45 PM" },
-      { icon: "ph-wallet", title: "Transport allowance updated", sub: "July 2026 allowance credited", time: "July 20, 2026, 2:30 PM" },
-      { icon: "ph-file-text", title: "Submitted reimbursement", sub: "Client meeting transport", time: "July 18, 2026, 7:30 AM" },
-      { icon: "ph-arrows-left-right", title: "Route changed", sub: "Surulere → Victoria Island", time: "July 17, 2026, 9:45 AM" },
+      { icon: "ph-car", title: "Booked morning commute", routeFrom: "Lekki Phase 1", routeTo: "Victoria Island", time: "July 21, 2026.  8:00 AM" },
+      { icon: "ph-check-circle", title: "Completed ride", routeFrom: "Lekki Phase 1", routeTo: "Victoria Island", time: "July 21, 2026.  8:45 AM" },
+      { icon: "ph-calendar-blank", title: "Booking approved", sub: "Monthly recurring booking", time: "July 20, 2026.  4:45 PM" },
+      { icon: "ph-wallet", title: "Transport allowance updated", sub: "July 2026 allowance credited", time: "July 20, 2026.  2:30 PM" },
+      { icon: "ph-file-text", title: "Submitted reimbursement", sub: "Client meeting transport", time: "July 18, 2026.  7:30 AM" },
+      { icon: "ph-git-branch", title: "Route changed", routeFrom: "Surulere", routeTo: "Victoria Island", time: "July 17, 2026.  9:45 AM" },
     ],
   };
 }
 
-// ---------------------------------------------------------------
-// Render: profile card
-// ---------------------------------------------------------------
 function renderProfile(emp) {
   document.getElementById("profile-name").textContent = emp.name;
-  document.getElementById("profile-title").textContent = `${emp.title}`;
+  document.getElementById("profile-title").textContent = emp.title;
   document.getElementById("profile-dept").textContent = emp.department;
 
   const statusEl = document.getElementById("profile-status");
   statusEl.textContent = emp.status === "active" ? "Active" : "Inactive";
-  statusEl.className = `status-badge ${emp.status}`;
+  statusEl.className = `profile-status-pill ${emp.status}`;
 
   document.getElementById("detail-empid").textContent = emp.employeeId;
   document.getElementById("detail-joined").textContent = emp.joined;
@@ -97,38 +99,31 @@ function renderProfile(emp) {
   document.getElementById("detail-office").textContent = emp.office;
 }
 
-// ---------------------------------------------------------------
-// Render: summary stat grid
-// ---------------------------------------------------------------
 function renderSummary(summary) {
   const grid = document.getElementById("summary-grid");
   grid.innerHTML = summary.map((s) => `
     <div class="summary-item">
-      <div class="summary-icon"><i class="ph-fill ${s.icon}"></i></div>
-      <div class="summary-value">${s.value}</div>
-      <div class="summary-label">${s.label}</div>
-      <div class="summary-delta">${s.delta}</div>
+      <div class="summary-icon ${s.iconClass || ""}"><i class="${s.iconType} ${s.icon}"></i></div>
+      <div class="summary-text">
+        <span class="summary-label">${s.label}</span>
+        <span class="summary-value">${s.value}</span>
+        <span class="summary-delta"><em>${s.deltaHighlight}</em> ${s.deltaText}</span>
+      </div>
     </div>
   `).join("");
 }
 
-// ---------------------------------------------------------------
-// Render: preferred routes
-// ---------------------------------------------------------------
 function renderPreferredRoutes(routes) {
   const list = document.getElementById("preferred-routes");
   list.innerHTML = routes.map((r) => `
     <li class="preferred-route-item">
-      <span class="preferred-route-icon"><i class="ph-fill ph-map-pin"></i></span>
+      <span class="preferred-route-icon"><i class="ph ph-git-branch"></i></span>
       <span class="preferred-route-text">${r.from} <i class="ph ph-arrow-right"></i> ${r.to}</span>
       <span class="preferred-tag">Preferred</span>
     </li>
   `).join("");
 }
 
-// ---------------------------------------------------------------
-// Render: emergency contact
-// ---------------------------------------------------------------
 function renderEmergencyContact(ec) {
   document.getElementById("emergency-contact").innerHTML = `
     <div><span class="ec-label">Name</span><span class="ec-value">${ec.name}</span></div>
@@ -137,33 +132,36 @@ function renderEmergencyContact(ec) {
   `;
 }
 
-// ---------------------------------------------------------------
-// Render + interact: Activity list (with filter dropdown)
-// ---------------------------------------------------------------
 function renderActivity(activity) {
   const list = document.getElementById("activity-list");
-  list.innerHTML = activity.map((a) => `
-    <li class="activity-item">
-      <div class="activity-row">
-        <div class="activity-text-row">
-          <span class="activity-icon"><i class="ph-fill ${a.icon}"></i></span>
-          <div>
-            <div class="activity-title">${a.title}</div>
-            <div class="activity-sub">${a.sub}</div>
+  list.innerHTML = activity.map((a) => {
+    const subHtml = a.routeFrom
+      ? `<div class="activity-sub">${a.routeFrom} <i class="ph ph-arrow-right"></i> ${a.routeTo}</div>`
+      : `<div class="activity-sub">${a.sub}</div>`;
+
+    return `
+      <li class="activity-item">
+        <div class="activity-row">
+          <div class="activity-text-row">
+            <span class="activity-icon"><i class="ph ${a.icon}"></i></span>
+            <div>
+              <div class="activity-title">${a.title}</div>
+              ${subHtml}
+            </div>
           </div>
+          <span class="activity-time">${a.time}</span>
         </div>
-        <span class="activity-time">${a.time}</span>
-      </div>
-    </li>
-  `).join("");
+      </li>
+    `;
+  }).join("");
 }
 
 function setupActivityFilter(activity) {
   const select = document.getElementById("activity-filter");
   const categoryMap = {
-    "Trips": ["ph-car", "ph-check-circle"],
-    "Bookings": ["ph-calendar-check"],
-    "Payments": ["ph-wallet", "ph-file-text"],
+    Trips: ["ph-car", "ph-check-circle", "ph-git-branch"],
+    Bookings: ["ph-calendar-blank"],
+    Payments: ["ph-wallet", "ph-file-text"],
   };
 
   select.addEventListener("change", () => {
@@ -177,9 +175,6 @@ function setupActivityFilter(activity) {
   });
 }
 
-// ---------------------------------------------------------------
-// Detail tabs (Activity / Bookings / Trips / Expenses / Documents)
-// ---------------------------------------------------------------
 function setupDetailTabs() {
   const tabs = document.querySelectorAll(".detail-tab");
   const activityPanel = document.getElementById("activity-panel");
@@ -197,18 +192,12 @@ function setupDetailTabs() {
       } else {
         activityPanel.style.display = "none";
         otherPanel.style.display = "block";
-        // TODO: each of these needs its own real data view once the
-        // corresponding endpoint exists (employee-scoped bookings,
-        // trips, expenses, documents).
         otherLabel.textContent = `${tab.textContent.trim()} view is coming soon.`;
       }
     });
   });
 }
 
-// ---------------------------------------------------------------
-// Sidebar nav + misc controls
-// ---------------------------------------------------------------
 function setupSidebarNav() {
   document.querySelectorAll("#sidebar-nav-list .nav-item").forEach((item) => {
     item.addEventListener("click", () => {
@@ -219,6 +208,21 @@ function setupSidebarNav() {
 }
 
 function setupMiscControls() {
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.getElementById("sidebar-toggle");
+  const backdrop = document.getElementById("sidebar-backdrop");
+
+  if (toggleBtn && sidebar && backdrop) {
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      backdrop.classList.toggle("active");
+    });
+    backdrop.addEventListener("click", () => {
+      sidebar.classList.remove("open");
+      backdrop.classList.remove("active");
+    });
+  }
+
   document.getElementById("contact-support-btn").addEventListener("click", () => {
     alert("Contact Support is coming soon.");
   });
@@ -234,11 +238,12 @@ function setupMiscControls() {
   document.getElementById("view-all-activity").addEventListener("click", () => {
     alert("Full activity history is coming soon.");
   });
+  document.getElementById("preferred-view-all").addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("All preferred routes coming soon.");
+  });
 }
 
-// ---------------------------------------------------------------
-// Init
-// ---------------------------------------------------------------
 const currentEmployee = getEmployeeById(getEmployeeIdFromUrl());
 
 renderProfile(currentEmployee);
